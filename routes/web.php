@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('admin', function() {
-    return '<h1>admin panel</h1>';
+    return view('index');
 })->middleware(['auth', 'verified', 'role:admin']);
 Route::get('staff', function() {
     return '<h1>staff panel</h1>';
@@ -40,5 +40,6 @@ Route::get('guru', function() {
 Route::get('kepsek', function() {
     return '<h1>kepsek panel</h1>';
 })->middleware(['auth', 'verified', 'role:kepsek']);;
+
 
 require __DIR__.'/auth.php';
