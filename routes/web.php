@@ -22,6 +22,10 @@ Route::get('/home', function () {
     return view('admin.dashboard.index');
 });
 
+Route::get('/userdashboard', function () {
+    return view('admin.user.show');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
