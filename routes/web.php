@@ -22,6 +22,10 @@ Route::get('/home', function () {
     return view('admin.dashboard.index');
 });
 
+Route::get('/requestdashboard', function () {
+    return view('admin.request.show');
+});
+
 Route::get('/barangdashboard', function () {
     return view('admin.barang.create');
 });
