@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Dashboard
+@endsection
+
 @section('content')
     <div class="conatiner-fluid content-inner mt-5 py-0">
         <div class="row">
