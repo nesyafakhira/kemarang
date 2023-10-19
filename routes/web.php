@@ -26,6 +26,10 @@ Route::get('/requestdashboard', function () {
     return view('admin.request.show');
 });
 
+Route::get('/stockdashboard', function () {
+    return view('admin.stock.show');
+});
+
 Route::get('/barangdashboard', function () {
     return view('admin.barang.create');
 });
