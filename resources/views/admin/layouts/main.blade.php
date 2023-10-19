@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/logik.css?v=1.0.0') }}">
 </head>
 
-<body class="  ">
+<body class="">
     <!-- loader Start -->
     <div id="loading">
         <div class="loader simple-loader">
@@ -29,13 +29,16 @@
     @include('sweetalert::alert')
 
     <!-- loader END -->
+    
     @include('admin.layouts.sidebar')
     <main class="main-content">
+        
         @include('admin.layouts.header')
 
         @yield('content')
 
         @include('admin.layouts.footer')
+
         
 
     </main>
