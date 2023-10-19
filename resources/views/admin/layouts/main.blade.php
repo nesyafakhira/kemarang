@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Logik | Responsive Bootstrap 5 Admin Dashboard Template</title>
+    <title>nighuer</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}" />
@@ -31,7 +31,7 @@
         @yield('content')
 
         @include('admin.layouts.footer')
-        
+
 
     </main>
     <!-- Wrapper End-->
