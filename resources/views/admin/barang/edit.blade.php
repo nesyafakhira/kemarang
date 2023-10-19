@@ -12,39 +12,26 @@
                     </div>
                     <div class="card-body">
                         <div class="new-user-info">
-                            <form>
+                            <form action="{{ route('barang.update', $barang->id) }}" method="post">
+                                @csrf
+                                @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="fname">Nama Barang</label>
-                                        <input type="text" class="form-control" id="fname" placeholder="Masukkan Nama">
+                                        <input value="{{ $barang->nama_barang }}" name="nama_barang" type="text" class="form-control" id="fname" placeholder="Masukkan Nama">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="email">Jumlah Unit</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
+                                        <input value="{{ $barang->jumlah_unit }}" name="jumlah_unit" type="number" class="form-control" id="email" placeholder="Masukkan Jumlah">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="email">Satuan</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
+                                        <input value="{{ $barang->satuan }}" name="satuan" type="text" class="form-control" id="email" placeholder="Masukkan Satuan">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="email">Harga Masuk</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
+                                        <input value="{{ $barang->harga_satuan }}" name="harga_satuan" type="number" class="form-control" id="email" placeholder="Masukkan Harga">
                                     </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">Jumlah Tanpa PPN</label>
-                                        <input type="text" class="form-control" id="mobno" placeholder="Masukkan NPSN">
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">PPN</label>
-                                        <input type="text" class="form-control" id="mobno" placeholder="Masukkan NPSN">
-                                    </div>
-                                    <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">Jumlah Dengan PPN</label>
-                                        <input type="text" class="form-control" id="mobno" placeholder="Masukkan NPSN">
-                                    </div>
-                                <div class="checkbox">
-                                    <label class="form-label"><input class="form-check-input me-2" type="checkbox" value="" id="flexCheckChecked">Enable Two-Factor-Authentication</label>
-                                </div>
                                 <button type="submit" class="btn btn-primary">Edit Barang</button>
                             </form>
                         </div>

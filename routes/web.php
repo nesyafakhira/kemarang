@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,35 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('admin.dashboard.index');
-})->middleware(['auth', 'verified']);
-
-Route::get('/requestdashboard', function () {
-    return view('admin.request.show');
-});
-
-Route::get('/stockdashboard', function () {
-    return view('admin.stock.show');
-});
-
-Route::get('/barangdashboard', function () {
-    return view('admin.barang.create');
-});
-
-Route::get('/barangindex', function () {
-    return view('admin.barang.index');
-});
-
-Route::get('/userindex', function () {
-    return view('admin.user.index');
-});
-
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
+Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

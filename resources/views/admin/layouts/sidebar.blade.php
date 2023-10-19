@@ -1,6 +1,6 @@
 <aside class="sidebar sidebar-default navs-rounded">
     <div class="sidebar-header d-flex align-items-center justify-content-start">
-        <a href="{{ url("dashboard/index.html") }}" class="navbar-brand">
+        <a href="{{ url("/") }}" class="navbar-brand">
             <!--Logo start-->
             <svg width="88" class="iq-logo" viewBox="0 0 88 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 33.0964V2.00584L5 0V33.0964H0Z" fill="#FE9436" />
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url("home") }}">
+                    <a class="nav-link active" aria-current="page" href="{{ route("dashboard") }}">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6.5C3 3.87479 3.02811 3 6.5 3C9.97189 3 10 3.87479 10 6.5C10 9.12521 10.0111 10 6.5 10C2.98893 10 3 9.12521 3 6.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ url("dashboard/app/user-add.html") }}">
+                            <a class="nav-link " href="{{ route("user.create") }}">
                                 <i class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ url("dashboard/app/user-list.html") }}">
+                            <a class="nav-link " href="{{ route("user.index") }}">
                                 <i class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>
@@ -109,19 +109,6 @@
                                 </i>
                                 <i class="sidenav-mini-icon"> U </i>
                                 <span class="item-name">User List</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ url("barangdashboard") }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">Barang</span>
                             </a>
                         </li>
                     </ul>
@@ -149,7 +136,7 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-form" data-bs-parent="#sidebar">
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route("barang.create") }}">
+                            <a class="nav-link " href="{{ route("barang.index") }}">
                                 <i class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
                                         <g>

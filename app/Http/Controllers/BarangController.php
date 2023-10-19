@@ -13,7 +13,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $barangs = Barang::orderBy('id', 'asc')->get();
+
+        return view('admin.barang.index', compact('barangs'));
     }
 
     /**
@@ -54,38 +56,68 @@ class BarangController extends Controller
         ]);
         
 
-        return to_route('dashboard')->with('success');
+        Alert::success('Berhasil', 'Barang berhasil ditambahkan');
+
+        return to_route('barang')->with('success');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Barang $barang)
     {
-        //
+        return view('admin.barang.show', compact('barang'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Barang $barang)
     {
-        //
+        return view('admin.barang.edit', compact('barang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Barang $barang)
     {
-        //
+        $request->validate([
+            'nama_barang'           => 'required',
+            'jumlah_unit'           => 'required',
+            'satuan'                => 'required',
+            'harga_satuan'          => 'required',
+            'total_harga_tanpa_ppn' => '',
+            'ppn'                   => '',
+            'total_harga_ppn'       => '',
+        ]);
+        
+        $total_harga_tanpa_ppn = $request->jumlah_unit * $request->harga_satuan;
+        $ppn = $total_harga_tanpa_ppn * 0.11;
+        $total_harga_ppn = $total_harga_tanpa_ppn + $ppn;
+        
+        $barang->update([
+            'nama_barang'           => $request->nama_barang,
+            'jumlah_unit'           => $request->jumlah_unit,
+            'satuan'                => $request->satuan,
+            'harga_satuan'          => $request->harga_satuan,
+            'total_harga_tanpa_ppn' => $total_harga_tanpa_ppn,
+            'ppn'                   => $ppn,
+            'total_harga_ppn'       => $total_harga_ppn,
+        ]);
+
+        Alert::success('Berhasil', 'Barang berhasil di-update');
+
+        return to_route('barang')->with('success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Barang $barang)
     {
-        //
+        $barang->delete();
+
+        return to_route('barang');
     }
 }
