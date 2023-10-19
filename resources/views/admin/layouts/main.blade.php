@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/css/logik.css?v=1.0.0') }}">
 </head>
 
-<body class="  ">
+<body class="">
     <!-- loader Start -->
     <div id="loading">
         <div class="loader simple-loader">
@@ -24,14 +24,20 @@
         </div>
     </div>
     <!-- loader END -->
+    
     @include('admin.layouts.sidebar')
     <main class="main-content">
+        
         @include('admin.layouts.header')
 
         @yield('content')
 
         @include('admin.layouts.footer')
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 88ade856504985ef0d8e3a34f1f719534462e326
 
     </main>
     <!-- Wrapper End-->
