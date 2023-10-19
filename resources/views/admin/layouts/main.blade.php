@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Logik | Responsive Bootstrap 5 Admin Dashboard Template</title>
+    <title>
+        @yield('title')
+    </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}" />
@@ -23,6 +25,9 @@
             <div class="loader-body"></div>
         </div>
     </div>
+
+    @include('sweetalert::alert')
+
     <!-- loader END -->
     @include('admin.layouts.sidebar')
     <main class="main-content">

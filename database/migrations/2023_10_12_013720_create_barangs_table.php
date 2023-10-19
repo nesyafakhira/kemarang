@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('harga_satuan');
             $table->string('total_harga_tanpa_ppn');
             $table->string('ppn');
-            $table->string('total_harga+ppn');
+            $table->string('total_harga_ppn');
             $table->timestamps();
         });
     }
