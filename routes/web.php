@@ -22,6 +22,10 @@ Route::get('/home', function () {
     return view('admin.dashboard.index');
 });
 
+Route::get('/loginadmin', function () {
+    return view('admin.login');
+});
+
 Route::get('/requestdashboard', function () {
     return view('admin.request.show');
 });
