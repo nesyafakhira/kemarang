@@ -13,12 +13,14 @@
                         </h4>
                     </div>
                     <div class="card-body table-responsive">
+                        <a href="{{ route('barang.create') }}" class="btn btn-primary mb-3">Tambah Barang</a>
                         <table class="table" data-toggle="data-table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah Unit</th>
+                                    <th>Satuan</th>
                                     <th>Harga Masuk</th>
                                     <th>Jumlah Tanpa PPN</th>
                                     <th>PPN</th>
@@ -29,21 +31,25 @@
                             </thead>
 
                             <tbody>
+                                @foreach ($barangs as $barang)
+                                    
                                 <tr>
-                                    <td class="text-center"><img class="bg-soft-primary rounded img-fluid avatar-40 me-3"
-                                            src="{{ asset('/admin/assets/images/shapes/01.png') }}" alt="profile"></td>
-                                    <td>Anna Sthesia</td>
-                                    <td>10</td>
-                                    <td>10</td>
-                                    <td>10</td>
-                                    <td>10</td>
-                                    <td>10</td>
-                                    <td>2019/12/01</td>
+                                    <td>{{ $barang->id }}</td>
+                                    <td>{{ $barang->nama_barang }}</td>
+                                    <td>{{ $barang->jumlah_unit }}</td>
+                                    <td>{{ $barang->satuan }}</td>
+                                    <td>{{ $barang->harga_satuan }}</td>
+                                    <td>{{ $barang->total_harga_tanpa_ppn }}</td>
+                                    <td>{{ $barang->ppn }}</td>
+                                    <td>{{ $barang->total_harga_ppn }}</td>
+                                    <td>{{ $barang->created_at }}</td>
+                                    
                                     <td>
+                                        <form form action="{{ route('barang.destroy', $barang->id) }}" onsubmit="return confirm('Yakin hapus ?')" method="POST"></form>
                                         <div class="flex align-items-center list-user-action">
                                             <a class="btn btn-sm btn-icon btn-success" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Add"
-                                                href="{{ url('#') }}">
+                                                href="{{ route('barang.show', [$barang->id]) }}">
                                                 <span class="btn-inner">
                                                     <svg width="32" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +72,7 @@
                                             </a>
                                             <a class="btn btn-sm btn-icon btn-warning" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit"
-                                                href="{{ url('#') }}">
+                                                href="{{ route('barang.edit', [$barang->id]) }}">
                                                 <span class="btn-inner">
                                                     <svg width="20" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -84,9 +90,8 @@
                                                     </svg>
                                                 </span>
                                             </a>
-                                            <a class="btn btn-sm btn-icon btn-danger" data-toggle="tooltip"
-                                                data-placement="top" title="" data-original-title="Delete"
-                                                href="{{ url('#') }}">
+                                            <button type="submit" class="btn btn-sm btn-icon btn-danger" data-toggle="tooltip"
+                                                data-placement="top" title="" data-original-title="Delete">
                                                 <span class="btn-inner">
                                                     <svg width="20" viewBox="0 0 24 24" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
@@ -103,10 +108,11 @@
                                                             stroke-linejoin="round"></path>
                                                     </svg>
                                                 </span>
-                                            </a>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

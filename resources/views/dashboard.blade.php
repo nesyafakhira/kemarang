@@ -10,6 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    <a href="{{ url('index') }}" class="btn">index</a>
                 </div>
             </div>
         </div>
