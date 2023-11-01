@@ -20,6 +20,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('admin.dashboard.index');
+});
+
+Route::get('/form', function () {
+    return view('form-request');
+});
+
+Route::get('/loginadmin', function () {
+    return view('admin.login');
+});
+
+Route::get('/requestdashboard', function () {
+    return view('admin.request.show');
+});
+
+Route::get('/stockdashboard', function () {
+    return view('admin.stock.show');
+});
+
+Route::get('/barangdashboard', function () {
+    return view('admin.barang.create');
+});
+
+Route::get('/barangindex', function () {
+    return view('admin.barang.index');
+});
+
+Route::get('/userindex', function () {
+    return view('admin.user.index');
+});
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
