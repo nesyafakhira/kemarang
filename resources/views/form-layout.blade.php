@@ -30,7 +30,7 @@
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
     <style>
         .card-form {
-            margin-top: 25vh !important;
+            margin-top: 15vh !important;
             background-color: #012970;
         }
 
@@ -39,14 +39,8 @@
         }
 
         .form-layout {
-            width: 100%;
+            width: 100vw;
             height: 100vh !important;
-            background: url(assets/img/form-bg-1.jpg) top center no-repeat;
-            background-size: cover;
-        }
-
-        .header-form {
-            background-color: #c0d6f7;
         }
 
         .btn-form {
@@ -58,6 +52,27 @@
             --bs-btn-hover-border-color: #012970;
             --bs-btn-focus-shadow-rgb: #012970;
             --bs-btn-active-color: var(--bs-btn-hover-color);
+        }
+
+        .header-form {
+            position: relative;
+            top: 5vh;
+        }
+
+        .background {
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+        }
+
+        .background-image {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            min-width: 50%;
+            min-height: 50%;
         }
     </style>
 
@@ -72,7 +87,7 @@
 
 <body>
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top rounded">
+    <header id="header" class="header header-form">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-center">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
@@ -83,10 +98,12 @@
     </header><!-- End Header -->
 
     <main>
-        <div class="form-layout position-fixed">
-            <div class="row justify-content-center">
-                @yield('content')
-            </div>
+        <div class="background position-fixed">
+            <img class="background-image position-absolute m-auto" src="{{ asset('assets/img/form-bg-1.jpg') }}"
+                alt="background">
+        </div>
+        <div class="form-layout row justify-content-center">
+            @yield('content')
         </div>
     </main>
 </body>

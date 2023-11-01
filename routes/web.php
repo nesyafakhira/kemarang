@@ -25,7 +25,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/form', function () {
-    return view('form-login');
+    return view('form-request');
 });
 
 Route::get('/loginadmin', function () {
