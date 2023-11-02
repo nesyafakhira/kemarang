@@ -159,6 +159,8 @@ return [
         /*
          * Package Service Providers...
          */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -169,7 +171,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-        
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+
     ])->toArray(),
 
     /*

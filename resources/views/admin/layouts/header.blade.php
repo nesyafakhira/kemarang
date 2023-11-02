@@ -102,8 +102,18 @@
                         <a class="nav-link py-0 d-flex align-items-center" href="{{ url("#") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset("assets/admin/images/avatars/01.png") }}" alt="User-Profile" class="img-fluid avatar avatar-40 avatar-rounded">
                             <div class="caption ms-3 d-none d-md-block ">
-                                <h6 class="mb-0 caption-title">James Patterson</h6>
-                                <p class="mb-0 caption-sub-title">Marketing Administrator</p>
+                                <h6 class="mb-0 caption-title">{{ auth()->user()->name }}</h6>
+                                <p class="mb-0 caption-sub-title">
+                                    @if (auth()->user()->hasRole('admin'))
+                                        Admin
+                                    @elseif (auth()->user()->hasRole('staff'))
+                                        TU
+                                    @elseif (auth()->user()->hasRole('guru'))
+                                        Guru
+                                    @elseif (auth()->user()->hasRole('kepsek'))
+                                        Kepala Sekolah
+                                    @endif
+                                </p>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -112,7 +122,11 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{{ url("dashboard/auth/sign-in.html") }}">Logout</a></li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <li><button class="dropdown-item" type="submit">Logout</button></li>
+
+                            </form>
                         </ul>
                     </li>
                 </ul>
