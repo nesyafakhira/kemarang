@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Add User
+@endsection
+
 @section('content')
 @include('admin.layouts.error')
 <div class="conatiner-fluid content-inner mt-5 py-0">
@@ -45,6 +49,8 @@
                                 <button type="submit" class="btn btn-primary">Add User</button>
                             </form>
                         </div>
+
+                        <a class="btn btn-primary mt-5" href="{{ route('user.index') }}">Kembali</a>
                     </div>
                 </div>
             

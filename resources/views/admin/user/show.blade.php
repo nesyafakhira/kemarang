@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Detail User
+@endsection
+
 @section('content')
     <div class="conatiner-fluid content-inner mt-5 py-0">
         <div class="col-lg-12">
@@ -12,21 +16,31 @@
                 <div class="card-body">
                     <div class="mt-2">
                         <h6 class="mb-1">Nama</h6>
-                        <p>Admin</p>
+                        <p>{{ $user->name }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Email</h6>
-                        <p><a href="{{ url('#') }}" class="text-body"> admin@gmail.com</a></p>
+                        <p>{{ $user->email }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">NPSN</h6>
-                        <p><a href="{{ url('#') }}" class="text-body"> 0011234567 </a></p>
+                        <p>{{ $user->npsn }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Role</h6>
-                        <p><a href="{{ url('#') }}" class="text-body" target="_blank"> Admin </a></p>
+                        @if ($user->hasRole('admin'))
+                        <span class="badge bg-primary">Admin</span>
+                        @elseif ($user->hasRole('staff'))
+                        <span class="badge bg-primary">Staff TU</span>
+                        @elseif ($user->hasRole('guru'))
+                        <span class="badge bg-primary">Guru</span>
+                        @elseif ($user->hasRole('kepsek'))
+                        <span class="badge bg-primary">Kepala Sekolah</span>
+                        @endif
                     </div>
+
+                    <a class="btn btn-primary mt-5" href="{{ route('user.index') }}">Kembali</a>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

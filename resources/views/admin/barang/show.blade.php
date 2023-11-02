@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Detail Barang
+@endsection
+
 @section('content')
     <div class="conatiner-fluid content-inner mt-5 py-0">
         <div class="col-lg-12">
@@ -24,20 +28,22 @@
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Harga Masuk</h6>
-                        <p>{{ $barang->harga_satuan }}</p>
+                        <p>Rp. {{ $barang->harga_satuan }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Jumlah Tanpa PPN</h6>
-                        <p>{{ $barang->total_harga_tanpa_ppn }}</p>
+                        <p>Rp. {{ $barang->total_harga_tanpa_ppn }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">PPN</h6>
-                        <p>{{ $barang->ppn }}</p>
+                        <p>Rp. {{ $barang->ppn }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Jumlah Dengan PPN</h6>
-                        <p>{{ $barang->total_harga_ppn }}</p>
+                        <p>Rp. {{ $barang->total_harga_ppn }}</p>
                     </div>
+
+                    <a class="btn btn-primary mt-5" href="{{ route('barang.index') }}">Kembali</a>
             </div>
         </div>
     </div>
