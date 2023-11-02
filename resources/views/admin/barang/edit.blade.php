@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Edit Barang
+@endsection
+
 @section('content')
 <div class="conatiner-fluid content-inner mt-5 py-0">
     <div>
@@ -35,6 +39,8 @@
                                 <button type="submit" class="btn btn-primary">Edit Barang</button>
                             </form>
                         </div>
+                        
+                        <a class="btn btn-primary mt-5" href="{{ route('barang.index') }}">Kembali</a>
                     </div>
                 </div>
             
