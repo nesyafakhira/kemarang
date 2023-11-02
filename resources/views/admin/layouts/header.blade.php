@@ -107,7 +107,7 @@
                                     @if (auth()->user()->hasRole('admin'))
                                         Admin
                                     @elseif (auth()->user()->hasRole('staff'))
-                                        TU
+                                        Staff TU
                                     @elseif (auth()->user()->hasRole('guru'))
                                         Guru
                                     @elseif (auth()->user()->hasRole('kepsek'))

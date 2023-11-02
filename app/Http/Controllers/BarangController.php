@@ -23,7 +23,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        return view('admin.dashboard.create');
+        return view('admin.barang.create');
     }
 
     /**
@@ -36,9 +36,6 @@ class BarangController extends Controller
             'jumlah_unit'           => 'required',
             'satuan'                => 'required',
             'harga_satuan'          => 'required',
-            'total_harga_tanpa_ppn' => '',
-            'ppn'                   => '',
-            'total_harga_ppn'       => '',
         ]);
         
         $total_harga_tanpa_ppn = $request->jumlah_unit * $request->harga_satuan;
@@ -56,9 +53,9 @@ class BarangController extends Controller
         ]);
         
 
-        Alert::success('Berhasil', 'Barang berhasil ditambahkan');
+        Alert::success('Berhasil', 'Barang ditambahkan');
 
-        return to_route('barang')->with('success');
+        return to_route('barang.index')->with('success');
     }
 
     /**
@@ -106,9 +103,9 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
-        Alert::success('Berhasil', 'Barang berhasil di-update');
+        Alert::success('Berhasil', 'Barang di-update');
 
-        return to_route('barang')->with('success');
+        return to_route('barang.index')->with('success');
     }
 
     /**
@@ -118,6 +115,6 @@ class BarangController extends Controller
     {
         $barang->delete();
 
-        return to_route('barang');
+        return to_route('barang.index');
     }
 }
