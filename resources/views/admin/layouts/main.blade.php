@@ -9,7 +9,7 @@
     </title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/admin/images/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/admin/images/logo.png') }}" />
 
     <!-- Library / Plugin Css Build -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/libs.min.css') }}">
