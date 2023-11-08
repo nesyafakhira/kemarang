@@ -11,8 +11,8 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:guru'])->only(['store', 'create']);
-        $this->middleware(['role:staff'])->only(['edit', 'destroy']);
+        $this->middleware(['role:guru|admin'])->only(['store', 'create']);
+        $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
     }
 
     /**
@@ -25,8 +25,10 @@ class RequestController extends Controller
         } else {
             $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
         }
+        $title = 'Hapus Request!';
+        $text = "Apakah kau yakin ingin hapus request?";
+        confirmDelete($title, $text);
 
-        // return $requests;
         return view('admin.request.index', compact('requests'));
     }
 
@@ -122,14 +124,11 @@ class RequestController extends Controller
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
             if ($barang) {
-            $barang->update([
-                'jumlah_unit' => $jumlah_akhir
-            ]);
-
+                $barang->update([
+                    'jumlah_unit' => $jumlah_akhir
+                ]);
+            }
         }
-        
-    }
-    $request->delete();
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
@@ -142,8 +141,8 @@ class RequestController extends Controller
     {
         $request->delete();
 
-        Alert::success('Berhasil', 'Request dihapus');
+        // Alert::success('Berhasil', 'Request dihapus');
 
-        return to_route('request.index')->with('success');
+        return to_route('request.index');
     }
 }

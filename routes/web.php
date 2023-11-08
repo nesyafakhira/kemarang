@@ -23,10 +23,18 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('admin.dashboard.index');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/form', function () {
     return view('form-request');
+});
+
+Route::get('/register-guru', function () {
+    return view('form-register');
+});
+
+Route::get('/login-guru', function () {
+    return view('form-login');
 });
 
 Route::get('/loginadmin', function () {
@@ -60,22 +68,6 @@ Route::get('/dashboard', function () {
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
-
-Route::get('admin', function() {
-    return view('index');
-})->middleware(['auth', 'verified', 'role:admin']);
-
-Route::get('staff', function() {
-    return '<h1>staff panel</h1>';
-})->middleware(['auth', 'verified', 'role:staff']);
-
-Route::get('guru', function() {
-    return '<h1>guru panel</h1>';
-})->middleware(['auth', 'verified', 'role:guru']);
-
-Route::get('kepsek', function() {
-    return '<h1>kepsek panel</h1>';
-})->middleware(['auth', 'verified', 'role:kepsek']);
 
 
 require __DIR__.'/auth.php';

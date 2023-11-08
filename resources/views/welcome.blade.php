@@ -56,8 +56,27 @@
                     <li><a class="nav-link scrollto" href="{{ url('#services') }}">Alasan Menggunakan Kemarang</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('#team') }}">Tim Kemarang</a></li>
 
-                    <li><a class="getstarted scrollto" href="{{ route('login') }}">Masuk</a></li>
-                    <li><a class="getstarted scrollto" href="{{ route('register') }}">Daftar</a></li>
+                    @guest
+                        <li><a class="getstarted scrollto" href="{{ route('login') }}">Masuk</a></li>
+                        <li><a class="getstarted scrollto" href="{{ route('register') }}">Daftar</a></li>
+                    @else
+                        @if (auth()->user()->hasRole('guru'))
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    {{ auth()->user()->name }}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-primary" type="submit">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <li><a class="getstarted scrollto" href="{{ route('dashboard') }}">Dashboard</a></li>
+                        @endif
+                    @endguest
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -75,13 +94,15 @@
                     <h2 data-aos="fade-up" data-aos-delay="400">Kemarang Dirancang untuk Mengelola dan Memonitor Setiap
                         Barang yang Keluar dan Masuk secara Cepat, Sederhana, dan Efisien.</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
-                        <div class="text-center text-lg-start">
-                            <a href="{{ url('#') }}"
-                                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                                <span>Request Sekarang!</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
+                        @role('guru')
+                            <div class="text-center text-lg-start">
+                                <a href="{{ url('form-request') }}"
+                                    class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                                    <span>Request Sekarang!</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        @endrole
                     </div>
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">

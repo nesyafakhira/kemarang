@@ -15,6 +15,10 @@ class BarangController extends Controller
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
 
+        $title = 'Hapus Request!';
+        $text = "Apakah kau yakin ingin hapus request?";
+        confirmDelete($title, $text);
+
         return view('admin.barang.index', compact('barangs'));
     }
 
@@ -104,7 +108,7 @@ class BarangController extends Controller
         ]);
 
         Alert::success('Berhasil', 'Barang di-update');
-
+        
         return to_route('barang.index')->with('success');
     }
 
@@ -114,7 +118,10 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         $barang->delete();
+        
+        Alert::success('Berhasil', 'Barang dihapus');
+        
 
-        return to_route('barang.index');
+        return to_route('barang.index')->with('success');
     }
 }
