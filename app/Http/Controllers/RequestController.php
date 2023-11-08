@@ -57,12 +57,15 @@ class RequestController extends Controller
             ]
         );
 
-        MRequest::create([
+        $mrequest = MRequest::create([
             'guru_id'       => $request->guru_id,
             'barang_id'     => $request->barang_id,
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
+        activity()
+        ->performedOn($mrequest)
+        ->log('Keluar');
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
 
