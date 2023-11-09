@@ -106,10 +106,10 @@
                                                                 method="post" >
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="btn btn-sm btn-icon btn-danger"
+                                                                <button class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="" data-original-title="Delete"
-                                                                    type="submit" data-confirm-delete="true">
+                                                                    type="submit">
                                                                     <span class="btn-inner">
                                                                         <svg width="20" viewBox="0 0 24 24"
                                                                             fill="none"

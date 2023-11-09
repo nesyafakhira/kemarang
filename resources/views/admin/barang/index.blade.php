@@ -93,16 +93,16 @@
                                                     </span>
                                                 </a>
 
-                                                <a href="{{ route('barang.destroy', $barang->id) }}" class="btn btn-sm btn-danger"
+                                                {{-- <a href="{{ route('barang.destroy', $barang->id) }}" class="btn btn-sm btn-danger"
                                                     data-confirm-delete="true">
                                                     Delete
-                                                </a>
+                                                </a> --}}
 
-                                                    {{-- <form action="{{ route('barang.destroy', $barang->id) }}" method="post" data-confirm-delete="true">
+                                                    <form action="{{ route('barang.destroy', $barang->id) }}" method="post" >
                                                         @csrf
                                                         @method('delete')
 
-                                                        <button data-confirm-delete="true" class="btn btn-sm btn-icon btn-danger"
+                                                        <button class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                             data-toggle="tooltip" data-placement="top" title=""
                                                             data-original-title="Delete">
                                                             <span class="btn-inner">
@@ -122,7 +122,7 @@
                                                                 </svg>
                                                             </span>
                                                         </button>
-                                                    </form> --}}
+                                                    </form>
 
                                             </div>
                                         </td>

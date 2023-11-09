@@ -51,7 +51,7 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
                                                     <form form action="{{ route('user.destroy', $user->id) }}"
-                                                        onsubmit="return confirm('Yakin hapus ?')" method="POST">
+                                                        method="POST">
                                                         @csrf
                                                         @method('delete')
 
@@ -108,7 +108,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                            <button type="submit" class="btn btn-sm btn-icon btn-danger"
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                                 data-toggle="tooltip" data-placement="top" title=""
                                                                 data-original-title="Delete">
                                                                 <span class="btn-inner">
