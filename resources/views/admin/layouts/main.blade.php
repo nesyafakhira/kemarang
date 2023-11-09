@@ -16,6 +16,9 @@
 
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/logik.css?v=1.0.0') }}">
+
+    {{-- Sweetalert 2 --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -29,17 +32,17 @@
     @include('sweetalert::alert')
 
     <!-- loader END -->
-    
+
     @include('admin.layouts.sidebar')
     <main class="main-content">
-        
+
         @include('admin.layouts.header')
 
         @yield('content')
 
         @include('admin.layouts.footer')
 
-        
+
 
     </main>
     <!-- Wrapper End-->
@@ -57,6 +60,27 @@
 
     <!-- app JavaScript -->
     <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $('.confirm-delete').click(function(event) {
+            let form = $(this).closest("form");
+            event.preventDefault();
+            swal({
+                    title: `Hapus Data?`,
+                    text: "Data yang terhapus tidak dapat dikembalikan lagi",
+                    icon: "warning",
+
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 
 
 </body>
