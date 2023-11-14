@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Request as MRequest;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -115,7 +116,7 @@ class RequestController extends Controller
 
         $jumlah_unit = $minta->jumlah_tersedia;
         $jumlah_req = $minta->jumlah_request;
-
+        
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
 
@@ -126,10 +127,21 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-            if ($barang) {
+            $stok = Stok::find($minta->barang_id); 
+
+            if ($barang && $stok) {
                 $barang->update([
                     'jumlah_unit' => $jumlah_akhir
                 ]);
+
+                $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
+
+                $stok->update([
+                    'stok_keluar' => $jumlah_akumulasi_keluar,
+                    'stok_akhir'  => $jumlah_akhir
+                ]);
+
+                
             }
         }
 

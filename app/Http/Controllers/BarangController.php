@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -55,9 +56,19 @@ class BarangController extends Controller
             'ppn'                   => $ppn,
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
+
+
+        Stok::create([
+            'barang_id' => $barang->id, 
+            'nama_stok' => $request->nama_barang,
+            'stok_awal' => $request->jumlah_unit,
+        ]);
+        
+
         activity()
         ->performedOn($barang)
         ->log('Masuk');
+
         
 
         Alert::success('Berhasil', 'Barang ditambahkan');
@@ -108,6 +119,14 @@ class BarangController extends Controller
             'total_harga_tanpa_ppn' => $total_harga_tanpa_ppn,
             'ppn'                   => $ppn,
             'total_harga_ppn'       => $total_harga_ppn,
+        ]);
+
+        $stok = Stok::find($request->barang_id);
+
+        $stok->update([
+            'stok_awal'     => $request->jumlah_unit,
+            'stok_akhir'    => $request->jumlah_unit,
+            'stok_keluar'   => null
         ]);
 
         Alert::success('Berhasil', 'Barang di-update');
