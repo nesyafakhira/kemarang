@@ -63,9 +63,7 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
-        activity()
-        ->performedOn($mrequest)
-        ->log('Keluar');
+
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
 
@@ -128,11 +126,14 @@ class RequestController extends Controller
             $barang->update([
                 'jumlah_unit' => $jumlah_akhir
             ]);
+            activity()
+            ->performedOn($barang)
+            ->log('keluar');
 
         }
         
     }
-    $request->delete();
+    // $request->delete();
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');

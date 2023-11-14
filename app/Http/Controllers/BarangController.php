@@ -74,6 +74,10 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
+        // $barang = Barang::findOrfail($barang);
+        // activity()
+        // ->performedOn($barang)
+        // ->log('keluar');
         return view('admin.barang.edit', compact('barang'));
     }
 
@@ -106,6 +110,7 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
+
         Alert::success('Berhasil', 'Barang di-update');
 
         return to_route('barang.index')->with('success');
@@ -120,4 +125,11 @@ class BarangController extends Controller
 
         return to_route('barang.index');
     }
+    
+    public function cetaktanggal()
+    {
+        return to_route('barang.cetaktanggal');
+    }
+
+
 }

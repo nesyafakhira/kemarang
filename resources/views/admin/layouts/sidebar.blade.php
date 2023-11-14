@@ -231,7 +231,6 @@
                                 <span class="item-name">Add Barang</span>
                             </a>
                         </li>
-                        @endrole
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeis('logging.index') ? 'active' : '' }}" href="{{ route('logging.index') }}">
                                 <i class="icon">
@@ -246,6 +245,7 @@
                                 <span class="item-name">Logging</span>
                             </a>
                         </li>
+                        @endrole
                     </ul>
                 </li>
                 {{-- Inian Nav End --}}

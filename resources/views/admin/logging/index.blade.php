@@ -31,7 +31,7 @@
                                 @foreach ($activities as $activitie)
                                     <tr>
                                         <td>{{ $activitie->id }}</td>
-                                        <td class="badge rounded-pill bg-{{ $activitie->description == "Masuk" ? "success" : "danger" }}">{{ $activitie->description }}</td>
+                                        <td class="badge bg-{{ $activitie->description == "Masuk" ? "success" : "danger" }}">{{ $activitie->description }}</td>
                                         <td>{{ $activitie->created_at->diffForHumans() }}</td>
 
                                         {{-- <td>
