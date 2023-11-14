@@ -58,7 +58,7 @@ class BarangController extends Controller
         ]);
 
         Stok::create([
-            'barang_id' => $barang->id, // Belum
+            'barang_id' => $barang->id, 
             'nama_stok' => $request->nama_barang,
             'stok_awal' => $request->jumlah_unit,
         ]);
