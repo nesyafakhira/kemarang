@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('barang_id')->references('id')->on('barangs');
             $table->string('nama_stok');
             $table->string('stok_awal');
-            $table->string('stok_keluar');
-            $table->string('stok_akhir');
+            $table->string('stok_keluar')->nullable();
+            $table->string('stok_akhir')->nullable();
             $table->timestamps();
         });
     }
