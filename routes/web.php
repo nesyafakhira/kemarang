@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,10 @@ Route::get('/userindex', function () {
     return view('admin.user.index');
 });
 
+Route::get('/show', function () {
+    return view('admin.logging-activity.show');
+});
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -68,6 +73,7 @@ Route::get('/dashboard', function () {
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
+Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
 
 
 require __DIR__.'/auth.php';
