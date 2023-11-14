@@ -57,12 +57,18 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
+
         Stok::create([
             'barang_id' => $barang->id, 
             'nama_stok' => $request->nama_barang,
             'stok_awal' => $request->jumlah_unit,
         ]);
         
+
+        activity()
+        ->performedOn($barang)
+        ->log('Masuk');
+
         
 
         Alert::success('Berhasil', 'Barang ditambahkan');
