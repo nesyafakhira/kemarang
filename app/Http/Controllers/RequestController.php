@@ -124,7 +124,7 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-            $stok = Stok::find('barang_id', $minta->barang_id); 
+            $stok = Stok::find($minta->barang_id); 
 
             if ($barang && $stok) {
                 $barang->update([
