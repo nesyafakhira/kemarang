@@ -56,23 +56,21 @@ class BarangController extends Controller
             'ppn'                   => $ppn,
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
-<<<<<<< HEAD
-
+        
+        activity()
+        ->performedOn($barang)
+        ->log('Masuk');
+        
         Stok::create([
             'barang_id' => $barang->id, 
             'nama_stok' => $request->nama_barang,
             'stok_awal' => $request->jumlah_unit,
         ]);
         
-=======
-        activity()
-        ->performedOn($barang)
-        ->log('Masuk');
->>>>>>> 9996fe539a5d482686fc0bddefd1553d4793c0cf
         
-
+        
         Alert::success('Berhasil', 'Barang ditambahkan');
-
+        
         return to_route('barang.index')->with('success');
     }
 
