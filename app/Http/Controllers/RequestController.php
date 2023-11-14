@@ -66,6 +66,7 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
+        
         activity()
         ->performedOn($mrequest)
         ->log('Keluar');
