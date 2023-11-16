@@ -7,12 +7,12 @@ use App\Models\Request as MRequest;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class RequestController extends Controller
+class ContentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:guru|admin'])->only(['store', 'create']);
-        $this->middleware(['role:staff|admin'])->only(['edit', 'destroy']);
+        $this->middleware(['role:guru'])->only(['store', 'create']);
+        $this->middleware(['role:staff'])->only(['edit', 'destroy']);
     }
 
     /**
@@ -20,14 +20,11 @@ class RequestController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->hasRole('guru')) {
             $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
-        } else {
-            $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
-        }
+    
 
         // return $requests;
-        return view('admin.request.index', compact('requests'));
+        return view('landing-page.content', compact('requests'));
     }
 
     /**
@@ -36,11 +33,8 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-        if ($request->user()->hasRole('guru')) {
-            return view('form-request', compact('barangs'));
-        }
 
-        return view('admin.request.create', compact('barangs'));
+        return view('admin.content.create', compact('barangs'));
     }
 
     /**
@@ -67,7 +61,6 @@ class RequestController extends Controller
             'jumlah_unit'   => $request->jumlah_unit
         ]);
 
-
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
 
         return to_route('content.index')->with('success');
@@ -81,7 +74,7 @@ class RequestController extends Controller
         $this->middleware('role:guru|staff');
         // return $request;
         $request->load('barang');
-        return view('admin.request.show', compact('request'));
+        return view('admin.content.show', compact('request'));
     }
 
     /**
@@ -92,7 +85,7 @@ class RequestController extends Controller
         $this->middleware(['auth', 'verified', 'role:staff']);
         $barangs = Barang::orderBy('id', 'asc')->get();
 
-        return view('admin.request.edit', compact('request', 'barangs'));
+        return view('admin.content.edit', compact('request', 'barangs'));
     }
 
     /**
@@ -136,7 +129,7 @@ class RequestController extends Controller
     $request->delete();
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
-        return to_route('request.index')->with('success');
+        return to_route('content.index')->with('success');
     }
 
     /**
@@ -148,6 +141,6 @@ class RequestController extends Controller
 
         Alert::success('Berhasil', 'Request dihapus');
 
-        return to_route('request.index')->with('success');
+        return to_route('content.index')->with('success');
     }
 }

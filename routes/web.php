@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,11 +56,14 @@ Route::get('/userindex', function () {
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
+Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
+
+Route::view('/form-request', 'form-request')->name('form-request');
 
 Route::get('admin', function() {
     return view('index');
@@ -76,6 +80,5 @@ Route::get('guru', function() {
 Route::get('kepsek', function() {
     return '<h1>kepsek panel</h1>';
 })->middleware(['auth', 'verified', 'role:kepsek']);
-
 
 require __DIR__.'/auth.php';

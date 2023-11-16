@@ -33,7 +33,7 @@
                             <option value="3">TU</option>
                         </select>
                     </div>
-                    <div cl
+                    <div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-form rounded-2">Submit</button>
                     </div>

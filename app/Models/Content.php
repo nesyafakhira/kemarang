@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Content extends Model
+{
+    use HasFactory;
+
+    public function barang() : BelongsTo
+    {
+        return $this->belongsTo(Barang::class);
+    }
+
+    public function guru() : BelongsTo 
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected $fillable = [
+        'tu_id',
+        'guru_id',
+        'barang_id',
+        'nama_barang',
+        'jumlah_unit',
+        'jumlah_tersedia',
+        'status',
+    ];
+
+    protected $table = 'requests';
+}

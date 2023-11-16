@@ -9,9 +9,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-  <!-- Favicons -->
-  <link href="{{ asset("/assets/img/logooo.png") }}" rel="icon">
-  <link href="{{ asset("/assets/img/apple-touch-icon.png") }}" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="{{ asset('/assets/img/logooo.png') }}" rel="icon">
+    <link href="{{ asset('/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -41,7 +41,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top">
+    <header id="header" class="header fixed-top mt-4">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
@@ -56,8 +56,29 @@
                     <li><a class="nav-link scrollto" href="{{ url('#services') }}">Alasan Menggunakan Kemarang</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('#team') }}">Tim Kemarang</a></li>
 
-                    <li><a class="getstarted scrollto" href="{{ route('login') }}">Masuk</a></li>
-                    <li><a class="getstarted scrollto" href="{{ route('register') }}">Daftar</a></li>
+                    {{-- <li class="dropdown"><a href="{{ url('#') }}"><span>Opsi Lainnya</span> <i
+                                class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                        </ul>
+                    </li> --}}
+                    <li><a class="getstarted scrollto" href="{{ route('login') }}">Log In</a></li>
+                    <div class="dropdown">
+                        <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG" data-bs-toggle="dropdown" aria-expanded="false">Opsi Lainnya</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
+                            <li><h6 class="dropdown-header">Masuk</h6></li>
+                            <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
+                            <li><h6 class="dropdown-header">Keluar</h6></li>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <li><button class="dropdown-item" type="submit">Log Out</button></li>
+                            </form>
+                        </ul> 
+                    </div>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -76,7 +97,7 @@
                         Barang yang Keluar dan Masuk secara Cepat, Sederhana, dan Efisien.</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
-                            <a href="{{ url('#') }}"
+                            <a href="{{ route('request.create') }}"
                                 class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                                 <span>Request Sekarang!</span>
                                 <i class="bi bi-arrow-right"></i>
