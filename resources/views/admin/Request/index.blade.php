@@ -43,7 +43,15 @@
                                                 <td>{{ $request->barang_id }}</td>
                                                 <td>{{ $request->nama_barang }}</td>
                                                 <td>{{ $request->jumlah_unit }}</td>
-                                                <td><span class="badge bg-primary">{{ $request->status }}</span></td>
+                                                @if ($request->status == 'menunggu')
+                                                <td><span class="badge bg-yellow">{{ $request->status }}</span></td>
+                                                
+                                                @elseif ($request->status == 'terima')
+                                                <td><span class="badge bg-success">{{ $request->status }}</span></td>
+
+                                                @else
+                                                <td><span class="badge bg-danger">{{ $request->status }}</span></td>
+                                                @endif
                                                 <td>{{ $request->created_at->diffForHumans() }}</td>
 
                                                 <td>

@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         if (auth()->user()->hasRole('guru')) {
-            return redirect()->to('/');
+            return to_route('content.index');
         }
 
         if (auth()->user()->hasRole('kepsek')) {
