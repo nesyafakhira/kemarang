@@ -13,11 +13,7 @@ class RequestController extends Controller
     public function __construct()
     {
         $this->middleware(['role:guru|admin'])->only(['store', 'create']);
-<<<<<<< HEAD
-        $this->middleware(['role:staff|admin'])->only(['edit', 'destroy']);
-=======
         $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
->>>>>>> 4ef809a1701f29350949daf81020bc8ceca8ec92
     }
 
     /**

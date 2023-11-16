@@ -26,6 +26,11 @@
     <link href="{{ asset('/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    {{-- Datatable --}}
+    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
 
@@ -127,6 +132,15 @@
                     <h1 data-aos="fade-up">Sederhana, Cepat, dan Efisien.</h1>
                     <h2 data-aos="fade-up" data-aos-delay="400">Kemarang Dirancang untuk Mengelola dan Memonitor Setiap
                         Barang yang Keluar dan Masuk secara Cepat, Sederhana, dan Efisien.</h2>
+                    <div data-aos="fade-up" data-aos-delay="600">
+                        <div class="text-center text-lg-start">
+                            <a href="{{ route('request.create') }}"
+                                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                                <span>Request Sekarang!</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('/assets/img/hero.png') }}" class="img-fluid" alt="">
@@ -139,8 +153,8 @@
     <main>
         <section id="table">
             <div class="table-responsive container">
-                <table id="user-list-table" class="table table-striped" role="grid"
-                    data-toggle="data-table">
+                <table id="user-table" class="table table-striped" role="grid"
+                    >
                     <thead>
                         <tr class="ligth">
                             <th>No</th>
@@ -348,9 +362,40 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
 
-    <!-- app JavaScript -->
-    <script src="{{ asset('assets/admin/js/app.js') }}"></script>
+    {{-- Datatable --}}
+    <script src="{{ asset('/assets/data-table/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('/assets/data-table/pdfmake/vfs_fonts.js') }}"></script>
 
+    <script>
+        $(function() {
+            $("#user-table").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#user-table_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
 </body>
 
 </html>
