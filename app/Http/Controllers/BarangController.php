@@ -123,12 +123,7 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
-<<<<<<< HEAD
-
-        Alert::success('Berhasil', 'Barang di-update');
-=======
         $stok = Stok::find($request->barang_id);
->>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
         $stok->update([
             'stok_awal'     => $request->jumlah_unit,

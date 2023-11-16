@@ -69,14 +69,10 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
-<<<<<<< HEAD
-
-=======
         
         activity()
         ->performedOn($mrequest)
         ->log('Keluar');
->>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
@@ -136,17 +132,7 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-<<<<<<< HEAD
-            if ($barang) {
-            $barang->update([
-                'jumlah_unit' => $jumlah_akhir
-            ]);
-            activity()
-            ->performedOn($barang)
-            ->log('keluar');
-=======
             $stok = Stok::find($minta->barang_id); 
->>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
             if ($barang && $stok) {
                 $barang->update([
@@ -163,12 +149,6 @@ class RequestController extends Controller
                 
             }
         }
-<<<<<<< HEAD
-        
-    }
-    // $request->delete();
-=======
->>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
