@@ -3,7 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+<<<<<<< HEAD
 use App\Http\Controllers\ContentController;
+=======
+use App\Http\Controllers\LoggingController;
+>>>>>>> 4ef809a1701f29350949daf81020bc8ceca8ec92
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
 
@@ -24,10 +28,18 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('admin.dashboard.index');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/form', function () {
     return view('form-request');
+});
+
+Route::get('/register-guru', function () {
+    return view('form-register');
+});
+
+Route::get('/login-guru', function () {
+    return view('form-login');
 });
 
 Route::get('/loginadmin', function () {
@@ -54,6 +66,10 @@ Route::get('/userindex', function () {
     return view('admin.user.index');
 });
 
+Route::get('/show', function () {
+    return view('admin.logging-activity.show');
+});
+
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->name('dashboard');
@@ -61,6 +77,7 @@ Route::get('/dashboard', function () {
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
+<<<<<<< HEAD
 Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
 
 Route::view('/form-request', 'form-request')->name('form-request');
@@ -80,5 +97,8 @@ Route::get('guru', function() {
 Route::get('kepsek', function() {
     return '<h1>kepsek panel</h1>';
 })->middleware(['auth', 'verified', 'role:kepsek']);
+=======
+Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
+>>>>>>> 4ef809a1701f29350949daf81020bc8ceca8ec92
 
 require __DIR__.'/auth.php';

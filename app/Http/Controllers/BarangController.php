@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -14,6 +15,10 @@ class BarangController extends Controller
     public function index()
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
+
+        $title = 'Hapus Request!';
+        $text = "Apakah kau yakin ingin hapus request?";
+        confirmDelete($title, $text);
 
         return view('admin.barang.index', compact('barangs'));
     }
@@ -42,7 +47,7 @@ class BarangController extends Controller
         $ppn = $total_harga_tanpa_ppn * 0.11;
         $total_harga_ppn = $total_harga_tanpa_ppn + $ppn;
         
-        Barang::create([
+        $barang = Barang::create([
             'nama_barang'           => $request->nama_barang,
             'jumlah_unit'           => $request->jumlah_unit,
             'satuan'                => $request->satuan,
@@ -52,9 +57,20 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
         
-
+        activity()
+        ->performedOn($barang)
+        ->log('Masuk');
+        
+        Stok::create([
+            'barang_id' => $barang->id, 
+            'nama_stok' => $request->nama_barang,
+            'stok_awal' => $request->jumlah_unit,
+        ]);
+        
+        
+        
         Alert::success('Berhasil', 'Barang ditambahkan');
-
+        
         return to_route('barang.index')->with('success');
     }
 
@@ -103,8 +119,16 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
-        Alert::success('Berhasil', 'Barang di-update');
+        $stok = Stok::find($request->barang_id);
 
+        $stok->update([
+            'stok_awal'     => $request->jumlah_unit,
+            'stok_akhir'    => $request->jumlah_unit,
+            'stok_keluar'   => null
+        ]);
+
+        Alert::success('Berhasil', 'Barang di-update');
+        
         return to_route('barang.index')->with('success');
     }
 
@@ -114,7 +138,10 @@ class BarangController extends Controller
     public function destroy(Barang $barang)
     {
         $barang->delete();
+        
+        Alert::success('Berhasil', 'Barang dihapus');
+        
 
-        return to_route('barang.index');
+        return to_route('barang.index')->with('success');
     }
 }

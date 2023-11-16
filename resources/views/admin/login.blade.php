@@ -47,7 +47,8 @@
                                 <h1>Login Admin</h1>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-12 mb-2">
                                             <div class="form-group">
@@ -60,7 +61,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary text-white w-100">Log in</button>
+                                    <button type="submit" class="btn btn-primary text-white w-100">Log in</button>
                                 </form>
                             </div>
                         </div>

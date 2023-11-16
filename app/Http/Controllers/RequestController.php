@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Request as MRequest;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -12,7 +13,11 @@ class RequestController extends Controller
     public function __construct()
     {
         $this->middleware(['role:guru|admin'])->only(['store', 'create']);
+<<<<<<< HEAD
         $this->middleware(['role:staff|admin'])->only(['edit', 'destroy']);
+=======
+        $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
+>>>>>>> 4ef809a1701f29350949daf81020bc8ceca8ec92
     }
 
     /**
@@ -25,8 +30,10 @@ class RequestController extends Controller
         } else {
             $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
         }
+        $title = 'Hapus Request!';
+        $text = "Apakah kau yakin ingin hapus request?";
+        confirmDelete($title, $text);
 
-        // return $requests;
         return view('admin.request.index', compact('requests'));
     }
 
@@ -60,12 +67,16 @@ class RequestController extends Controller
             ]
         );
 
-        MRequest::create([
+        $mrequest = MRequest::create([
             'guru_id'       => $request->guru_id,
             'barang_id'     => $request->barang_id,
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
+        
+        activity()
+        ->performedOn($mrequest)
+        ->log('Keluar');
 
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
@@ -114,7 +125,7 @@ class RequestController extends Controller
 
         $jumlah_unit = $minta->jumlah_tersedia;
         $jumlah_req = $minta->jumlah_request;
-
+        
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
 
@@ -125,15 +136,23 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-            if ($barang) {
-            $barang->update([
-                'jumlah_unit' => $jumlah_akhir
-            ]);
+            $stok = Stok::find($minta->barang_id); 
 
+            if ($barang && $stok) {
+                $barang->update([
+                    'jumlah_unit' => $jumlah_akhir
+                ]);
+
+                $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
+
+                $stok->update([
+                    'stok_keluar' => $jumlah_akumulasi_keluar,
+                    'stok_akhir'  => $jumlah_akhir
+                ]);
+
+                
+            }
         }
-        
-    }
-    $request->delete();
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
@@ -146,8 +165,8 @@ class RequestController extends Controller
     {
         $request->delete();
 
-        Alert::success('Berhasil', 'Request dihapus');
+        // Alert::success('Berhasil', 'Request dihapus');
 
-        return to_route('request.index')->with('success');
+        return to_route('request.index');
     }
 }
