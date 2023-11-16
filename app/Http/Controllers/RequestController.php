@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Request as MRequest;
+use App\Models\Stok;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -11,8 +12,8 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:guru'])->only(['store', 'create']);
-        $this->middleware(['role:staff'])->only(['edit', 'destroy']);
+        $this->middleware(['role:guru|admin'])->only(['store', 'create']);
+        $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
     }
 
     /**
@@ -25,8 +26,10 @@ class RequestController extends Controller
         } else {
             $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
         }
+        $title = 'Hapus Request!';
+        $text = "Apakah kau yakin ingin hapus request?";
+        confirmDelete($title, $text);
 
-        // return $requests;
         return view('admin.request.index', compact('requests'));
     }
 
@@ -36,6 +39,9 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
+        if ($request->user()->hasRole('guru')) {
+            return view('form-request', compact('barangs'));
+        }
 
         return view('admin.request.create', compact('barangs'));
     }
@@ -63,11 +69,19 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
+<<<<<<< HEAD
+
+=======
+        
+        activity()
+        ->performedOn($mrequest)
+        ->log('Keluar');
+>>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
 
-        return to_route('request.index')->with('success');
+        return to_route('content.index')->with('success');
     }
 
     /**
@@ -111,7 +125,7 @@ class RequestController extends Controller
 
         $jumlah_unit = $minta->jumlah_tersedia;
         $jumlah_req = $minta->jumlah_request;
-
+        
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
 
@@ -122,6 +136,7 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
+<<<<<<< HEAD
             if ($barang) {
             $barang->update([
                 'jumlah_unit' => $jumlah_akhir
@@ -129,11 +144,31 @@ class RequestController extends Controller
             activity()
             ->performedOn($barang)
             ->log('keluar');
+=======
+            $stok = Stok::find($minta->barang_id); 
+>>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
+            if ($barang && $stok) {
+                $barang->update([
+                    'jumlah_unit' => $jumlah_akhir
+                ]);
+
+                $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
+
+                $stok->update([
+                    'stok_keluar' => $jumlah_akumulasi_keluar,
+                    'stok_akhir'  => $jumlah_akhir
+                ]);
+
+                
+            }
         }
+<<<<<<< HEAD
         
     }
     // $request->delete();
+=======
+>>>>>>> d450979069aaef8f0b9a62fd19d98b8f67af8532
 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
@@ -146,8 +181,8 @@ class RequestController extends Controller
     {
         $request->delete();
 
-        Alert::success('Berhasil', 'Request dihapus');
+        // Alert::success('Berhasil', 'Request dihapus');
 
-        return to_route('request.index')->with('success');
+        return to_route('request.index');
     }
 }

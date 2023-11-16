@@ -17,8 +17,8 @@
                         </div>
                         <div class="card-body px-0">
                             <div class="table-responsive">
-                                <table id="user-list-table" class="table table-striped" role="grid"
-                                    data-toggle="data-table">
+                                <table id="example1" class="table table-striped" role="grid"
+                                    >
                                     <thead>
                                         <tr class="ligth">
                                             <th>No</th>
@@ -51,7 +51,7 @@
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
                                                     <form form action="{{ route('user.destroy', $user->id) }}"
-                                                        onsubmit="return confirm('Yakin hapus ?')" method="POST">
+                                                        method="POST">
                                                         @csrf
                                                         @method('delete')
 
@@ -108,7 +108,8 @@
                                                                     </svg>
                                                                 </span>
                                                             </a>
-                                                            <button type="submit" class="btn btn-sm btn-icon btn-danger"
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                                 data-toggle="tooltip" data-placement="top" title=""
                                                                 data-original-title="Delete">
                                                                 <span class="btn-inner">

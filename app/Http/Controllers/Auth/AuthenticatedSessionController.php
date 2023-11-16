@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('form-login');
     }
 
     /**
@@ -29,13 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // if (auth()->user()->hasRole('admin')) {
-        //     return redirect()->to('admin');
-        // }
-        
-        // if (auth()->user()->hasRole('staff')) {
-        //     return redirect()->to('staff');
-        // }
+        if (auth()->user()->hasRole('admin')) {
+            return to_route('dashboard');
+        }
+
+        if (auth()->user()->hasRole('staff')) {
+            return to_route('dashboard');
+        }
+
+        if (auth()->user()->hasRole('guru')) {
+            return to_route('content.index');
+        }
+
+        if (auth()->user()->hasRole('kepsek')) {
+            return to_route('dashboard');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

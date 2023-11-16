@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
@@ -24,10 +25,18 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('admin.dashboard.index');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/form', function () {
     return view('form-request');
+});
+
+Route::get('/register-guru', function () {
+    return view('form-register');
+});
+
+Route::get('/login-guru', function () {
+    return view('form-login');
 });
 
 Route::get('/loginadmin', function () {
@@ -60,28 +69,12 @@ Route::get('/show', function () {
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
 Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
-
-Route::get('admin', function() {
-    return view('index');
-})->middleware(['auth', 'verified', 'role:admin']);
-
-Route::get('staff', function() {
-    return '<h1>staff panel</h1>';
-})->middleware(['auth', 'verified', 'role:staff']);
-
-Route::get('guru', function() {
-    return '<h1>guru panel</h1>';
-})->middleware(['auth', 'verified', 'role:guru']);
-
-Route::get('kepsek', function() {
-    return '<h1>kepsek panel</h1>';
-})->middleware(['auth', 'verified', 'role:kepsek']);
-
+Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -1,59 +1,50 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('form-layout')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@section('content')
+    <div class="col-md-6">
+        <div class="card-form overflow-hidden position-relative m-auto rounded">
+            <h5 class="my-3 text-center text-white">Register</h5>
         </div>
-
-        <!-- NPSN -->
-        <div class="mt-4">
-            <x-input-label for="npsn" :value="__('NPSN')" />
-            <x-text-input id="npsn" class="block mt-1 w-full" type="text" name="npsn" :value="old('npsn')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('npsn')" class="mt-2" />
+        <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
+            @include('admin.layouts.error')
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="p-4">
+                    <div class="col-form-label-sm mb-3">
+                        <label for="nameInput">Nama</label>
+                        <input type="text" name="name" class="form-control form-control-sm mt-2" id="exampleFormControlInput1" placeholder="Masukkan Nama">
+                    </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="nameInput">NPSN</label>
+                        <input type="number" name="npsn" class="form-control form-control-sm mt-2" id="exampleFormControlInput1" placeholder="Masukkan NPSN">
+                    </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="barangInput">Email</label>
+                        <input type="email" name="email" class="form-control form-control-sm mt-2"" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name@example.com">
+                    </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="barangInput">Password</label>
+                        <input type="password" name="password" class="form-control form-control-sm mt-2"" id="floatingPassword" placeholder="Password">
+                    </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="barangInput">Password Confirmation</label>
+                        <input type="password" name="password_confirmation" class="form-control form-control-sm mt-2"" id="floatingPassword" placeholder="Password">
+                    </div>
+                    {{-- <div class="col-form-label-sm mb-3">
+                        <label for="barangInput">Pilih Role</label>
+                        <select class="form-select form-select-sm mt-2" aria-label="Default select example">
+                            <option selected disabled>Pilih Role</option>
+                            <option value="1">Kepala Sekolah</option>
+                            <option value="2">Guru</option>
+                            <option value="3">TU</option>
+                        </select>
+                    </div> --}}
+                    <div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ml-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+@endsection
