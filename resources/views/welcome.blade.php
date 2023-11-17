@@ -71,16 +71,11 @@
                     @guest
                     <div class="btn-group align-items-center justify-center-content flex-wrap" style="padding-right: 5px">
                         <div class="dropdown">
-                            <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG" data-bs-toggle="dropdown" aria-expanded="false">Opsi Lainnya</button>
+                            <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG" data-bs-toggle="dropdown" aria-expanded="false">Masuk</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
                                 <li><h6 class="dropdown-header">Masuk</h6></li>
                                 <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
                                 <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                                <li><h6 class="dropdown-header">Keluar</h6></li>
-                                <form action="{{ route('logout') }}" method="post">
-                                    @csrf
-                                    <li><button class="dropdown-item" type="submit">Log Out</button></li>
-                                </form>
                             </ul> 
                         </div>
 
@@ -91,6 +86,10 @@
                             <div class="dropdown">
                                 <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG" data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->name }}</button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
+                                    @role('staff|admin')
+                                    <li><h6 class="dropdown-header">{{ auth()->user()->name }}</h6></li>
+                                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
+                                        @endrole
                                     <li><h6 class="dropdown-header">Keluar</h6></li>
                                     <form action="{{ route('logout') }}" method="post">
                                         @csrf
@@ -117,15 +116,21 @@
                     <h1 data-aos="fade-up">Sederhana, Cepat, dan Efisien.</h1>
                     <h2 data-aos="fade-up" data-aos-delay="400">Kemarang Dirancang untuk Mengelola dan Memonitor Setiap
                         Barang yang Keluar dan Masuk secara Cepat, Sederhana, dan Efisien.</h2>
-                    <div data-aos="fade-up" data-aos-delay="600">
-                        <div class="text-center text-lg-start">
-                            <a href="{{ route('request.create') }}"
-                                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                                <span>Request Sekarang!</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
+                        @auth
+                        @role ('guru')
+                        <div data-aos="fade-up" data-aos-delay="600">
+                            <div class="text-center text-lg-start">
+                                <a href="{{ route('request.create') }}"
+                                    class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                                    <span>Request Sekarang!</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                            
+                        @endrole
+                        @endauth
+                            
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('/assets/img/hero.png') }}" class="img-fluid" alt="">

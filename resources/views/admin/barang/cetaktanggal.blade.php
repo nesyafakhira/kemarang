@@ -10,9 +10,29 @@
             <div class="row">
 
 
-                <div>
+                <div class="card-body table-responsive">
+                    <form action="{{ route('filter.tanggal') }}" method="post">
+                        @csrf 
+                        <div class="input-group input-group-outline mb-3">
+                            <label for="label">Tanggal awal</label> <br>
+                            <div>
+                                <input type="date" name="tglawal" id="tglawal" class="form-control">
 
-                </div>
+                            </div>
+                        </div>
+                        <div class="input-group input-group-outline mb-3">
+                            <label for="label">Tanggal akhir</label>
+                            <div>
+                                <input type="date" name="tglakhir" id="tglakhir" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-warning"> Cari</button>
+                    </form>
+                    {{-- <a href="" onclick="this.href='cetaktanggal/'+ document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value"  class="btn bg-gradient-success">Cari</a> --}}
+
+                </div><br>
 
 
                 <div class="card">

@@ -130,21 +130,22 @@ class RequestController extends Controller
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
 
+            // return $barang;
             if ($barang) {
                 $barang->update([
                     'jumlah_unit' => $jumlah_akhir
                 ]);
 
-                // $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
+                $jumlah_akumulasi_keluar = $jumlah_akhir - $jumlah_req;
 
-                Stok::create([
+                $stok = Stok::create([
                     'barang_id' => $minta->barang_id,
-                    'nama_stok' => $jumlah_req,
-                    'stok_awal' => $jumlah_unit,
+                    'nama_stok' => $minta->namabarang,
+                    'stok_awal' => $jumlah_akhir,
                     'stok_keluar' => $jumlah_req,
-                    'stok_akhir'  => $jumlah_akhir
+                    'stok_akhir'  => $jumlah_akumulasi_keluar
                 ]);
-
+                // return $stok;
                 
             }
         }

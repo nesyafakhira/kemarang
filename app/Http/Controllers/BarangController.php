@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Stok;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -66,7 +67,7 @@ class BarangController extends Controller
             'nama_stok'     => $request->nama_barang,
             'stok_awal'     => $request->jumlah_unit,
             'stok_keluar'   => 0,
-            'stok_akhir'    => 0,
+            'stok_akhir'    => $request->jumlah_unit,
         ]);
         
         
@@ -152,9 +153,12 @@ class BarangController extends Controller
         return to_route('barang.index')->with('success');
     }
     
-    public function cetaktanggal($tglawal, $tglakhir)
+    public function cetaktanggal(Request $request)
     {
-        $cetaktanggal = Barang::whereBetween('created_at', [$tglawal, $tglakhir])->get();
+        $tanggal_awal  = Carbon::parse($request->tglawal)->startOfDay();
+        $tanggal_akhir = Carbon::parse($request->tglakhir)->endOfDay();
+
+        $cetaktanggal = Barang::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
         return view('admin.barang.cetaktanggal', compact('cetaktanggal'));
     }  
 
