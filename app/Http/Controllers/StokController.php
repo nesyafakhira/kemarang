@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Barang;
+use App\Models\Stok;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StokController extends Controller
 {
@@ -11,7 +14,10 @@ class StokController extends Controller
      */
     public function index()
     {
-        //
+        $barangs = Barang::orderBy('id', 'asc')->get();
+
+
+        return view('admin.stock.index', compact('stock'));
     }
 
     /**

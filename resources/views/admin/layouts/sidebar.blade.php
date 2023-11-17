@@ -2,7 +2,8 @@
     <div class="sidebar-header d-flex align-items-center justify-content-start">
         <a href="{{ url('/') }}" class="navbar-brand">
             <!--Logo start-->
-            <img width="88" src="{{ asset('assets/img/logo.png') }}" class="iq-logo" viewBox="0 0 88 43" fill="none" alt="">
+            <img width="88" src="{{ asset('assets/img/logo.png') }}" class="iq-logo" viewBox="0 0 88 43" fill="none"
+                alt="">
             <!--logo End-->
             <svg width="32" class="logo-mini mt-2" viewBox="0 0 32 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +37,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeis('dashboard') ? 'active' : "" }}" aria-current="page" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ request()->routeis('dashboard') ? 'active' : '' }}" aria-current="page"
+                        href="{{ route('dashboard') }}">
                         <i class="icon">
                             <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -107,23 +109,10 @@
                         </i>
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar">
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{ url('dashboard/app/user-profile.html') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                        fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">User Profile</span>
-                            </a>
-                        </li>
                         @role('admin')
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeis('user.create') ? 'active' : '' }}" href="{{ route('user.create') }}">
+                                <a class="nav-link {{ request()->routeis('user.create') ? 'active' : '' }}"
+                                    href="{{ route('user.create') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                             fill="currentColor">
@@ -141,7 +130,8 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->routeis('user.index') ? 'active' : '' }}" href="{{ route('user.index') }}">
+                                <a class="nav-link {{ request()->routeis('user.index') ? 'active' : '' }}"
+                                    href="{{ route('user.index') }}">
                                     <i class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                             fill="currentColor">
@@ -164,32 +154,11 @@
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-form') }}" role="button"
                         aria-expanded="false" aria-controls="sidebar-user">
                         <i class="icon">
-                            <svg width="20" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M17.8877 10.8967C19.2827 10.7007 20.3567 9.50473 20.3597 8.05573C20.3597 6.62773 19.3187 5.44373 17.9537 5.21973"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M19.7285 14.2505C21.0795 14.4525 22.0225 14.9255 22.0225 15.9005C22.0225 16.5715 21.5785 17.0075 20.8605 17.2815"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M11.8867 14.6638C8.67273 14.6638 5.92773 15.1508 5.92773 17.0958C5.92773 19.0398 8.65573 19.5408 11.8867 19.5408C15.1007 19.5408 17.8447 19.0588 17.8447 17.1128C17.8447 15.1668 15.1177 14.6638 11.8867 14.6638Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M11.8869 11.888C13.9959 11.888 15.7059 10.179 15.7059 8.069C15.7059 5.96 13.9959 4.25 11.8869 4.25C9.7779 4.25 8.0679 5.96 8.0679 8.069C8.0599 10.171 9.7569 11.881 11.8589 11.888H11.8869Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M5.88509 10.8967C4.48909 10.7007 3.41609 9.50473 3.41309 8.05573C3.41309 6.62773 4.45409 5.44373 5.81909 5.21973"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M4.044 14.2505C2.693 14.4525 1.75 14.9255 1.75 15.9005C1.75 16.5715 2.194 17.0075 2.912 17.2815"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M20 3H4a2 2 0 0 0-2 2v2a2 2 0 0 0 1 1.72V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.72A2 2 0 0 0 22 7V5a2 2 0 0 0-2-2zM4 5h16v2H4zm1 14V9h14v10z" />
+                                <path fill="currentColor" d="M8 11h8v2H8z" />
                             </svg>
                         </i>
                         <span class="item-name">Barang</span>
@@ -203,7 +172,8 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-form" data-bs-parent="#sidebar">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeis('barang.index') ? 'active' : '' }}" href="{{ route('barang.index') }}">
+                            <a class="nav-link {{ request()->routeis('barang.index') ? 'active' : '' }}"
+                                href="{{ route('barang.index') }}">
                                 <i class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                         fill="currentColor">
@@ -217,70 +187,50 @@
                             </a>
                         </li>
                         @role('staff')
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeis('barang.create') ? 'active' : '' }}" href="{{ route('barang.create') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                        fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">Add Barang</span>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeis('barang.create') ? 'active' : '' }}"
+                                    href="{{ route('barang.create') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> U </i>
+                                    <span class="item-name">Add Barang</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeis('logging.index') ? 'active' : '' }}"
+                                    href="{{ route('logging.index') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> U </i>
+                                    <span class="item-name">Logging</span>
+                                </a>
+                            </li>
                         @endrole
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeis('logging.index') ? 'active' : '' }}" href="{{ route('logging.index') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                        fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">Logging</span>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 {{-- Inian Nav End --}}
 
                 {{-- Inian Nav Start --}}
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-request') }}" role="button"
-                        aria-expanded="false" aria-controls="sidebar-user">
+                    <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-request') }}"
+                        role="button" aria-expanded="false" aria-controls="sidebar-user">
                         <i class="icon">
-                            <svg width="20" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M17.8877 10.8967C19.2827 10.7007 20.3567 9.50473 20.3597 8.05573C20.3597 6.62773 19.3187 5.44373 17.9537 5.21973"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M19.7285 14.2505C21.0795 14.4525 22.0225 14.9255 22.0225 15.9005C22.0225 16.5715 21.5785 17.0075 20.8605 17.2815"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M11.8867 14.6638C8.67273 14.6638 5.92773 15.1508 5.92773 17.0958C5.92773 19.0398 8.65573 19.5408 11.8867 19.5408C15.1007 19.5408 17.8447 19.0588 17.8447 17.1128C17.8447 15.1668 15.1177 14.6638 11.8867 14.6638Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M11.8869 11.888C13.9959 11.888 15.7059 10.179 15.7059 8.069C15.7059 5.96 13.9959 4.25 11.8869 4.25C9.7779 4.25 8.0679 5.96 8.0679 8.069C8.0599 10.171 9.7569 11.881 11.8589 11.888H11.8869Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M5.88509 10.8967C4.48909 10.7007 3.41609 9.50473 3.41309 8.05573C3.41309 6.62773 4.45409 5.44373 5.81909 5.21973"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M4.044 14.2505C2.693 14.4525 1.75 14.9255 1.75 15.9005C1.75 16.5715 2.194 17.0075 2.912 17.2815"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M15 5h2a2 2 0 0 1 2 2v8.17a3.001 3.001 0 1 1-2 0V7h-2v3l-4.5-4L15 2v3ZM5 8.83a3.001 3.001 0 1 1 2 0v6.34a3.001 3.001 0 1 1-2 0V8.83ZM6 7a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm0 12a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm12 0a1 1 0 1 0 0-2a1 1 0 0 0 0 2Z" />
                             </svg>
                         </i>
                         <span class="item-name">Request</span>
@@ -294,7 +244,8 @@
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-request" data-bs-parent="#sidebar">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeis('request.index') ? 'active' : '' }}" href="{{ route('request.index') }}">
+                            <a class="nav-link {{ request()->routeis('request.index') ? 'active' : '' }}"
+                                href="{{ route('request.index') }}">
                                 <i class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
                                         fill="currentColor">
@@ -308,20 +259,21 @@
                             </a>
                         </li>
                         @role('guru')
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeis('request.create') ? 'active' : '' }}" href="{{ route('request.create') }}">
-                                <i class="icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                        fill="currentColor">
-                                        <g>
-                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                        </g>
-                                    </svg>
-                                </i>
-                                <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">Add Request</span>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeis('request.create') ? 'active' : '' }}"
+                                    href="{{ route('request.create') }}">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                            fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="sidenav-mini-icon"> U </i>
+                                    <span class="item-name">Add Request</span>
+                                </a>
+                            </li>
                         @endrole
                     </ul>
                 </li>

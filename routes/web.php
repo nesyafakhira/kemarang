@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
@@ -68,13 +69,16 @@ Route::get('/show', function () {
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
+
+Route::get('cetaktanggal/{tglawal}/{tglakhir}', 'App\Http\Controllers\BarangController@cetaktanggal')->name('barang.cetaktanggal');
+
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
 Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
 Route::resource('laporan', LoggingController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
-
+Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
