@@ -71,6 +71,9 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->name('dashboard');
 
+Route::get('cetaktanggal/{tglawal}/{tglakhir}', 'App\Http\Controllers\BarangController@cetaktanggal')->name('barang.cetaktanggal');
+
+
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);

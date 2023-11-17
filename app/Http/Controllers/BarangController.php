@@ -87,6 +87,10 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
+        // $barang = Barang::findOrfail($barang);
+        // activity()
+        // ->performedOn($barang)
+        // ->log('keluar');
         return view('admin.barang.edit', compact('barang'));
     }
 
@@ -144,4 +148,12 @@ class BarangController extends Controller
 
         return to_route('barang.index')->with('success');
     }
+    
+    public function cetaktanggal($tglawal, $tglakhir)
+    {
+        $cetaktanggal = Barang::whereBetween('created_at', [$tglawal, $tglakhir])->get();
+        return view('admin.barang.cetaktanggal', compact('cetaktanggal'));
+    }  
+
+
 }

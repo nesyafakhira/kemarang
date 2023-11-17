@@ -10,32 +10,9 @@
             <div class="row">
 
 
-                <div class="card ">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            laporan
-                        </h4>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <div class="input-group input-group-outline mb-3">
-                            <label for="label">Tanggal awal</label> <br>
-                            <div>
-                                <input type="date" name="tglawal" id="tglawal" class="form-control">
-
-                            </div>
-                        </div>
-                        <div class="input-group input-group-outline mb-3">
-                            <label for="label">Tanggal akhir</label>
-                            <div>
-                                <input type="date" name="tglakhir" id="tglakhir" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <a href="" onclick="this.href='cetaktanggal/'+ document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value"  class="btn bg-gradient-success " type="submit" class="btn btn-primary">Print</a>
-
-                    </div><br>
-                </div> 
+                <div>
+                    
+                </div>
                 
 
                 <div class="card">

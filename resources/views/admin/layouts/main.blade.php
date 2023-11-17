@@ -17,6 +17,9 @@
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/logik.css?v=1.0.0') }}">
 
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.7/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/datatables.min.css" rel="stylesheet">
+
+
     {{-- Sweetalert 2 --}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -122,6 +125,9 @@
             });
         });
     </script>
+
+
+@stack('scripts')
 
 </body>
 
