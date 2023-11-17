@@ -149,10 +149,11 @@ class BarangController extends Controller
         return to_route('barang.index')->with('success');
     }
     
-    public function cetaktanggal()
+    public function cetaktanggal($tglawal, $tglakhir)
     {
-        return to_route('barang.cetaktanggal');
-    }
+        $cetaktanggal = Barang::whereBetween('created_at', [$tglawal, $tglakhir])->get();
+        return view('admin.barang.cetaktanggal', compact('cetaktanggal'));
+    }  
 
 
 }
