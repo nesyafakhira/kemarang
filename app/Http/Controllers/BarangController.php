@@ -62,9 +62,11 @@ class BarangController extends Controller
         ->log('Masuk');
         
         Stok::create([
-            'barang_id' => $barang->id, 
-            'nama_stok' => $request->nama_barang,
-            'stok_awal' => $request->jumlah_unit,
+            'barang_id'     => $barang->id, 
+            'nama_stok'     => $request->nama_barang,
+            'stok_awal'     => $request->jumlah_unit,
+            'stok_keluar'   => 0,
+            'stok_akhir'    => 0,
         ]);
         
         
@@ -119,12 +121,13 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
-        $stok = Stok::find($request->barang_id);
 
-        $stok->update([
+        Stok::create([
+            'barang_id'     => $request->barang_id,
+            'nama_stok'     => $request->nama_barang,
             'stok_awal'     => $request->jumlah_unit,
-            'stok_akhir'    => $request->jumlah_unit,
-            'stok_keluar'   => null
+            'stok_keluar'   => 0,
+            'stok_akhir'    => $request->jumlah_unit
         ]);
 
         Alert::success('Berhasil', 'Barang di-update');

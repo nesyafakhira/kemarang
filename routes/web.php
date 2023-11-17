@@ -74,6 +74,7 @@ Route::resource('barang', BarangController::class)->middleware(['auth', 'verifie
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
 Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
+Route::resource('laporan', LoggingController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
 
 
 require __DIR__.'/auth.php';

@@ -6,7 +6,8 @@
             <h5 class="my-3 text-center text-white">Register</h5>
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
-            <form>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
                 <div class="p-4">
                     <div class="col-form-label-sm mb-3">
                         <label for="nameInput">Nama</label>

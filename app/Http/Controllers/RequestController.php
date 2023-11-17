@@ -26,9 +26,6 @@ class RequestController extends Controller
         } else {
             $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
         }
-        $title = 'Hapus Request!';
-        $text = "Apakah kau yakin ingin hapus request?";
-        confirmDelete($title, $text);
 
         return view('admin.request.index', compact('requests'));
     }
@@ -115,8 +112,8 @@ class RequestController extends Controller
             ]
         );
 
-        $jumlah_unit = $minta->jumlah_tersedia;
-        $jumlah_req = $minta->jumlah_request;
+        $jumlah_unit    = $minta->jumlah_tersedia;
+        $jumlah_req     = $minta->jumlah_request;
         
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
@@ -128,17 +125,19 @@ class RequestController extends Controller
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-            $stok = Stok::find($minta->barang_id); 
 
-            if ($barang && $stok) {
+            if ($barang) {
                 $barang->update([
                     'jumlah_unit' => $jumlah_akhir
                 ]);
 
-                $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
+                // $jumlah_akumulasi_keluar = $stok->stok_keluar + $jumlah_req;
 
-                $stok->update([
-                    'stok_keluar' => $jumlah_akumulasi_keluar,
+                Stok::create([
+                    'barang_id' => $minta->barang_id,
+                    'nama_stok' => $jumlah_req,
+                    'stok_awal' => $jumlah_unit,
+                    'stok_keluar' => $jumlah_req,
                     'stok_akhir'  => $jumlah_akhir
                 ]);
 
