@@ -16,7 +16,7 @@
                             laporan
                         </h4>
                     </div>
-                    <div class="card-body table-responsive">
+                    <div class="card-body container">
                         <form action="{{ route('filter.tanggal') }}" method="post"> 
                             @csrf
                             <div class="input-group input-group-outline mb-3">

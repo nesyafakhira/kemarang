@@ -68,6 +68,8 @@
                         <span class="mini-icon">-</span>
                     </a>
                 </li>
+                        @role('admin')
+
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-user') }}" role="button"
                         aria-expanded="false" aria-controls="sidebar-user">
@@ -109,7 +111,6 @@
                         </i>
                     </a>
                     <ul class="sub-nav collapse" id="sidebar-user" data-bs-parent="#sidebar">
-                        @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeis('user.create') ? 'active' : '' }}"
                                     href="{{ route('user.create') }}">
@@ -144,10 +145,10 @@
                                     <span class="item-name">User List</span>
                                 </a>
                             </li>
-                        @endrole
-
+                            
                     </ul>
                 </li>
+                            @endrole
 
                 {{-- Inian Nav Start --}}
                 <li class="nav-item">
