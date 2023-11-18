@@ -17,10 +17,6 @@ class BarangController extends Controller
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
 
-        $title = 'Hapus Request!';
-        $text = "Apakah kau yakin ingin hapus request?";
-        confirmDelete($title, $text);
-
         return view('admin.barang.index', compact('barangs'));
     }
 
@@ -153,14 +149,6 @@ class BarangController extends Controller
         return to_route('barang.index')->with('success');
     }
     
-    public function cetaktanggal(Request $request)
-    {
-        $tanggal_awal  = Carbon::parse($request->tglawal)->startOfDay();
-        $tanggal_akhir = Carbon::parse($request->tglakhir)->endOfDay();
-
-        $cetaktanggal = Barang::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
-        return view('admin.barang.cetaktanggal', compact('cetaktanggal'));
-    }  
 
 
 }

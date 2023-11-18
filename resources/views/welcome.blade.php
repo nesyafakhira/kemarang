@@ -53,19 +53,9 @@
                 <ul>
                     <li><a class="nav-link scrollto active" href="{{ url('#hero') }}">Beranda</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('#about') }}">Apa Itu Kemarang?</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('#services') }}">Alasan Menggunakan Kemarang</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('#services') }}">Kenapa Kemarang?</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('#team') }}">Tim Kemarang</a></li>
 
-                    {{-- <li class="dropdown"><a href="{{ url('#') }}"><span>Opsi Lainnya</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
-                        </ul>
-                    </li> --}}
                     
                     
                     @guest
@@ -126,6 +116,10 @@
                                     <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
+                            <div class="mt-5">
+                                Sudah pernah request? <a href="{{ route('content.index') }}" style="text-decoration: none; color: #4154F1">Lihat request</a>
+                            </div>
+                                
                         </div>
                             
                         @endrole

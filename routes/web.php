@@ -72,14 +72,15 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->name('dashboard');
 
-Route::post('cetaktanggal', 'App\Http\Controllers\BarangController@cetaktanggal')->name('filter.tanggal');
+Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
+Route::post('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
 
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
 Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
-Route::resource('laporan', LaporanController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
+// Route::resource('laporan', LaporanController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
 Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

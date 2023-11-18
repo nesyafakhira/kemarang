@@ -6,6 +6,8 @@
             <h5 class="my-3 text-center text-white">Login</h5>
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
+            @include('admin.layouts.error')
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="p-4">
