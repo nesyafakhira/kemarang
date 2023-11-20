@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class RegisteredUserController extends Controller
 {
