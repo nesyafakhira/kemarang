@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Stok;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -15,10 +16,6 @@ class BarangController extends Controller
     public function index()
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-
-        $title = 'Hapus Request!';
-        $text = "Apakah kau yakin ingin hapus request?";
-        confirmDelete($title, $text);
 
         return view('admin.barang.index', compact('barangs'));
     }
@@ -62,9 +59,11 @@ class BarangController extends Controller
         ->log('Masuk');
         
         Stok::create([
-            'barang_id' => $barang->id, 
-            'nama_stok' => $request->nama_barang,
-            'stok_awal' => $request->jumlah_unit,
+            'barang_id'     => $barang->id, 
+            'nama_stok'     => $request->nama_barang,
+            'stok_awal'     => $request->jumlah_unit,
+            'stok_keluar'   => 0,
+            'stok_akhir'    => $request->jumlah_unit,
         ]);
         
         
@@ -123,12 +122,13 @@ class BarangController extends Controller
             'total_harga_ppn'       => $total_harga_ppn,
         ]);
 
-        $stok = Stok::find($request->barang_id);
 
-        $stok->update([
+        Stok::create([
+            'barang_id'     => $request->barang_id,
+            'nama_stok'     => $request->nama_barang,
             'stok_awal'     => $request->jumlah_unit,
-            'stok_akhir'    => $request->jumlah_unit,
-            'stok_keluar'   => null
+            'stok_keluar'   => 0,
+            'stok_akhir'    => $request->jumlah_unit
         ]);
 
         Alert::success('Berhasil', 'Barang di-update');
@@ -149,11 +149,6 @@ class BarangController extends Controller
         return to_route('barang.index')->with('success');
     }
     
-    public function cetaktanggal($tglawal, $tglakhir)
-    {
-        $cetaktanggal = Barang::whereBetween('created_at', [$tglawal, $tglakhir])->get();
-        return view('admin.barang.cetaktanggal', compact('cetaktanggal'));
-    }  
 
 
 }

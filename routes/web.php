@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
@@ -71,13 +72,15 @@ Route::get('/dashboard', function () {
     return view('admin.dashboard.index');
 })->name('dashboard');
 
-Route::get('cetaktanggal/{tglawal}/{tglakhir}', 'App\Http\Controllers\BarangController@cetaktanggal')->name('barang.cetaktanggal');
+Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
+Route::post('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
 
 
 Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
 Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
 Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
 Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
+// Route::resource('laporan', LaporanController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
 Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

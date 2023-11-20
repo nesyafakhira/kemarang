@@ -17,8 +17,8 @@
                         </div>
                         <div class="card-body px-0">
                             <div class="table-responsive">
-                                <table id="example1" class="table table-striped" role="grid"
-                                    >
+                                <table id="user-table" class="table" role="grid"
+                                    data-toggle="data-table">
                                     <thead>
                                         <tr class="ligth">
                                             <th>No</th>

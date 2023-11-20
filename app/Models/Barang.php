@@ -15,6 +15,11 @@ class Barang extends Model
         return $this->hasMany(Request::class);
     }
 
+    public function stok(): HasMany
+    {
+        return $this->hasMany(Stok::class);
+    }
+
     protected $fillable = [
         'nama_barang',
         'jumlah_unit',

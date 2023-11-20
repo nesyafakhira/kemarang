@@ -26,7 +26,7 @@
                                         <select disabled data-select-barang="{{ $request->nama_barang }}" name="nama_barang" id="nama_barang" onchange="selectBarang(this)" class="selectpicker form-control" data-style="py-0">
                                             <option selected disabled>Pilih Barang</option>
                                             @foreach ($barangs as $item)
-                                                <option {{ $request->nama_barang == $item->nama_barang ? "selected" : null }} data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}" data-id="{{ $item->id }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
+                                                <option {{ $request->nama_barang == $item->nama_barang ? "selected" : null }} data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}" data-id="{{ $item->id }}" data-nama="{{ $item->nama_barang }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -35,6 +35,7 @@
                                         <input disabled name="jumlah_tersedia" id="jumlah_unit" type="text" class="form-control" id="fname" placeholder="Jumlah yang tersedia">
                                     </div>
 
+                                    <input type="hidden" id="nama_barang2" name="namabarang">
                                     <input type="hidden" id="barang_id" name="barang_id">
                                     <input type="hidden" id="jumlah_tersedia" name="jumlah_tersedia">
                                     <input type="hidden" id="" value="{{ $request->jumlah_unit }}" name="jumlah_request">
@@ -78,10 +79,12 @@
             let jumlahBarang = $(el).find(':selected').data('jumlah');
             let satuanBarang = $(el).find(':selected').data('satuan');
             let idBarang = $(el).find(':selected').data('id');
+            let namaBarang = $(el).find(':selected').data('nama');
 
             $("#jumlah_unit").val(jumlahBarang)
             $("#jumlah_tersedia").val(jumlahBarang)
             $("#barang_id").val(idBarang)
+            $("#nama_barang2").val(namaBarang)
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) 
             $("#labelRequest").html(`Jumlah Unit (${satuanBarang})`) 
         }

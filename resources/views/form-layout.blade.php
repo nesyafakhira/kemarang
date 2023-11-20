@@ -28,6 +28,8 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
+
+
     <style>
         .card-form {
             margin-top: 15vh !important;
@@ -74,6 +76,9 @@
             min-width: 50%;
             min-height: 50%;
         }
+
+        
+
     </style>
 
     <!-- =======================================================
@@ -90,7 +95,7 @@
     <header id="header" class="header header-form">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-center">
 
-            <a href="{{ url('#') }}" class="logo d-flex align-items-center">
+            <a href="{{ url('/') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('/assets/img/logooo.png') }}" alt="">
                 <span>Kemarang</span>
             </a>
@@ -106,6 +111,9 @@
             @yield('content')
         </div>
     </main>
+
+
+    @stack('script')
 </body>
 
 </html>
