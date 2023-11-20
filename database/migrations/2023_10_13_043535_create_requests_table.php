@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tu_id')->nullable()->references('id')->on('users');
             $table->foreignId('guru_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('barang_id')->references('id')->on('barangs');
+            $table->foreignId('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->string('nama_barang');
             $table->string('jumlah_unit');
             $table->enum('status', ['menunggu', 'terima', 'tolak']);
