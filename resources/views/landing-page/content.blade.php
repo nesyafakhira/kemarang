@@ -60,10 +60,6 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto" href="{{ url('/') }}">Beranda</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('/#about') }}">Apa Itu Kemarang?</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('/#services') }}">Kenapa Kemarang?</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('/#team') }}">Tim Kemarang</a></li>
-
                     @guest
                         <div class="btn-group align-items-center justify-center-content flex-wrap"
                             style="padding-right: 5px">
