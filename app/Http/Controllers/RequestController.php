@@ -12,8 +12,8 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:guru|admin'])->only(['store', 'create']);
-        $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
+        // $this->middleware(['role:guru|admin'])->only(['store', 'create']);
+        // $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
     }
 
     /**
@@ -93,7 +93,6 @@ class RequestController extends Controller
      */
     public function edit(MRequest $request)
     {
-        $this->middleware(['auth', 'verified', 'role:staff']);
         $barangs = Barang::orderBy('id', 'asc')->get();
 
         return view('admin.request.edit', compact('request', 'barangs'));
@@ -108,7 +107,7 @@ class RequestController extends Controller
         $minta->validate(
             [
                 'status'                => 'required',
-                'jumlah_request'           => 'required',
+                'jumlah_request'        => 'required',
                 'jumlah_tersedia'       => 'required',
             ],
             [
@@ -121,11 +120,20 @@ class RequestController extends Controller
         
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
+        if (auth()->user()->hasRole('staff|admin')) {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status
+            ]);
+        } else {
+            $request->update([
+                'barang_id'     => $minta->barang_id,
+                'nama_barang'   => $minta->nama_barang,
+                'jumlah_unit'   => $minta->jumlah_unit
+            ]);
+        }
+        
 
-        $request->update([
-            'tu_id' => $minta->user()->id,
-            'status' => $minta->status
-        ]);
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
