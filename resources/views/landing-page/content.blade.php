@@ -49,7 +49,7 @@
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top mt-4">
+    <header id="header" class="header fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
@@ -60,66 +60,44 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto" href="{{ url('/') }}">Beranda</a></li>
-                    @guest
-                        <div class="btn-group align-items-center justify-center-content flex-wrap"
-                            style="padding-right: 5px">
-                            <div class="dropdown">
-                                <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG"
-                                    data-bs-toggle="dropdown" aria-expanded="false">Opsi Lainnya</button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
-                                    <li>
-                                        <h6 class="dropdown-header">Masuk</h6>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
-                                    <li>
-                                        <h6 class="dropdown-header">Keluar</h6>
-                                    </li>
-                                    <form action="{{ route('logout') }}" method="post">
-                                        @csrf
-                                        <li><button class="dropdown-item" type="submit">Log Out</button></li>
-                                    </form>
-                                </ul>
-                            </div>
-                        @else
-                            <div class="dropdown">
-                                <button class="getstarted scrollto dropdown-toggle" type="button" id="dropdownMenuButtonLG"
-                                    data-bs-toggle="dropdown" aria-expanded="false">{{ auth()->user()->name }}</button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
-                                    <li>
-                                        <h6 class="dropdown-header">Keluar</h6>
-                                    </li>
-                                    <form action="{{ route('logout') }}" method="post">
-                                        @csrf
-                                        <li><button class="dropdown-item" type="submit">Log Out</button></li>
-                                    </form>
-                                </ul>
-                            </div>
 
-                        @endguest
-                    </div>
-                    {{-- <li><a class="getstarted scrollto" data-bs-toggle="dropdown" href="{{ url('#') }}">Opsi Lainnya</a>
-                        
-                            
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
-                                <li><h6 class="dropdown-header">Dropdown header</h6></li>
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                   
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonLG">
-                                <li><h6 class="dropdown-header">Masuk</h6></li>
+                    @guest
+                        <li class="nav-item dropdown">
+                            <a class="getstarted scrollto nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Opsi Lainnya
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <h6 class="dropdown-header">Masuk</h6>
+                                </li>
                                 <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
-                                <li><hr class="dropdown-divider">Keluar</li>
+                                <li>
+                                    <h6 class="dropdown-header">Keluar</h6>
+                                </li>
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <li><button class="dropdown-item" type="submit">Log Out</button></li>
-    
                                 </form>
                             </ul>
-                        </li> --}}
+                        </li>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="getstarted scrollto nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ auth()->user()->name }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <h6 class="dropdown-header">Keluar</h6>
+                                </li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <li><button class="dropdown-item" type="submit">Log Out</button></li>
+                                </form>
+                            </ul>
+                        </li>
+                    @endguest
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
