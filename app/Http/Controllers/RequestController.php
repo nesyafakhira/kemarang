@@ -12,8 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(['role:guru|admin'])->only(['store', 'create']);
-        // $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
+        $this->middleware(['role:staff|admin'])->only(['store', 'create', 'index']);
     }
 
     /**
@@ -21,11 +20,8 @@ class RequestController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->hasRole('guru')) {
-            $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
-        } else {
-            $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
-        }
+        $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
+
 
         return view('admin.request.index', compact('requests'));
     }
@@ -66,10 +62,10 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
-        
+
         activity()
-        ->performedOn($mrequest)
-        ->log('Keluar');
+            ->performedOn($mrequest)
+            ->log('Keluar');
 
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
@@ -117,7 +113,7 @@ class RequestController extends Controller
 
         $jumlah_unit    = $minta->jumlah_tersedia;
         $jumlah_req     = $minta->jumlah_request;
-        
+
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
         if (auth()->user()->hasRole('staff|admin')) {
@@ -132,7 +128,7 @@ class RequestController extends Controller
                 'jumlah_unit'   => $minta->jumlah_unit
             ]);
         }
-        
+
 
 
         if ($minta->status == 'terima') {
@@ -154,7 +150,7 @@ class RequestController extends Controller
                     'stok_akhir'  => $jumlah_akumulasi_keluar
                 ]);
                 // return $stok;
-                
+
             }
         }
 

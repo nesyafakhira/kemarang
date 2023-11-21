@@ -6,7 +6,7 @@
             <h5 class="my-3 text-center text-white">Form Request Barang</h5>
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
-            <form method="POST" action="{{ route('request.update', $request->id)) }}">
+        <form method="POST" action="{{ route('content.update', $request->id) }}">
                 @csrf
                 @method('PATCH')
                 <div class="p-4">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="mobno" id="labelJumlahUnit">Jumlah Unit</label>
-                        <input name="jumlah_unit" type="text" class="form-control" id="mobno" placeholder="Jumlah yang ingin diminta">
+                        <input value="{{ $request->jumlah_unit }}" name="jumlah_unit" type="text" class="form-control" id="mobno" placeholder="Jumlah yang ingin diminta">
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-form rounded-2">Submit</button>

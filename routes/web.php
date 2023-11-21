@@ -43,6 +43,8 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
 
 
 
-Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
+Route::resource('content', ContentController::class)->parameters([
+    'content' => 'request'
+])->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
