@@ -24,63 +24,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('admin.dashboard.index');
-})->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {  
 
-Route::get('/form', function () {
-    return view('form-request');
+    Route::resource('user', UserController::class)->middleware([ 'role:admin']);
+    Route::resource('barang', BarangController::class)->middleware([ 'role:staff|admin']);
+    Route::resource('request', RequestController::class);
+    Route::resource('logging', LoggingController::class);
+
+    Route::get('/', function () {
+        return view('admin.dashboard.index');
+    })->name('dashboard')->middleware([ 'role:admin|kepsek|staff']);
+    
+    Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['role:kepsek|admin'])->name('laporan.index');
+    Route::post('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['role:kepsek|admin'])->name('laporan.index');
 });
 
-Route::get('/register-guru', function () {
-    return view('form-register');
-});
-
-Route::get('/login-guru', function () {
-    return view('form-login');
-});
-
-Route::get('/loginadmin', function () {
-    return view('admin.login');
-});
-
-Route::get('/requestdashboard', function () {
-    return view('admin.request.show');
-});
-
-Route::get('/stockdashboard', function () {
-    return view('admin.stock.show');
-});
-
-Route::get('/barangdashboard', function () {
-    return view('admin.barang.create');
-});
-
-Route::get('/barangindex', function () {
-    return view('admin.barang.index');
-});
-
-Route::get('/userindex', function () {
-    return view('admin.user.index');
-});
-
-Route::get('/show', function () {
-    return view('admin.logging-activity.show');
-});
-
-Route::get('/dashboard', function () {
-    return view('admin.dashboard.index');
-})->name('dashboard');
-
-Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
-Route::post('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['auth', 'verified', 'role:kepsek|admin'])->name('laporan.index');
 
 
-Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
-Route::resource('user', UserController::class)->middleware(['auth', 'verified', 'role:admin']);
-Route::resource('request', RequestController::class)->middleware(['auth', 'verified']);
-Route::resource('logging', LoggingController::class)->middleware(['auth', 'verified']);
-// Route::resource('laporan', LaporanController::class)->middleware(['auth', 'verified', 'role:kepsek|admin']);
-Route::resource('content', ContentController::class)->middleware(['auth', 'verified']);
+
+
+Route::resource('content', ContentController::class)->parameters([
+    'content' => 'request'
+])->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -50,7 +50,7 @@
                                                 </td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
-                                                    <form form action="{{ route('user.destroy', $user->id) }}"
+                                                    <form action="{{ route('user.destroy', $user->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
