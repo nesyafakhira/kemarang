@@ -50,7 +50,7 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between mt-2">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('/assets/img/logooo.png') }}" alt="">
@@ -161,7 +161,14 @@
                                     <td>{{ $request->barang_id }}</td>
                                     <td>{{ $request->nama_barang }}</td>
                                     <td>{{ $request->jumlah_unit }}</td>
-                                    <td><span class="badge bg-primary">{{ $request->status }}</span></td>
+                                    {{-- <td><span class="badge bg-primary">{{ $request->status }}</span></td> --}}
+                                    @if ($request->status == 'menunggu')
+                                        <td><span class="badge bg-yellow">{{ $request->status }}</span></td>
+                                    @elseif ($request->status == 'terima')
+                                        <td><span class="badge bg-success">{{ $request->status }}</span></td>
+                                    @else
+                                        <td><span class="badge bg-danger">{{ $request->status }}</span></td>
+                                    @endif
                                     <td>{{ $request->created_at->diffForHumans() }}</td>
                                     @role('staff')
                                         <td>
@@ -275,17 +282,15 @@
                         <h4>Link yang Tertaut</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('/') }}">Beranda</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a
-                                    href="{{ route('request.create') }}">Request</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Alasan
-                                    Menggunakan Kemarang</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('request.create') }}">Request</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Keunggulan Kemarang</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Masuk</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register') }}">Daftar</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Alasan Menggunakan Kemarang</h4>
+                        <h4>Keunggulan Kemarang</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Didesain Khusus
                                     untuk Sekolah</a></li>

@@ -32,7 +32,7 @@
 
     <style>
         .card-form {
-            margin-top: 15vh !important;
+            margin-top: 13vh !important;
             background-color: #012970;
         }
 
@@ -41,8 +41,9 @@
         }
 
         .form-layout {
-            width: 100vw;
-            height: 100vh !important;
+            width: 98vw;
+            height: 90vh !important;
+            padding-left: 70px
         }
 
         .btn-form {
@@ -107,7 +108,7 @@
             <img class="background-image position-absolute m-auto" src="{{ asset('assets/img/form-bg-1.jpg') }}"
                 alt="background">
         </div>
-        <div class="form-layout row justify-content-center">
+        <div class="form-layout row justify-content-center ml-3">
             @yield('content')
         </div>
     </main>
