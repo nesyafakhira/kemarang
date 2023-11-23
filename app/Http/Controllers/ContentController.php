@@ -9,32 +9,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ContentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:guru'])->only(['store', 'create']);
-        $this->middleware(['role:staff'])->only(['edit', 'destroy']);
-    }
-
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-            $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
-    
-
-        // return $requests;
+        $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
+        
         return view('landing-page.content', compact('requests'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $barangs = Barang::orderBy('id', 'asc')->get();
-
-        return view('admin.content.create', compact('barangs'));
+        return view('form-request');
     }
 
     /**
@@ -42,39 +32,15 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
-        $request->validate(
-            [
-                'nama_barang' => 'required',
-                'jumlah_unit' => 'required|max:2',
-            ],
-            [
-                'nama_barang.required'  => 'Pilih nama barang',
-                'jumlah_unit.required'  => 'Masukkan jumlah barang',
-            ]
-        );
-
-        MRequest::create([
-            'guru_id'       => $request->guru_id,
-            'barang_id'     => $request->barang_id,
-            'nama_barang'   => $request->nama_barang,
-            'jumlah_unit'   => $request->jumlah_unit
-        ]);
-
-        Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
-
-        return to_route('content.index')->with('success');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(MRequest $request)
+    public function show(string $id)
     {
-        $this->middleware('role:guru|staff');
-        // return $request;
-        $request->load('barang');
-        return view('admin.content.show', compact('request'));
+        //
     }
 
     /**
@@ -82,10 +48,10 @@ class ContentController extends Controller
      */
     public function edit(MRequest $request)
     {
-        $this->middleware(['auth', 'verified', 'role:staff']);
         $barangs = Barang::orderBy('id', 'asc')->get();
 
-        return view('admin.content.edit', compact('request', 'barangs'));
+
+        return view('form-edit-request', compact('request', 'barangs'));
     }
 
     /**
@@ -93,54 +59,29 @@ class ContentController extends Controller
      */
     public function update(Request $minta, MRequest $request)
     {
-        // return $minta;
-        $minta->validate(
-            [
-                'status'                => 'required',
-                'jumlah_request'           => 'required',
-                'jumlah_tersedia'       => 'required',
-            ],
-            [
-                'status.required' => 'Pilih status'
-            ]
-        );
-
-        $jumlah_unit = $minta->jumlah_tersedia;
-        $jumlah_req = $minta->jumlah_request;
-
-        $jumlah_akhir = $jumlah_unit - $jumlah_req;
-
-
-        $request->update([
-            'tu_id' => $minta->user()->id,
-            'status' => $minta->status
+        $minta->validate([
+            'nama_barang'           => 'required',
+            'jumlah_unit'        => 'required',
         ]);
 
-        if ($minta->status == 'terima') {
-            $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
-            if ($barang) {
-            $barang->update([
-                'jumlah_unit' => $jumlah_akhir
-            ]);
+        $request->update([
+            'nama_barang' => $minta->nama_barang,
+            'jumlah_unit' => $minta->jumlah_unit,
+        ]);
+// 
+        // return $minta;
 
-        }
-        
-    }
-    $request->delete();
-
-        Alert::success('Berhasil', 'Request dikonfirmasi');
+        Alert::success('Berhasil', 'Request berhasil di-update');
         return to_route('content.index')->with('success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MRequest $request)
+    public function destroy(MRequest $id)
     {
-        $request->delete();
+        $id->delete();
 
-        Alert::success('Berhasil', 'Request dihapus');
-
-        return to_route('content.index')->with('success');
+        return to_route('content.index');
     }
 }

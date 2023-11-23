@@ -45,7 +45,7 @@
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between mt-2">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('/assets/img/logooo.png') }}" alt="">
+                <img src="{{ asset('/assets/img/logooo.png') }}" alt="Logo">
                 <span>Kemarang</span>
             </a>
 
@@ -113,7 +113,7 @@
                                 <div class="text-center text-lg-start">
                                     <a href="{{ route('request.create') }}"
                                         class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                                        <span>Request Sekarang!</span>
+                                        <span>Request Sekarang!</span>*
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
@@ -128,7 +128,7 @@
 
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                    <img src="{{ asset('/assets/img/hero.png') }}" class="img-fluid" alt="">
+                    <img src="{{ asset('/assets/img/hero.png') }}" class="img-fluid" alt="Hero">
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
                     </div>
 
                     <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                        <img src="{{ asset('/assets/img/about.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('/assets/img/about.png') }}" class="img-fluid" alt="About">
                     </div>
 
                 </div>
@@ -255,7 +255,7 @@
                         <div class="member">
                             <div class="member-img">
                                 <img src="{{ asset('/assets/img/team/aziz.jpg') }}" class="img-fluid"
-                                    alt="">
+                                    alt="aziz">
                                 <div class="social">
                                     <a href="{{ url('https://instagram.com/azizsptyan?igshid=YTQwZjQ0NmI0OA==') }}"><i
                                             class="bi bi-instagram"></i></a>
@@ -273,7 +273,7 @@
                         <div class="member">
                             <div class="member-img">
                                 <img src="{{ asset('/assets/img/team/athar.jpg') }}" class="img-fluid"
-                                    alt="">
+                                    alt="athar">
                                 <div class="social">
                                     <a href="{{ url('https://instagram.com/athar_fazli?igshid=YTQwZjQ0NmI0OA==') }}"><i
                                             class="bi bi-instagram"></i></a>
@@ -292,7 +292,7 @@
                         <div class="member">
                             <div class="member-img">
                                 <img src="{{ asset('/assets/img/team/nesya.jpg') }}" class="img-fluid"
-                                    alt="">
+                                    alt="nesya">
                                 <div class="social">
                                     <a href="{{ url('https://instagram.com/nesvenn?igshid=YTQwZjQ0NmI0OA==') }}"><i
                                             class="bi bi-instagram"></i></a>
@@ -310,7 +310,7 @@
                         <div class="member">
                             <div class="member-img">
                                 <img src="{{ asset('/assets/img/team/nazwa.jpg') }}" class="img-fluid"
-                                    alt="">
+                                    alt="nazwa">
                                 <div class="social">
                                     <a href="{{ url('https://instagram.com/zwah1510?igshid=YTQwZjQ0NmI0OA==') }}"><i
                                             class="bi bi-instagram"></i></a>
@@ -340,7 +340,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-5 col-md-12 footer-info">
                         <a href="{{ url('#') }}" class="logo d-flex align-items-center">
-                            <img src="{{ asset('/assets/img/logooo.png') }}" alt="">
+                            <img src="{{ asset('/assets/img/logooo.png') }}" alt="logo">
                             <span>Kemarang</span>
                         </a>
                         <p>Kemarang adalah solusi inovatif yang dirancang khusus untuk membantu sekolah dalam mengelola

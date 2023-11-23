@@ -29,20 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+
         if (auth()->user()->hasRole('admin')) {
-            return to_route('dashboard');
+            return to_route('dashboard')->with('success');
         }
 
         if (auth()->user()->hasRole('staff')) {
-            return to_route('dashboard');
+            return to_route('dashboard')->with('success');
         }
 
         if (auth()->user()->hasRole('guru')) {
-            return to_route('content.index');
+            return to_route('content.index')->with('success');
         }
 
         if (auth()->user()->hasRole('kepsek')) {
-            return to_route('dashboard');
+            return to_route('dashboard')->with('success');
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
@@ -59,6 +60,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        // Toast::succes('Berhasil log out', 'success');
+
+        return redirect('/')->with('success');
     }
 }
