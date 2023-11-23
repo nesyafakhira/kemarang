@@ -8,6 +8,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
+use App\Models\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,8 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::resource('logging', LoggingController::class);
 
     Route::get('/', function () {
-        return view('admin.dashboard.index');
+        $req = Request::count();
+        return view('admin.dashboard.index', compact('req'));
     })->name('dashboard')->middleware([ 'role:admin|kepsek|staff']);
     
     Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['role:kepsek|admin'])->name('laporan.index');

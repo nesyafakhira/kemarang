@@ -3,19 +3,23 @@
 @section('content')
     <div class="col-md-6">
         <div class="card-form overflow-hidden position-relative m-auto rounded">
-            <h5 class="my-3 text-center text-white">Form Request Barang</h5>
+            <h5 class="my-3 text-center text-white">Form Edit Request Barang</h5>
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
-        <form method="POST" action="{{ route('content.update', $request->id) }}">
+            <form method="POST" action="{{ route('content.update', $request->id) }}">
                 @csrf
                 @method('PATCH')
                 <div class="p-4">
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label">Pilih Barang</label>
-                        <select name="nama_barang" id="nama_barang" onchange="selectBarang(this)" class="selectpicker form-control" data-style="py-0">
+                        <select name="nama_barang" id="nama_barang" onchange="selectBarang(this)"
+                            class="selectpicker form-control" data-style="py-0">
                             <option selected disabled>Pilih Barang</option>
                             @foreach ($barangs as $item)
-                                <option {{ $item->nama_barang == $request->nama_barang ? 'selected' : '' }} data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}" data-id="{{ $item->id }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
+                                <option {{ $item->nama_barang == $request->nama_barang ? 'selected' : '' }}
+                                    data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}"
+                                    data-id="{{ $item->id }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -23,14 +27,16 @@
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="fname" id="labelJumlah">Jumlah Tersedia</label>
-                        <input disabled id="jumlah_unit" type="text" class="form-control" id="fname" placeholder="Jumlah yang tersedia">
+                        <input disabled id="jumlah_unit" type="text" class="form-control" id="fname"
+                            placeholder="Jumlah yang tersedia">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="mobno" id="labelJumlahUnit">Jumlah Unit</label>
-                        <input value="{{ $request->jumlah_unit }}" name="jumlah_unit" type="text" class="form-control" id="mobno" placeholder="Jumlah yang ingin diminta">
+                        <input value="{{ $request->jumlah_unit }}" name="jumlah_unit" type="text" class="form-control"
+                            id="mobno" placeholder="Jumlah yang ingin diminta">
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                        <button type="submit" class="btn btn-form rounded-2">Edit</button>
                     </div>
                 </div>
             </form>
@@ -40,6 +46,11 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
+            // Panggil fungsi selectBarang untuk menampilkan jumlah yang tersedia saat halaman dimuat
+            selectBarang($('#nama_barang'));
+        });
+
         function selectBarang(el) {
             let valueBarang = $(el).val();
             let jumlahBarang = $(el).find(':selected').data('jumlah');
@@ -48,7 +59,6 @@
 
             $("#jumlah_unit").val(jumlahBarang)
             $("#barang_id").val(idBarang)
-            // $("#labelJumlah").html("Jumlah Tersedia " + "(" + satuanBarang + ")") // basic
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
         }

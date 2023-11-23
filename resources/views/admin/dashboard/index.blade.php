@@ -21,7 +21,7 @@
                             </div>
                             <div class="card-body">
                                 
-                                <small>Some text here</small>
+                                <small>{{ $req }}</small>
                             </div>
                         </div>
                     </div>
