@@ -2,8 +2,7 @@
     <div class="sidebar-header d-flex align-items-center justify-content-start">
         <a href="{{ url('/') }}" class="navbar-brand">
             <!--Logo start-->
-            <img width="88" src="{{ asset('assets/img/logo.png') }}" class="iq-logo" viewBox="0 0 88 43" fill="none"
-                alt="">
+            <img width="88" src="{{ asset('assets/img/logo.png') }}" class="iq-logo" viewBox="0 0 88 43" fill="none" alt="">
             <!--logo End-->
             <svg width="32" class="logo-mini mt-2" viewBox="0 0 32 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
