@@ -24,7 +24,8 @@ class ContentController extends Controller
      */
     public function create()
     {
-        return view('form-request');
+        $barangs = Barang::orderBy('id', 'asc')->get();
+        return view('form-request', compact('barangs'));
     }
 
     /**
@@ -72,16 +73,18 @@ class ContentController extends Controller
         // return $minta;
 
         Alert::success('Berhasil', 'Request berhasil di-update');
-        return to_route('content.index')->with('success');
+        return redirect()->to('/content#table')->with('success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MRequest $id)
+    public function destroy(MRequest $request)
     {
-        $id->delete();
+        $request->delete();
 
-        return to_route('content.index');
+
+        Alert::success('Berhasil', 'Request berhasil dihapus');
+        return redirect()->to('/content#table')->with('success');
     }
 }

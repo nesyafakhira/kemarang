@@ -34,6 +34,8 @@
         href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/datatables.min.css"
         rel="stylesheet">
 
+        {{-- Sweetalert 2 --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
 
@@ -118,7 +120,7 @@
                         Barang yang Keluar dan Masuk secara Cepat, Sederhana, dan Efisien.</h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
-                            <a href="{{ route('request.create') }}"
+                            <a href="{{ route('content.create') }}"
                                 class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                                 <span>Request Sekarang!</span>
                                 <i class="bi bi-arrow-right"></i>

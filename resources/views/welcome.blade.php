@@ -39,7 +39,7 @@
 </head>
 
 <body>
-
+@include('sweetalert::alert')
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -113,7 +113,7 @@
                                 <div class="text-center text-lg-start">
                                     <a href="{{ route('request.create') }}"
                                         class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                                        <span>Request Sekarang!</span>*
+                                        <span>Request Sekarang!</span>
                                         <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
