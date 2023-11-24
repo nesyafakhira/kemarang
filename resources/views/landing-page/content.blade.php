@@ -25,6 +25,7 @@
     <link href="{{ asset('/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 
     <!-- Template Main CSS File -->
@@ -47,6 +48,14 @@
 </head>
 
 <body>
+
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
@@ -346,6 +355,15 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
+        <!-- Backend Bundle JavaScript -->
+        <script src="{{ asset('assets/admin/js/libs.min.js') }}"></script>
+
+        <!-- Dashboard Charts JavaScript -->
+        <script src="{{ asset('assets/admin/js/charts/dashboard.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/charts/apexcharts.js') }}"></script>
+    
+        <!-- fslightbox JavaScript -->
+        <script src="{{ asset('assets/admin/js/fslightbox.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
