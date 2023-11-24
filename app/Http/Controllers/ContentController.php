@@ -25,7 +25,6 @@ class ContentController extends Controller
     public function create()
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-
         return view('form-request', compact('barangs'));
     }
 
@@ -74,7 +73,7 @@ class ContentController extends Controller
         // return $minta;
 
         Alert::success('Berhasil', 'Request berhasil di-update');
-        return to_route('content.index')->with('success');
+        return redirect()->to('/content#table')->with('success');
     }
 
     /**
@@ -84,8 +83,8 @@ class ContentController extends Controller
     {
         $request->delete();
 
-        // return $request;
 
-        return to_route('content.index');
+        Alert::success('Berhasil', 'Request berhasil dihapus');
+        return redirect()->to('/content#table')->with('success');
     }
 }
