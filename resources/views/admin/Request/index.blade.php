@@ -44,7 +44,7 @@
                                                 <td>{{ $request->nama_barang }}</td>
                                                 <td>{{ $request->jumlah_unit }}</td>
                                                 @if ($request->status == 'menunggu')
-                                                <td><span class="badge bg-yellow">{{ $request->status }}</span></td>
+                                                <td><span class="badge bg-warning">{{ $request->status }}</span></td>
                                                 
                                                 @elseif ($request->status == 'terima')
                                                 <td><span class="badge bg-success">{{ $request->status }}</span></td>

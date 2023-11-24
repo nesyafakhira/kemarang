@@ -12,7 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:staff|admin'])->only(['store', 'create', 'index']);
+        $this->middleware(['role:staff|admin'])->only(['create', 'index']);
     }
 
     /**
@@ -32,10 +32,7 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-        if ($request->user()->hasRole('guru')) {
-            return view('form-request', compact('barangs'));
-        }
-
+        
         return view('admin.request.create', compact('barangs'));
     }
 

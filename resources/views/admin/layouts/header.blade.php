@@ -25,7 +25,33 @@
                 <ul class="align-items-center navbar-nav ms-auto navbar-list mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link py-0 d-flex align-items-center" href="{{ url("#") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="caption ms-3 d-none d-md-block ">
+                            <div class="caption ms-3">
+                                <h6 class="mb-0 caption-title d-md-imline">{{ auth()->user()->name }}</h6>
+                                <p class="mb-0 caption-sub-title d-md-inline">
+                                    @if (auth()->user()->hasRole('admin'))
+                                        Admin
+                                    @elseif (auth()->user()->hasRole('staff'))
+                                        Staff TU
+                                    @elseif (auth()->user()->hasRole('guru'))
+                                        Guru
+                                    @elseif (auth()->user()->hasRole('kepsek'))
+                                        Kepala Sekolah
+                                    @endif
+                                </p>
+                                {{-- <span class="d-none ">{{ auth()->user()->name }}</span> --}}
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <li><button class="dropdown-item" type="submit">Logout</button></li>
+                            </form>
+                        </ul>
+                    </li>                    
+
+                    {{-- <li class="nav-item dropdown">
+                        <a class="nav-link py-0 d-flex align-items-center" href="{{ url("#") }}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="caption ms-3 d-none d-md-block">
                                 <h6 class="mb-0 caption-title">{{ auth()->user()->name }}</h6>
                                 <p class="mb-0 caption-sub-title">
                                     @if (auth()->user()->hasRole('admin'))
@@ -41,14 +67,14 @@
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            </li>
                             <form action="{{ route('logout') }}" method="post">
                                 @csrf
                                 <li><button class="dropdown-item" type="submit">Logout</button></li>
-
                             </form>
                         </ul>
-                    </li>
+                    </li> --}}
+                    
+                    
                 </ul>
             </div>
         </div>

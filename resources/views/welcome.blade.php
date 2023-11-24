@@ -59,7 +59,7 @@
 
 
                     @guest
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown navbar-nav">
                             <a class="getstarted scrollto nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Masuk

@@ -24,7 +24,9 @@ class ContentController extends Controller
      */
     public function create()
     {
-        return view('form-request');
+        $barangs = Barang::orderBy('id', 'asc')->get();
+
+        return view('form-request', compact('barangs'));
     }
 
     /**
@@ -78,9 +80,11 @@ class ContentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MRequest $id)
+    public function destroy(MRequest $request)
     {
-        $id->delete();
+        $request->delete();
+
+        // return $request;
 
         return to_route('content.index');
     }
