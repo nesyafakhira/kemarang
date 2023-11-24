@@ -26,6 +26,9 @@
     <link href="{{ asset('/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
 
@@ -35,10 +38,18 @@
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
+
 @include('sweetalert::alert')
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
@@ -415,8 +426,8 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="{{ url('#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    {{-- <a href="{{ url('#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a> --}}
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -429,6 +440,16 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="{{ asset('assets/admin/js/libs.min.js') }}"></script>
+
+    <!-- Dashboard Charts JavaScript -->
+    <script src="{{ asset('assets/admin/js/charts/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/charts/apexcharts.js') }}"></script>
+
+    <!-- fslightbox JavaScript -->
+    <script src="{{ asset('assets/admin/js/fslightbox.js') }}"></script>
+
 
 </body>
 
