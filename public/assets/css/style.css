@@ -246,9 +246,15 @@ section {
 
 .navbar a:hover,
 .navbar .active,
-.navbar .active:focus,
-.navbar li:hover>a {
-  color: #4154f1;
+.navbar .active:focus {
+  color: #012970;
+}
+.navbar-nav li:hover>a {
+  color: #fff;
+}
+
+#navbarDropdown:hover {
+  color: #fff;
 }
 
 .navbar .getstarted,
@@ -262,8 +268,7 @@ section {
 
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
-  color: #fff;
-  background: #5969f3;
+  background: #4154f1;
 }
 
 .navbar .dropdown ul {
@@ -300,7 +305,7 @@ section {
 .navbar .dropdown ul a:hover,
 .navbar .dropdown ul .active:hover,
 .navbar .dropdown ul li:hover>a {
-  color: #4154f1;
+  color: #012970;
 }
 
 .navbar .dropdown:hover>ul {

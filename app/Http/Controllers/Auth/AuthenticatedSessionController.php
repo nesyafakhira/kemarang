@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,20 +30,29 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+
         if (auth()->user()->hasRole('admin')) {
-            return to_route('dashboard');
+            toast('Login berhasil','success');
+            
+            return to_route('dashboard')->with('success');
         }
 
         if (auth()->user()->hasRole('staff')) {
-            return to_route('dashboard');
+            toast('Login berhasil','success');
+            
+            return to_route('dashboard')->with('success');
         }
 
         if (auth()->user()->hasRole('guru')) {
-            return to_route('content.index');
+            toast('Login berhasil','success');
+            
+            return to_route('content.index')->with('success');
         }
 
         if (auth()->user()->hasRole('kepsek')) {
-            return to_route('dashboard');
+            toast('Login berhasil','success');
+            
+            return to_route('dashboard')->with('success');
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
@@ -59,6 +69,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        toast('Logout berhasil','warning');
+
+        return redirect('/')->with('success');
     }
 }

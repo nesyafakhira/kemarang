@@ -12,8 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:guru|admin'])->only(['store', 'create']);
-        $this->middleware(['role:staff|admin'])->only(['edit', 'update']);
+        $this->middleware(['role:staff|admin'])->only(['index', 'edit']);
     }
 
     /**
@@ -21,11 +20,8 @@ class RequestController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->hasRole('guru')) {
-            $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
-        } else {
-            $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
-        }
+        $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
+
 
         return view('admin.request.index', compact('requests'));
     }
@@ -36,9 +32,7 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-        if ($request->user()->hasRole('guru')) {
-            return view('form-request', compact('barangs'));
-        }
+        
 
         return view('admin.request.create', compact('barangs'));
     }
@@ -66,15 +60,15 @@ class RequestController extends Controller
             'nama_barang'   => $request->nama_barang,
             'jumlah_unit'   => $request->jumlah_unit
         ]);
-        
+
         activity()
-        ->performedOn($mrequest)
-        ->log('Keluar');
+            ->performedOn($mrequest)
+            ->log('Keluar');
 
 
         Alert::success('Berhasil', 'Request berhasil dibuat, mohon tunggu untuk dikonfirmasi staff kami');
 
-        return to_route('content.index')->with('success');
+        return redirect()->to('/content#table')->with('success');
     }
 
     /**
@@ -93,7 +87,6 @@ class RequestController extends Controller
      */
     public function edit(MRequest $request)
     {
-        $this->middleware(['auth', 'verified', 'role:staff']);
         $barangs = Barang::orderBy('id', 'asc')->get();
 
         return view('admin.request.edit', compact('request', 'barangs'));
@@ -108,7 +101,7 @@ class RequestController extends Controller
         $minta->validate(
             [
                 'status'                => 'required',
-                'jumlah_request'           => 'required',
+                'jumlah_request'        => 'required',
                 'jumlah_tersedia'       => 'required',
             ],
             [
@@ -118,14 +111,23 @@ class RequestController extends Controller
 
         $jumlah_unit    = $minta->jumlah_tersedia;
         $jumlah_req     = $minta->jumlah_request;
-        
+
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
+        if (auth()->user()->hasRole('staff|admin')) {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status
+            ]);
+        } else {
+            $request->update([
+                'barang_id'     => $minta->barang_id,
+                'nama_barang'   => $minta->nama_barang,
+                'jumlah_unit'   => $minta->jumlah_unit
+            ]);
+        }
 
-        $request->update([
-            'tu_id' => $minta->user()->id,
-            'status' => $minta->status
-        ]);
+
 
         if ($minta->status == 'terima') {
             $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
@@ -146,7 +148,7 @@ class RequestController extends Controller
                     'stok_akhir'  => $jumlah_akumulasi_keluar
                 ]);
                 // return $stok;
-                
+
             }
         }
 
