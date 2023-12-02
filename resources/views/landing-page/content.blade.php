@@ -25,6 +25,7 @@
     <link href="{{ asset('/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 
     <!-- Template Main CSS File -->
@@ -50,11 +51,18 @@
 
 <body>
 
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
     @include('sweetalert::alert')
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between mt-2">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('/assets/img/logooo.png') }}" alt="">
@@ -166,8 +174,26 @@
                                     @endif
                                     <td>{{ $request->created_at->formatLocalized('%d %B %Y') }}</td>
                                     <td>
-                                        <a href="{{ route('content.edit', $request->id) }}"
-                                            class="btn btn-warning">Edit</a>
+                                        <a class="btn btn-sm btn-icon btn-warning" data-toggle="tooltip"
+                                            data-placement="top" title="" data-original-title="Edit"
+                                            href="{{ route('content.edit', $request->id) }}">
+                                            <span class="btn-inner">
+                                                <svg width="20" viewBox="0 0 24 24" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M11.4925 2.78906H7.75349C4.67849 2.78906 2.75049 4.96606 2.75049 8.04806V16.3621C2.75049 19.4441 4.66949 21.6211 7.75349 21.6211H16.5775C19.6625 21.6211 21.5815 19.4441 21.5815 16.3621V12.3341"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M8.82812 10.921L16.3011 3.44799C17.2321 2.51799 18.7411 2.51799 19.6721 3.44799L20.8891 4.66499C21.8201 5.59599 21.8201 7.10599 20.8891 8.03599L13.3801 15.545C12.9731 15.952 12.4211 16.181 11.8451 16.181H8.09912L8.19312 12.401C8.20712 11.845 8.43412 11.315 8.82812 10.921Z"
+                                                        stroke="currentColor" stroke-width="1.5"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M15.1655 4.60254L19.7315 9.16854" stroke="currentColor"
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                </svg>
+                                            </span>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -207,17 +233,15 @@
                         <h4>Link yang Tertaut</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('/') }}">Beranda</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a
-                                    href="{{ route('request.create') }}">Request</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Alasan
-                                    Menggunakan Kemarang</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('request.create') }}">Request</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Keunggulan Kemarang</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Masuk</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register') }}">Daftar</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Alasan Menggunakan Kemarang</h4>
+                        <h4>Keunggulan Kemarang</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Didesain Khusus
                                     untuk Sekolah</a></li>
@@ -278,6 +302,15 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
+        <!-- Backend Bundle JavaScript -->
+        <script src="{{ asset('assets/admin/js/libs.min.js') }}"></script>
+
+        <!-- Dashboard Charts JavaScript -->
+        <script src="{{ asset('assets/admin/js/charts/dashboard.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/charts/apexcharts.js') }}"></script>
+    
+        <!-- fslightbox JavaScript -->
+        <script src="{{ asset('assets/admin/js/fslightbox.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>

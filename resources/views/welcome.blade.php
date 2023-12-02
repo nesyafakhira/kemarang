@@ -26,6 +26,9 @@
     <link href="{{ asset('/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet">
 
@@ -35,14 +38,22 @@
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
+    <!-- loader Start -->
+    <div id="loading">
+        <div class="loader simple-loader">
+            <div class="loader-body"></div>
+        </div>
+    </div>
+    <!-- loader END -->
+
 @include('sweetalert::alert')
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between mt-2">
 
             <a href="{{ url('#') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('/assets/img/logooo.png') }}" alt="Logo">
@@ -52,14 +63,14 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="{{ url('#hero') }}">Beranda</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('#about') }}">Apa Itu Kemarang?</a></li>
-                    <li><a class="nav-link scrollto" href="{{ url('#services') }}">Kenapa Kemarang?</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('#about') }}">Tentang Kemarang</a></li>
+                    <li><a class="nav-link scrollto" href="{{ url('#services') }}">Keunggulan Kemarang</a></li>
                     <li><a class="nav-link scrollto" href="{{ url('#team') }}">Tim Kemarang</a></li>
 
 
 
                     @guest
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown navbar-nav">
                             <a class="getstarted scrollto nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Masuk
@@ -171,8 +182,8 @@
             <div class="container" data-aos="fade-up">
 
                 <header class="section-header">
-                    <h2>Alasan</h2>
-                    <p>Alasan Memilih Kemarang</p>
+                    <h2>Keunggulan</h2>
+                    <p>Keunggulan Kemarang</p>
                 </header>
 
                 <div class="row gy-4">
@@ -218,7 +229,7 @@
                         <div class="service-box purple">
                             <i class="ri-discuss-line icon"></i>
                             <h3>Efisiensi Biaya</h3>
-                            <p>Menggunakan Kemarang dapat membantu sekolah mengurangi pemborosan sumber daya dan
+                            <p>Menggunakan Kemarang dapat membantu sekolah mengurangi pemborosan dan
                                 menghemat uang dalam manajemen stok.</p>
                         </div>
                     </div>
@@ -245,7 +256,7 @@
 
                 <header class="section-header">
                     <h2>Team</h2>
-                    <p>Tim kami yang bekerja sama</p>
+                    <p>Tim Kemarang</p>
                 </header>
 
                 <div class="row gy-4">
@@ -360,17 +371,15 @@
                         <h4>Link yang Tertaut</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#hero') }}">Beranda</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#about') }}">Apa itu
-                                    Kemarang?</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Alasan
-                                    Menggunakan Kemarang</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#about') }}">Tentang Kemarang</a></li>
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Keunggulan Kemarang</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Masuk</a></li>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register') }}">Daftar</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Alasan Menggunakan Kemarang</h4>
+                        <h4>Keunggulan Kemarang</h4>
                         <ul>
                             <li><i class="bi bi-chevron-right"></i> <a href="{{ url('#services') }}">Didesain Khusus
                                     untuk Sekolah</a></li>
@@ -417,8 +426,8 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="{{ url('#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    {{-- <a href="{{ url('#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a> --}}
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
@@ -431,6 +440,16 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="{{ asset('assets/admin/js/libs.min.js') }}"></script>
+
+    <!-- Dashboard Charts JavaScript -->
+    <script src="{{ asset('assets/admin/js/charts/dashboard.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/charts/apexcharts.js') }}"></script>
+
+    <!-- fslightbox JavaScript -->
+    <script src="{{ asset('assets/admin/js/fslightbox.js') }}"></script>
+
 
 </body>
 
