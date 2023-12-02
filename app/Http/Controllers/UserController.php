@@ -16,6 +16,8 @@ class UserController extends Controller
     {
         $datas = User::where('id', '!=', auth()->user()->id);
         $users = $datas->orderBy('id', 'asc')->get();
+        setlocale(LC_TIME, 'id');
+
         return view('admin.user.index', compact('users'));
     }
 
@@ -34,7 +36,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:100',
-            'npsn'      => 'required|max:50',
+            'nip'      => 'required|max:50',
             'email'     => 'required',
             'password'  => 'required|min:8',
             'role'      => 'required', // Ini inputan dropdown
@@ -42,7 +44,7 @@ class UserController extends Controller
         
         $user = User::create([
             'name'      => $request->name,
-            'npsn'      => $request->npsn,
+            'nip'      => $request->nip,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
         ]);
@@ -91,7 +93,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:100',
-            'npsn'      => 'required|max:50',
+            'nip'      => 'required|max:50',
             'role'      => 'required', // Ini inputan dropdown
         ]);
 
@@ -107,7 +109,7 @@ class UserController extends Controller
         
         $user->update([
             'name'      => $request->name,
-            'npsn'      => $request->npsn,
+            'nip'      => $request->nip,
         ]);
         
 

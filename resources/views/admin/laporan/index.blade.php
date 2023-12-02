@@ -64,7 +64,7 @@
                                         <td>{{ $stok->stok_awal }}</td>
                                         <td>{{ $stok->stok_keluar }}</td>
                                         <td>{{ $stok->stok_akhir }}</td>
-                                        <td>{{ $stok->created_at }}</td>
+                                        <td>{{ $stok->created_at->formatLocalized('%d %B %Y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

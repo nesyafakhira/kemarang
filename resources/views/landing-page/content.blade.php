@@ -34,7 +34,7 @@
         href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/datatables.min.css"
         rel="stylesheet">
 
-        {{-- Sweetalert 2 --}}
+    {{-- Sweetalert 2 --}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 
@@ -144,13 +144,10 @@
                         <thead>
                             <tr class="ligth">
                                 <th>No</th>
-                                <th>Id Guru</th>
-                                <th>Nama Guru</th>
-                                <th>Id Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jumlah Unit</th>
                                 <th>Status</th>
-                                <th>Time</th>
+                                <th>Tanggal</th>
                                 <th style="min-width: 100px">Action</th>
                             </tr>
                         </thead>
@@ -158,20 +155,19 @@
                             @foreach ($requests as $request)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $request->guru_id }}</td>
-                                    <td>{{ $request->guru->name }}</td>
-                                    <td>{{ $request->barang_id }}</td>
                                     <td>{{ $request->nama_barang }}</td>
                                     <td>{{ $request->jumlah_unit }}</td>
-                                    <td><span class="badge bg-primary">{{ $request->status }}</span></td>
-                                    <td>{{ $request->created_at->diffForHumans() }}</td>
+                                    @if ($request->status == 'menunggu')
+                                        <td><span class="badge bg-primary">{{ $request->status }}</span></td>
+                                    @elseif ($request->status == 'terima')
+                                        <td><span class="badge bg-success">{{ $request->status }}</span></td>
+                                    @else
+                                        <td><span class="badge bg-danger">{{ $request->status }}</span></td>
+                                    @endif
+                                    <td>{{ $request->created_at->formatLocalized('%d %B %Y') }}</td>
                                     <td>
-                                        <form action="{{ route('content.destroy', $request->id) }}" method="post">
-                                            @csrf
-                                            @method('delete')
-                                            <a href="{{ route('content.edit', $request->id) }}" class="btn btn-warning">Edit</a>
-                                            <button type="submit" class="btn btn-danger confirm-delete">Hapus</button>
-                                        </form>
+                                        <a href="{{ route('content.edit', $request->id) }}"
+                                            class="btn btn-warning">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach

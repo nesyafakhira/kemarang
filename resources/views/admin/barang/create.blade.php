@@ -15,6 +15,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @include('admin.layouts.error')
                         <div class="new-user-info">
                             <form method="POST" action="{{ route('barang.store') }}">
                                 @csrf
@@ -51,8 +52,8 @@
                                         </datalist>
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">Harga Masuk</label>
-                                        <input name="harga_satuan" type="number" class="form-control" id="mobno"
+                                        <label class="form-label" for="hargaMasuk">Harga Masuk</label>
+                                        <input name="harga_satuan" type="text" class="form-control" id="hargaMasuk"
                                             placeholder="Masukkan Harga Satuan">
                                     </div>
 
@@ -68,3 +69,21 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"
+        integrity="sha512-Rdk63VC+1UYzGSgd3u2iadi0joUrcwX0IWp2rTh6KXFoAmgOjRS99Vynz1lJPT8dLjvo6JZOqpAHJyfCEZ5KoA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(function() {
+            $('#hargaMasuk').maskMoney({
+                thousands: '.',
+                decimal: ',',
+                precision: 0,
+                allowZero: false,
+                allowNegative: false,
+            });
+        });
+    
+    </script>
+@endpush

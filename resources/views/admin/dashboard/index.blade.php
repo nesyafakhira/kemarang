@@ -20,7 +20,7 @@
                                 <h5>Request</h5>
                             </div>
                             <div class="card-body">
-                                
+                                <p>Jumlah request saat ini</p>
                                 <small>{{ $req }}</small>
                             </div>
                         </div>

@@ -31,17 +31,17 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'npsn' => ['required', 'max:255', 'unique:'.User::class],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'name'      => ['required', 'string', 'max:50'],
+            'nip'       => ['required', 'min:18', 'max:18', 'unique:'.User::class],
+            'email'     => ['required', 'string', 'email:rfc,dns', 'max:25', 'unique:'.User::class],
+            'password'  => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'npsn' => $request->npsn,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name'      => $request->name,
+            'nip'       => $request->nip,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
         ]);
 
         $user->assignRole('guru');

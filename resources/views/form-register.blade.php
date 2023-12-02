@@ -12,33 +12,38 @@
                 <div class="p-4">
                     <div class="col-form-label-sm mb-3">
                         <label for="nameInput">Nama</label>
-                        <input type="text" name="name" class="form-control form-control-sm mt-2" id="nameInput" placeholder="Masukkan Nama">
+                        <input type="text" name="name" class="form-control form-control-sm mt-2" id="nameInput"
+                            placeholder="Masukkan Nama">
                     </div>
                     <div class="col-form-label-sm mb-3">
-                        <label for="npsn">NPSN</label>
-                        <input type="number" name="npsn" class="form-control form-control-sm mt-2" id="npsn" placeholder="Masukkan NPSN">
+                        <label for="nip">NIP</label>
+                        <input type="number" name="nip" class="form-control form-control-sm mt-2" id="nip"
+                            placeholder="Masukkan NIP">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control form-control-sm mt-2"" id="email" aria-describedby="emailHelp" placeholder="name@example.com">
+                        <input type="email" name="email" class="form-control form-control-sm mt-2"" id="email"
+                            aria-describedby="emailHelp" placeholder="name@example.com">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control form-control-sm mt-2"" id="password" placeholder="Password">
+                        <input type="password" name="password" class="form-control form-control-sm mt-2"" id="password"
+                            placeholder="Password">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="password_con">Konfirmasi Password</label>
-                        <input type="password" name="password_confirmation" class="form-control form-control-sm mt-2"" id="password_con" placeholder="Password">
+                        <input type="password" name="password_confirmation" class="form-control form-control-sm mt-2""
+                            id="password_con" placeholder="Password">
                     </div>
                     <div class="form-check form-switch mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="show-password">
                         <label class="form-check-label" for="show-password">Lihat password</label>
                     </div>
                     <div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                        </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
