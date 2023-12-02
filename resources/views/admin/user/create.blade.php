@@ -29,8 +29,8 @@
                                         <input name="email" type="email" class="form-control" id="email" placeholder="Masukkan Email">
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">NPSN</label>
-                                        <input name="npsn" type="number" class="form-control" id="mobno" placeholder="Masukkan NPSN">
+                                        <label class="form-label" for="mobno">nip</label>
+                                        <input name="nip" type="number" class="form-control" id="mobno" placeholder="Masukkan nip">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="pass">Password</label>

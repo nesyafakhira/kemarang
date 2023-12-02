@@ -15,6 +15,7 @@ class ContentController extends Controller
     public function index()
     {
         $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
+        setlocale(LC_TIME, 'id');
         
         return view('landing-page.content', compact('requests'));
     }
@@ -61,16 +62,24 @@ class ContentController extends Controller
     public function update(Request $minta, MRequest $request)
     {
         $minta->validate([
-            'nama_barang'           => 'required',
-            'jumlah_unit'        => 'required',
-        ]);
+            'nama_barang'   => 'required',
+            'jumlah_unit'   => 'required|max:2',
+        ],
+        [
+            'jumlah_unit.max'  => 'Maksimal request 2 digit',
+            ]
+        );
+        
+        if ($minta->jumlah_unit > $minta->stok) {
+            return to_route('content.edit', $minta->id)->with('error', 'Jumlah request melebihi stok');
+        }
 
         $request->update([
-            'nama_barang' => $minta->nama_barang,
-            'jumlah_unit' => $minta->jumlah_unit,
+            'nama_barang'   => $minta->nama_barang,
+            'jumlah_unit'   => $minta->jumlah_unit,
+            'status'        => 'menunggu'
         ]);
-// 
-        // return $minta;
+
 
         Alert::success('Berhasil', 'Request berhasil di-update');
         return redirect()->to('/content#table')->with('success');

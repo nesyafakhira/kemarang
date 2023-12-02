@@ -15,28 +15,28 @@ class AddUserSeeder extends Seeder
     {
         $admin = User::create([
             'name' => 'admin',
-            'npsn' => '11111111',
+            'nip' => '11111111',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
         $staff = User::create([
             'name' => 'staff',
-            'npsn' => '123456788',
+            'nip' => '123456788',
             'email' => 'staff@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
         $guru = User::create([
             'name' => 'guru',
-            'npsn' => '123456778',
+            'nip' => '123456778',
             'email' => 'guru@gmail.com',
             'password' => bcrypt('password'),
         ]);
 
         $kepsek = User::create([
             'name' => 'kepsek',
-            'npsn' => '123456678',
+            'nip' => '123456678',
             'email' => 'kepsek@gmail.com',
             'password' => bcrypt('password'),
         ]);

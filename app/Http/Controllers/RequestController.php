@@ -21,6 +21,8 @@ class RequestController extends Controller
     public function index(Request $request)
     {
         $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
+        setlocale(LC_TIME, 'id');
+
 
 
         return view('admin.request.index', compact('requests'));
@@ -32,7 +34,7 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-        
+
 
         return view('admin.request.create', compact('barangs'));
     }
@@ -42,7 +44,6 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $request->validate(
             [
                 'nama_barang' => 'required',
@@ -51,8 +52,13 @@ class RequestController extends Controller
             [
                 'nama_barang.required'  => 'Pilih nama barang',
                 'jumlah_unit.required'  => 'Masukkan jumlah barang',
+                'jumlah_unit.max'       => 'Maksimal request 2 digit',
             ]
         );
+
+        if ($request->jumlah_unit > $request->stok) {
+            return to_route('content.create')->with('error', 'Jumlah request melebihi stok');
+        }
 
         $mrequest = MRequest::create([
             'guru_id'       => $request->guru_id,
@@ -114,23 +120,15 @@ class RequestController extends Controller
 
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
-        if (auth()->user()->hasRole('staff|admin')) {
-            $request->update([
-                'tu_id' => $minta->user()->id,
-                'status' => $minta->status
-            ]);
-        } else {
-            $request->update([
-                'barang_id'     => $minta->barang_id,
-                'nama_barang'   => $minta->nama_barang,
-                'jumlah_unit'   => $minta->jumlah_unit
-            ]);
-        }
+        $request->update([
+            'tu_id' => $minta->user()->id,
+            'status' => $minta->status
+        ]);
 
 
 
         if ($minta->status == 'terima') {
-            $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
+            $barang = Barang::find($minta->barang_id);
 
             // return $barang;
             if ($barang) {

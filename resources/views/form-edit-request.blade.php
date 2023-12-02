@@ -6,6 +6,8 @@
             <h5 class="my-3 text-center text-white">Form Edit Request Barang</h5>
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
+            @include('admin.layouts.error')
+
             <form method="POST" action="{{ route('content.update', $request->id) }}">
                 @csrf
                 @method('PATCH')
@@ -25,6 +27,7 @@
                     </div>
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
+                    <input type="text" name="stok" id="jumlah_unit_hidden">
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="fname" id="labelJumlah">Jumlah Tersedia</label>
                         <input disabled id="jumlah_unit" type="text" class="form-control" id="fname"
@@ -56,6 +59,7 @@
             let idBarang = $(el).find(':selected').data('id');
 
             $("#jumlah_unit").val(jumlahBarang)
+            $("#jumlah_unit_hidden").val(jumlahBarang)
             $("#barang_id").val(idBarang)
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal

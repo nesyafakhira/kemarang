@@ -30,7 +30,7 @@
                                     <th>Jumlah Tanpa PPN</th>
                                     <th>PPN</th>
                                     <th>Jumlah dengan PPN</th>
-                                    <th>Time</th>
+                                    <th>Tanggal</th>
                                     <th style="min-width: 100px">Action</th>
                                 </tr>
                             </thead>
@@ -42,11 +42,11 @@
                                         <td>{{ $barang->nama_barang }}</td>
                                         <td>{{ $barang->jumlah_unit }}</td>
                                         <td>{{ $barang->satuan }}</td>
-                                        <td>Rp. {{ $barang->harga_satuan }}</td>
-                                        <td>Rp. {{ $barang->total_harga_tanpa_ppn }}</td>
-                                        <td>Rp. {{ $barang->ppn }}</td>
-                                        <td>Rp. {{ $barang->total_harga_ppn }}</td>
-                                        <td>{{ $barang->created_at }}</td>
+                                        <td>Rp. {{ number_format($barang->harga_satuan, 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($barang->total_harga_tanpa_ppn, 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($barang->ppn, 0, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($barang->total_harga_ppn, 0, ',', '.') }}</td>
+                                        <td>{{ $barang->created_at->formatLocalized('%d %B %Y') }}</td>
 
                                         <td>
 

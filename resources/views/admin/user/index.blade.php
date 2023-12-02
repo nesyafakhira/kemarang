@@ -23,10 +23,10 @@
                                         <tr class="ligth">
                                             <th>No</th>
                                             <th>Nama</th>
-                                            <th>NPSN</th>
+                                            <th>NIP</th>
                                             <th>Email</th>
                                             <th>Role</th>
-                                            <th>Time</th>
+                                            <th>Tanggal</th>
                                             <th style="min-width: 100px">Action</th>
                                         </tr>
                                     </thead>
@@ -35,7 +35,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $user->name }}</td>
-                                                <td>{{ $user->npsn }}</td>
+                                                <td>{{ $user->nip }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     @if ($user->hasRole('admin'))
@@ -48,7 +48,7 @@
                                                         Kepala Sekolah
                                                     @endif
                                                 </td>
-                                                <td>{{ $user->created_at }}</td>
+                                                <td>{{ $user->created_at->formatLocalized('%d %B %Y') }}</td>
                                                 <td>
                                                     <form action="{{ route('user.destroy', $user->id) }}"
                                                         method="POST">

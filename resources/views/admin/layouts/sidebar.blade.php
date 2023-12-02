@@ -192,7 +192,7 @@
                                 <span class="item-name">Barang List</span>
                             </a>
                         </li>
-                        @role('staff')
+                        @role('staff|admin')
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeis('barang.create') ? 'active' : '' }}"
                                     href="{{ route('barang.create') }}">
@@ -206,21 +206,6 @@
                                     </i>
                                     <i class="sidenav-mini-icon"> U </i>
                                     <span class="item-name">Add Barang</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->routeis('logging.index') ? 'active' : '' }}"
-                                    href="{{ route('logging.index') }}">
-                                    <i class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
-                                            fill="currentColor">
-                                            <g>
-                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
-                                            </g>
-                                        </svg>
-                                    </i>
-                                    <i class="sidenav-mini-icon"> U </i>
-                                    <span class="item-name">Logging</span>
                                 </a>
                             </li>
                         @endrole
@@ -264,7 +249,7 @@
                                 <span class="item-name">Request List</span>
                             </a>
                         </li>
-                        @role('guru')
+                        @role('admin')
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeis('request.create') ? 'active' : '' }}"
                                     href="{{ route('request.create') }}">
@@ -285,6 +270,7 @@
                 </li>
                 {{-- Inian Nav End --}}
 
+                @role('kepsek|admin')
                 {{-- Inian Nav Start --}}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-laporan') }}"
@@ -346,6 +332,7 @@
                     </ul>
                 </li>
                 {{-- Inian Nav End --}}
+                @endrole
 
             </ul>
             <!-- Sidebar Menu End -->
