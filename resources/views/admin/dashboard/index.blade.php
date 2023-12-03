@@ -22,6 +22,7 @@
                             <div class="card-body">
                                 <p>Jumlah request saat ini</p>
                                 <small>{{ $req }}</small>
+                                <a href="{{ route('request.index') }}" style="display: block;" class="btn btn-sm btn-primary mt-3">Lihat</a>
                             </div>
                         </div>
                     </div>

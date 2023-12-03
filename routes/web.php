@@ -33,12 +33,12 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::resource('logging', LoggingController::class);
 
     Route::get('/', function () {
-        $req = Request::count();
+        $req = Request::where('status', 'menunggu')->count();
         return view('admin.dashboard.index', compact('req'));
     })->name('dashboard')->middleware([ 'role:admin|kepsek|staff']);
     
-    Route::get('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['role:kepsek|admin'])->name('laporan.index');
-    Route::post('laporan', 'App\Http\Controllers\LaporanController@index')->middleware(['role:kepsek|admin'])->name('laporan.index');
+    Route::get('laporan', [LaporanController::class, 'index'])->middleware(['role:kepsek|admin'])->name('laporan.index');
+    Route::post('laporan', [LaporanController::class, 'index'])->middleware(['role:kepsek|admin'])->name('laporan.index');
 });
 
 
