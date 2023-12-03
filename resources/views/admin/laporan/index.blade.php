@@ -21,12 +21,12 @@
                             @csrf
                             <div class="mb-3 col-md-2">
                                 <label for="tglawal" class="form-label">Tanggal Awal</label>
-                                <input type="date" name="tglawal" class="form-control" id="tglawal"
+                                <input type="date" value="{{ old('tglawal') }}" name="tglawal" class="form-control" id="tglawal"
                                     placeholder="name@example.com">
                             </div>
                             <div class="mb-3 col-md-2">
                                 <label for="tglakhir" class="form-label">Tanggal Akhir</label>
-                                <input type="date" name="tglakhir" class="form-control" id="tglakhir"
+                                <input type="date" value="{{ old('tglakhir') }}" name="tglakhir" class="form-control" id="tglakhir"
                                     placeholder="name@example.com">
                             </div>
 
@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
-                            Barang List
+                            Stok List (Log)
                         </h4>
                     </div>
                     <div class="card-body table-responsive">
@@ -78,6 +78,11 @@
 
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script
+        src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/datatables.min.js">
+    </script>
     <script>
         $(function() {
             $("#datatable").DataTable({

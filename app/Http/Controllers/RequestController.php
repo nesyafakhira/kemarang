@@ -160,9 +160,7 @@ class RequestController extends Controller
     public function destroy(MRequest $request)
     {
         $request->delete();
-
-        // Alert::success('Berhasil', 'Request dihapus');
-
+        
         return to_route('request.index');
     }
 }

@@ -27,7 +27,7 @@
                     </div>
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
-                    <input type="text" name="stok" id="jumlah_unit_hidden">
+                    <input type="hidden" name="stok" id="jumlah_unit_hidden">
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="fname" id="labelJumlah">Jumlah Tersedia</label>
                         <input disabled id="jumlah_unit" type="text" class="form-control" id="fname"
