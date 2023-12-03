@@ -254,12 +254,6 @@
                             Dengan komitmen untuk menyederhanakan proses dan memberikan pengalaman yang lebih baik di
                             lingkungan pendidikan, KEMARANG hadir sebagai mitra terpercaya untuk sekolah.
                         </p>
-                        <div class="social-links mt-3">
-                            <a href="{{ url('#') }}" class="twitter"><i class="bi bi-twitter"></i></a>
-                            <a href="{{ url('#') }}" class="facebook"><i class="bi bi-facebook"></i></a>
-                            <a href="{{ url('#') }}" class="instagram"><i class="bi bi-instagram"></i></a>
-                            <a href="{{ url('#') }}" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                        </div>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">

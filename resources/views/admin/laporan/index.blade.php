@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
-                            Barang List
+                            Stok List (Log)
                         </h4>
                     </div>
                     <div class="card-body table-responsive">
