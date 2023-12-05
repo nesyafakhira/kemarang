@@ -157,7 +157,9 @@
                                 <th>Jumlah Unit</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
+                                @if($request->status != 'terima')
                                 <th style="min-width: 100px">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -201,6 +203,8 @@
                                         @if ($request->status == 'menunggu')
                                             <form action="{{ route('request.destroy', $request->id) }}"
                                                 method="post">
+                                                @csrf
+                                                @method('delete')
                                                 <button type="submit"
                                                     class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                     data-toggle="tooltip" data-placement="top" title=""
