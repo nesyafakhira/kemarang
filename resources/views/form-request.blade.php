@@ -59,6 +59,8 @@
             // $("#labelJumlah").html("Jumlah Tersedia " + "(" + satuanBarang + ")") // basic
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
+
+            
         }
     </script>
 
