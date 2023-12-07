@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -52,7 +51,7 @@ class AuthenticatedSessionController extends Controller
         if (auth()->user()->hasRole('kepsek')) {
             toast('Login berhasil','success');
             
-            return to_route('dashboard')->with('success');
+            return to_route('laporan.index')->with('success');
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);

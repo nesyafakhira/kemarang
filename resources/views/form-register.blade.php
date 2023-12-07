@@ -16,9 +16,9 @@
                             placeholder="Masukkan Nama">
                     </div>
                     <div class="col-form-label-sm mb-3">
-                        <label for="nip">NIP</label>
-                        <input type="number" name="nip" class="form-control form-control-sm mt-2" id="nip"
-                            placeholder="Masukkan NIP">
+                        <label for="nip/nikki">NIP/NIKKI</label>
+                        <input type="number" name="nip_nikki" class="form-control form-control-sm mt-2" id="nip/nikki"
+                            placeholder="Masukkan NIP/NIKKI">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="email">Email</label>

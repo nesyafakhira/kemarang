@@ -36,6 +36,10 @@
                         <input name="jumlah_unit" type="text" class="form-control" id="mobno"
                             placeholder="Jumlah yang ingin diminta">
                     </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="keperluan" class="form-label">Keperluan</label>
+                        <textarea name="keperluan" class="form-control" id="keperluan" rows="3" placeholder="Untuk keperluan apa"></textarea>
+                    </div>
                     <div class="text-center">
                         <button type="submit" id="submitBtn" class="btn btn-form rounded-2">Submit</button>
                     </div>
@@ -43,13 +47,9 @@
             </form>
         </div>
     </div>
-
-    
-
 @endsection
 
 @push('script')
-    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -67,7 +67,7 @@
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
 
             let stok = jumlahBarang;
-            let submitBtn =  document.getElementById('submitBtn');
+            let submitBtn = document.getElementById('submitBtn');
 
             if (stok === 0) {
                 submitBtn.disabled = true;
@@ -76,5 +76,4 @@
             }
         }
     </script>
-
-    @endpush
+@endpush

@@ -16,7 +16,7 @@ class ContentController extends Controller
     {
         $requests = MRequest::where('guru_id', auth()->user()->id)->oldest('id')->with('guru')->get();
         setlocale(LC_TIME, 'id');
-        
+
         return view('landing-page.content', compact('requests'));
     }
 
@@ -61,24 +61,31 @@ class ContentController extends Controller
      */
     public function update(Request $minta, MRequest $request)
     {
-        $minta->validate([
-            'nama_barang'   => 'required',
-            'jumlah_unit'   => 'required|max:2',
-        ],
-        [
-            'jumlah_unit.max'  => 'Maksimal request 2 digit',
+        $minta->validate(
+            [
+                'nama_barang'   => 'required',
+                'jumlah_unit'   => 'required|max:2',
+                'keperluan'     => 'required|max:100'
+            ],
+            [
+                'nama_barang.required'  => 'Pilih nama barang',
+                'jumlah_unit.required'  => 'Masukkan jumlah barang',
+                'jumlah_unit.max'       => 'Maksimal request 2 digit',
+                'keperluan.required'    => 'Masukkan keperluan',
+                'keperluan.max'         => 'Maksimal 100 karakter'
             ]
         );
-        
+
         if ($minta->jumlah_unit > $minta->stok) {
             return to_route('content.edit', $minta->id)->with('error', 'Jumlah request melebihi stok');
-        }  elseif ($request->jumlah_unit < 1) {
+        } elseif ($minta->jumlah_unit < 1) {
             return to_route('content.create')->with('error', 'Jumlah request tidak boleh kurang dari 1');
         }
 
         $request->update([
             'nama_barang'   => $minta->nama_barang,
             'jumlah_unit'   => $minta->jumlah_unit,
+            'keperluan'     => $minta->keperluan,
             'status'        => 'menunggu'
         ]);
 

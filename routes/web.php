@@ -35,10 +35,18 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::get('/', function () {
         $req = Request::where('status', 'menunggu')->count();
         return view('admin.dashboard.index', compact('req'));
-    })->name('dashboard')->middleware([ 'role:admin|kepsek|staff']);
+    })->name('dashboard')->middleware([ 'role:admin|staff']);
     
-    Route::get('laporan', [LaporanController::class, 'index'])->middleware(['role:kepsek|admin'])->name('laporan.index');
-    Route::post('laporan', [LaporanController::class, 'index'])->middleware(['role:kepsek|admin'])->name('laporan.index');
+    // Stok
+    Route::get('laporan/stok', [LaporanController::class, 'index'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index');
+    Route::post('laporan/stok', [LaporanController::class, 'index'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index');
+
+    // Request
+    Route::get('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
+    Route::post('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
+
+    Route::get('laporan/stok-pdf', [LaporanController::class, 'indexpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index.pdf');
+    Route::get('laporan/request-pdf', [LaporanController::class, 'requestpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request.pdf');
 });
 
 
@@ -47,6 +55,6 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
 
 Route::resource('content', ContentController::class)->parameters([
     'content' => 'request'
-])->middleware(['auth', 'verified']);
+])->middleware(['auth', 'verified', 'role:guru']);
 
 require __DIR__.'/auth.php';

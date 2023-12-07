@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:100',
-            'nip'      => 'required|max:18|min:18|numeric',
+            'nip_nikki'      => 'required|max:18|min:18|numeric',
             'email'     => 'required',
             'password'  => 'required|min:8',
             'role'      => 'required', // Ini inputan dropdown
@@ -44,7 +44,7 @@ class UserController extends Controller
         
         $user = User::create([
             'name'      => $request->name,
-            'nip'      => $request->nip,
+            'nip_nikki'      => $request->nip,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
         ]);
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:100',
-            'nip'      => 'required|max:50',
+            'nip_nikki'      => 'required|max:50',
             'role'      => 'required', // Ini inputan dropdown
         ]);
 
@@ -109,7 +109,7 @@ class UserController extends Controller
         
         $user->update([
             'name'      => $request->name,
-            'nip'      => $request->nip,
+            'nip_nikki'      => $request->nip_nikki,
         ]);
         
 

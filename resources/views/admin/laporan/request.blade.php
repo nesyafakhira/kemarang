@@ -17,7 +17,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('laporan.index') }}" method="post">
+                        <form action="{{ route('laporan.request') }}" method="post">
                             @csrf
                             <div class="mb-3 col-md-2">
                                 <label for="tglawal" class="form-label">Tanggal Awal</label>
@@ -40,37 +40,47 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
-                            Stok List (Log)
+                            Request List (Log)
                         </h4>
                     </div>
                     <div class="card-body table-responsive">
-                        <a href="{{ route('laporan.index.pdf') }}" class="btn btn-secondary">PRINT</a>
+                        <a href="{{ route('laporan.request.pdf') }}" class="btn btn-secondary">PRINT</a>
+                        <table id="datatable" class="table table-striped" role="grid">
+                                    <thead>
+                                        <tr class="ligth">
+                                            <th>No</th>
+                                            <th>Nama Guru</th>
+                                            <th>Nama Barang</th>
+                                            <th>Jumlah Unit</th>
+                                            <th>Status</th>
+                                            <th>Tanggal</th>
 
-                        <table class="table" id="datatable">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Barang</th>
-                                    <th>Stok Awal</th>
-                                    <th>Stok Keluar</th>
-                                    <th>Stok Akhir</th>
-                                    <th>Tanggal</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                @foreach ($stoks as $stok)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $stok->nama_stok }}</td>
-                                        <td>{{ $stok->stok_awal }}</td>
-                                        <td>{{ $stok->stok_keluar }}</td>
-                                        <td>{{ $stok->stok_akhir }}</td>
-                                        <td>{{ $stok->created_at->formatLocalized('%d %B %Y') }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($reqs as $req)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $req->guru->name }}</td>
+                                                <td>{{ $req->nama_barang }}</td>
+                                                <td>{{ $req->jumlah_unit }}</td>
+                                                @if ($req->status == 'menunggu')
+                                                <td><span class="badge bg-primary">{{ $req->status }}</span></td>
+
+                                                @elseif ($req->status == 'terima')
+                                                <td><span class="badge bg-success">{{ $req->status }}</span></td>
+
+                                                @else
+                                                <td><span class="badge bg-danger">{{ $req->status }}</span></td>
+                                                @endif
+                                                <td>{{ $req->created_at->formatLocalized('%d %B %Y') }}</td>
+
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                     </div>
                 </div>
             </div>
