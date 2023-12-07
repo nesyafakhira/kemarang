@@ -37,13 +37,19 @@
                             placeholder="Jumlah yang ingin diminta">
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                        <button type="submit" id="submitBtn" class="btn btn-form rounded-2">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
+    
+
+@endsection
+
+@push('script')
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -59,6 +65,16 @@
             // $("#labelJumlah").html("Jumlah Tersedia " + "(" + satuanBarang + ")") // basic
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
+
+            let stok = jumlahBarang;
+            let submitBtn =  document.getElementById('submitBtn');
+
+            if (stok === 0) {
+                submitBtn.disabled = true;
+            } else {
+                submitBtn.disabled = false;
+            }
         }
     </script>
-@endsection
+
+    @endpush

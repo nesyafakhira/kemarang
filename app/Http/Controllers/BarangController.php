@@ -36,9 +36,9 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang'           => 'required',
-            'jumlah_unit'           => 'required',
+            'jumlah_unit'           => 'required|numeric',
             'satuan'                => 'required',
-            'harga_satuan'          => 'required',
+            'harga_satuan'          => 'required|numeric',
         ]);
         
         $hargaSatuan = $request->harga_satuan;

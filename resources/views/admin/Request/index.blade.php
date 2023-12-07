@@ -22,9 +22,7 @@
                                     <thead>
                                         <tr class="ligth">
                                             <th>No</th>
-                                            <th>Id Guru</th>
                                             <th>Nama Guru</th>
-                                            <th>Id Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah Unit</th>
                                             <th>Status</th>
@@ -38,9 +36,7 @@
                                         @foreach ($requests as $request)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $request->guru_id }}</td>
                                                 <td>{{ $request->guru->name }}</td>
-                                                <td>{{ $request->barang_id }}</td>
                                                 <td>{{ $request->nama_barang }}</td>
                                                 <td>{{ $request->jumlah_unit }}</td>
                                                 @if ($request->status == 'menunggu')

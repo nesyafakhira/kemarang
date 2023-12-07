@@ -58,6 +58,8 @@ class RequestController extends Controller
 
         if ($request->jumlah_unit > $request->stok) {
             return to_route('content.create')->with('error', 'Jumlah request melebihi stok');
+        } elseif ($request->jumlah_unit < 1) {
+            return to_route('content.create')->with('error', 'Jumlah request tidak boleh kurang dari 1');
         }
 
         $mrequest = MRequest::create([
@@ -159,8 +161,17 @@ class RequestController extends Controller
      */
     public function destroy(MRequest $request)
     {
-        $request->delete();
-        
-        return to_route('request.index');
+        if (auth()->user()->hasRole('guru')) {
+            $request->delete();
+    
+            alert::success('Berhasil', 'Request berhasil dihapus');
+            return redirect()->to('content#table');
+        } else {
+            $request->delete();
+            
+            alert::success('Berhasil', 'Request berhasil dihapus');
+            return to_route('request.index');
+
+        }
     }
 }
