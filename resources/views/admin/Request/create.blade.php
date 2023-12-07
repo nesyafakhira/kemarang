@@ -73,19 +73,4 @@
     </script>
 @endsection
 
-@push
-<script>
-    $(document).ready(function() {
-        $('#stokInput').on('input', function() {
-            var stok = parseInt($(this).val());
-            var submitBtn = $('#submitBtn');
 
-            if (stok <= 0) {
-                submitBtn.attr('disabled', true);
-            } else {
-                submitBtn.attr('disabled', false);
-            }
-        });
-    });
-</script>
-@endpush
