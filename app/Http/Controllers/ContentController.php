@@ -72,6 +72,8 @@ class ContentController extends Controller
         
         if ($minta->jumlah_unit > $minta->stok) {
             return to_route('content.edit', $minta->id)->with('error', 'Jumlah request melebihi stok');
+        }  elseif ($request->jumlah_unit < 1) {
+            return to_route('content.create')->with('error', 'Jumlah request tidak boleh kurang dari 1');
         }
 
         $request->update([
