@@ -37,7 +37,7 @@
                             placeholder="Jumlah yang ingin diminta">
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                        <button type="submit" id="submitBtn" class="btn btn-form rounded-2">Submit</button>
                     </div>
                 </div>
             </form>
@@ -60,5 +60,20 @@
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
         }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#jumlah_unit').on('input', function() {
+                let stok = parseInt($(this).val());
+                let submitBtn = $('#submitBtn');
+
+                if (stok <= 0) {
+                    submitBtn.attr('disabled', true);
+                } else {
+                    submitBtn.attr('disabled', false);
+                }
+            });
+        });
     </script>
 @endsection

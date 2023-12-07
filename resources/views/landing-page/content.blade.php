@@ -148,7 +148,6 @@
         <section id="table">
             <div class="card container">
                 <div class="card-body table-responsive">
-                    <a href="" class="btn btn-success"><i class="fa fa-plus"></i></a>
                     <table id="datatable" class="table table-striped" role="grid">
                         <thead>
                             <tr class="ligth">
@@ -157,7 +156,12 @@
                                 <th>Jumlah Unit</th>
                                 <th>Status</th>
                                 <th>Tanggal</th>
+                                @foreach ($requests as $request)
+                                    
+                                @if($request->status != 'terima')
                                 <th style="min-width: 100px">Action</th>
+                                @endif
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
@@ -201,6 +205,8 @@
                                         @if ($request->status == 'menunggu')
                                             <form action="{{ route('request.destroy', $request->id) }}"
                                                 method="post">
+                                                @csrf
+                                                @method('delete')
                                                 <button type="submit"
                                                     class="btn btn-sm btn-icon btn-danger confirm-delete"
                                                     data-toggle="tooltip" data-placement="top" title=""
