@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->string('nama_barang');
             $table->integer('jumlah_unit')->length('2');
+            $table->string('keperluan', 100);
             $table->enum('status', ['menunggu', 'terima', 'tolak']);
             $table->timestamps();
         });

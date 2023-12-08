@@ -90,7 +90,7 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @role('staff|admin')
+                                @role('staff|admin|kepsek')
                                     <li>
                                         <h6 class="dropdown-header">{{ auth()->user()->name }}</h6>
                                     </li>

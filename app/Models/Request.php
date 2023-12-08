@@ -28,6 +28,7 @@ class Request extends Model
         'jumlah_unit',
         'jumlah_tersedia',
         'status',
+        'keperluan'
     ];
 
     protected $table = 'requests';

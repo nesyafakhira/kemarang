@@ -46,13 +46,16 @@ class RequestController extends Controller
     {
         $request->validate(
             [
-                'nama_barang' => 'required',
-                'jumlah_unit' => 'required|max:2',
+                'nama_barang'   => 'required',
+                'jumlah_unit'   => 'required|max:2',
+                'keperluan'     => 'required|max:100'
             ],
             [
                 'nama_barang.required'  => 'Pilih nama barang',
                 'jumlah_unit.required'  => 'Masukkan jumlah barang',
                 'jumlah_unit.max'       => 'Maksimal request 2 digit',
+                'keperluan.required'    => 'Masukkan keperluan',
+                'keperluan.max'         => 'Maksimal 100 karakter'
             ]
         );
 
@@ -66,7 +69,8 @@ class RequestController extends Controller
             'guru_id'       => $request->guru_id,
             'barang_id'     => $request->barang_id,
             'nama_barang'   => $request->nama_barang,
-            'jumlah_unit'   => $request->jumlah_unit
+            'jumlah_unit'   => $request->jumlah_unit,
+            'keperluan'     => $request->keperluan
         ]);
 
         activity()

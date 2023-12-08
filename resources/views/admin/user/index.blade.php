@@ -35,7 +35,7 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $user->name }}</td>
-                                                <td>{{ $user->nip }}</td>
+                                                <td>{{ $user->nip_nikki }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
                                                     @if ($user->hasRole('admin'))

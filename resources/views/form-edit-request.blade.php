@@ -38,6 +38,10 @@
                         <input value="{{ $request->jumlah_unit }}" name="jumlah_unit" type="text" class="form-control"
                             id="mobno" placeholder="Jumlah yang ingin diminta">
                     </div>
+                    <div class="col-form-label-sm mb-3">
+                        <label for="keperluan" class="form-label">Keperluan</label>
+                        <textarea name="keperluan" class="form-control" id="keperluan" rows="3" placeholder="Untuk keperluan apa">{{ $request->keperluan }}</textarea>
+                    </div>
                     <div class="text-center">
                         <button type="submit" id="submitBtn" class="btn btn-form rounded-2">Edit</button>
                     </div>
