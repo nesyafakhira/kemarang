@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Request as MRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ContentController extends Controller
@@ -43,7 +44,6 @@ class ContentController extends Controller
     public function show(MRequest $request)
     {
         return view('detail', compact('request'));
-
     }
 
     /**
@@ -87,12 +87,34 @@ class ContentController extends Controller
             'nama_barang'   => $minta->nama_barang,
             'jumlah_unit'   => $minta->jumlah_unit,
             'keperluan'     => $minta->keperluan,
+            'catatan'       => null,
             'status'        => 'menunggu'
         ]);
 
 
         Alert::success('Berhasil', 'Request berhasil di-update');
         return redirect()->to('/content#table')->with('success');
+    }
+
+    public function gambar(Request $minta, MRequest $request)
+    {
+        $minta->validate([
+            'gambar_request' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $namaFile = $minta->file('gambar_request')->getClientOriginalName();
+        if ($request->gambar_request) {
+            File::delete(public_path($request->gambar_request));
+        }
+        $minta->file('gambar_request')->move(public_path('gambar/gambar_request'), $namaFile);
+
+        $request->update([
+            'gambar_request' => 'gambar/gambar_request/' . $namaFile
+        ]);
+
+
+        toast('Berhasil', 'success');
+        return to_route('content.show', $request->id);
     }
 
     /**

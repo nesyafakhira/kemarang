@@ -124,10 +124,18 @@ class RequestController extends Controller
 
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
-        $request->update([
-            'tu_id' => $minta->user()->id,
-            'status' => $minta->status
-        ]);
+        if ($minta->status == 'tolak') {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status,
+                'catatan' => $minta->catatan
+            ]);
+        } else {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status
+            ]);
+        }
 
 
 
@@ -152,8 +160,7 @@ class RequestController extends Controller
                 // return $stok;
 
             }
-        }
-
+        } 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
     }

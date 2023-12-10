@@ -174,8 +174,7 @@
                                     @endif
                                     <td>{{ $request->created_at->formatLocalized('%d %B %Y') }}</td>
                                     <td class="d-flex">
-                                        @if ($request->status != 'terima')
-                                            <a class="btn btn-sm btn-icon btn-info me-2" data-toggle="tooltip"
+                                        <a class="btn btn-sm btn-icon btn-info me-2" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Add"
                                                 href="{{ route('content.show', $request->id) }}">
                                                 <span class="btn-inner">
@@ -190,7 +189,8 @@
                                                     </svg>
                                                 </span>
                                             </a>
-
+                                            
+                                        @if ($request->status != 'terima')
                                             <a class="btn btn-sm btn-icon btn-warning me-2" data-toggle="tooltip"
                                                 data-placement="top" title="" data-original-title="Edit"
                                                 href="{{ route('content.edit', $request->id) }}">
@@ -243,6 +243,7 @@
                                                 </button>
                                             </form>
                                         @endif
+                                        
 
                                     </td>
                                 </tr>

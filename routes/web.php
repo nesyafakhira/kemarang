@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::get('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
     Route::post('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
 
+    // PDF
     Route::get('laporan/stok-pdf', [LaporanController::class, 'indexpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index.pdf');
     Route::get('laporan/request-pdf', [LaporanController::class, 'requestpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request.pdf');
 });
@@ -56,5 +57,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
 Route::resource('content', ContentController::class)->parameters([
     'content' => 'request'
 ])->middleware(['auth', 'verified', 'role:guru']);
+
+Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->name('content.gambar');
 
 require __DIR__.'/auth.php';

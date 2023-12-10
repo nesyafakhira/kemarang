@@ -77,6 +77,7 @@
                                     <button type="submit" class="btn btn-primary">Edit Request</button>
                             </form>
                         </div>
+                        <a class="btn btn-danger mt-5" href="{{ route('request.index') }}">Kembali</a>
                     </div>
                 </div>
 

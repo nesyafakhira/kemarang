@@ -29,18 +29,22 @@
                     <div class="mt-2">
                         <h6 class="mb-1">Status</h6>
                         @if ($request->status == 'menunggu')
-                        <span class="badge bg-primary">{{ $request->status }}</span>
-                        
+                            <span class="badge bg-primary">{{ $request->status }}</span>
                         @elseif ($request->status == 'terima')
-                        <span class="badge bg-success">{{ $request->status }}</span>
+                            <span class="badge bg-success mb-2">{{ $request->status }}</span>
+                            @if ($request->gambar_request)
+                                <div>
+                                    <img src="{{ asset($request->gambar_request) }}" alt="Bukti pengambilan" width="25%">
 
+                                </div>
+                            @endif
                         @else
-                        <span class="badge bg-danger">{{ $request->status }}</span>
+                            <span class="badge bg-danger">{{ $request->status }}</span>
                         @endif
                     </div>
 
                     <a href="{{ route('request.index') }}" class="btn btn-danger mt-5">Kembali</a>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
