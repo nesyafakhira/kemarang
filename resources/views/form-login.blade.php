@@ -14,7 +14,7 @@
                     <div class="col-form-label-sm mb-3">
                         <label for="email">Email</label>
                         <input name="email" type="email" class="form-control form-control-sm mt-2"" id="email"
-                            aria-describedby="emailHelp" placeholder="user@gmail.com">
+                            aria-describedby="emailHelp" placeholder="user@gmail.com" value="{{ old('email') }}">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="password">Password</label>

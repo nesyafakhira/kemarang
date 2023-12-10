@@ -12,7 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:staff|admin'])->only(['index', 'edit']);
+        $this->middleware(['role:staff|admin'])->only(['index', 'edit', 'show']);
     }
 
     /**
@@ -88,8 +88,6 @@ class RequestController extends Controller
      */
     public function show(MRequest $request)
     {
-        $this->middleware('role:guru|staff');
-        // return $request;
         $request->load('barang');
         return view('admin.request.show', compact('request'));
     }

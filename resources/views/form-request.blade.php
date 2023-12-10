@@ -18,10 +18,15 @@
                             <option selected disabled>Pilih Barang</option>
                             @foreach ($barangs as $item)
                                 <option data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}"
-                                    data-id="{{ $item->id }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}
+                                    data-id="{{ $item->id }}" data-gambar="{{ $item->gambar_barang }}"
+                                    value="{{ $item->nama_barang }}">{{ $item->nama_barang }}
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div>
+                        <label id="label_barang" class="d-none d-block mb-1">Gambar Barang</label>
+                        <img id="gambar_barang" src="" alt="Gambar barang" width="25%" class="d-none mb-3">
                     </div>
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
@@ -58,13 +63,24 @@
             let jumlahBarang = $(el).find(':selected').data('jumlah');
             let satuanBarang = $(el).find(':selected').data('satuan');
             let idBarang = $(el).find(':selected').data('id');
+            let gambarBarang = $(el).find(':selected').data('gambar');
+            let gambarUrl = "{{ asset('') }}" + gambarBarang;
 
             $("#jumlah_unit").val(jumlahBarang)
             $("#jumlah_unit_hidden").val(jumlahBarang)
             $("#barang_id").val(idBarang)
+            $("#gambar_barang").attr('src', gambarUrl);
             // $("#labelJumlah").html("Jumlah Tersedia " + "(" + satuanBarang + ")") // basic
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
+
+            if (gambarBarang) {
+                // Jika gambarBarang ada, tampilkan elemen img dan label
+                $("#gambar_barang, #label_barang").removeClass('d-none');
+            } else {
+                // Jika gambarBarang tidak ada, sembunyikan elemen img dan label
+                $("#gambar_barang, #label_barang").addClass('d-none');
+            }
 
             let stok = jumlahBarang;
             let submitBtn = document.getElementById('submitBtn');
