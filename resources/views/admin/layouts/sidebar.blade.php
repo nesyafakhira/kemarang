@@ -42,6 +42,7 @@
                         <span class="mini-icon">-</span>
                     </a>
                 </li>
+                @role('admin|staff')
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeis('dashboard') ? 'active' : '' }}" aria-current="page"
                         href="{{ route('dashboard') }}">
@@ -74,6 +75,7 @@
                         <span class="mini-icon">-</span>
                     </a>
                 </li>
+                @endrole
                 @role('admin')
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-user') }}" role="button"
@@ -155,7 +157,9 @@
                     </li>
                 @endrole
 
+                
                 {{-- Inian Nav Start --}}
+                @role('staff|admin')
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-form') }}" role="button"
                         aria-expanded="false" aria-controls="sidebar-user">
@@ -192,7 +196,6 @@
                                 <span class="item-name">Barang List</span>
                             </a>
                         </li>
-                        @role('staff|admin')
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->routeis('barang.create') ? 'active' : '' }}"
                                     href="{{ route('barang.create') }}">
@@ -208,12 +211,13 @@
                                     <span class="item-name">Add Barang</span>
                                 </a>
                             </li>
-                        @endrole
-                    </ul>
+                        </ul>
                 </li>
+                        @endrole
                 {{-- Inian Nav End --}}
 
                 {{-- Inian Nav Start --}}
+                @role('staff|admin')
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-request') }}"
                         role="button" aria-expanded="false" aria-controls="sidebar-user">
@@ -268,9 +272,11 @@
                         @endrole
                     </ul>
                 </li>
+                @endrole
+
                 {{-- Inian Nav End --}}
 
-                @role('kepsek|admin')
+                @role('kepsek|admin|staff')
                 {{-- Inian Nav Start --}}
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="{{ url('#sidebar-laporan') }}"
@@ -326,7 +332,22 @@
                                     </svg>
                                 </i>
                                 <i class="sidenav-mini-icon"> U </i>
-                                <span class="item-name">Laporan List</span>
+                                <span class="item-name">Stok List</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeis('laporan.request') ? 'active' : '' }}"
+                                href="{{ route('laporan.request') }}">
+                                <i class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <g>
+                                            <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                        </g>
+                                    </svg>
+                                </i>
+                                <i class="sidenav-mini-icon"> U </i>
+                                <span class="item-name">Request List</span>
                             </a>
                         </li>
                     </ul>

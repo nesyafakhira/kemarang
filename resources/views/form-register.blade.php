@@ -12,17 +12,17 @@
                 <div class="p-4">
                     <div class="col-form-label-sm mb-3">
                         <label for="nameInput">Nama</label>
-                        <input type="text" name="name" class="form-control form-control-sm mt-2" id="nameInput"
+                        <input value="{{ old('name') }}" type="text" name="name" class="form-control form-control-sm mt-2" id="nameInput"
                             placeholder="Masukkan Nama">
                     </div>
                     <div class="col-form-label-sm mb-3">
-                        <label for="nip">NIP</label>
-                        <input type="number" name="nip" class="form-control form-control-sm mt-2" id="nip"
-                            placeholder="Masukkan NIP">
+                        <label for="nip/nikki">NIP/NIKKI</label>
+                        <input value="{{ old('nip_nikki') }}" type="number" name="nip_nikki" class="form-control form-control-sm mt-2" id="nip/nikki"
+                            placeholder="Masukkan NIP/NIKKI">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control form-control-sm mt-2"" id="email"
+                        <input value="{{ old('email') }}" type="email" name="email" class="form-control form-control-sm mt-2"" id="email"
                             aria-describedby="emailHelp" placeholder="name@example.com">
                     </div>
                     <div class="col-form-label-sm mb-3">

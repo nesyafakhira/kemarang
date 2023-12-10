@@ -22,7 +22,7 @@
                                     <thead>
                                         <tr class="ligth">
                                             <th>No</th>
-                                            <th>Nama Guru</th>
+                                            <th>Nama Peminjam</th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah Unit</th>
                                             <th>Status</th>

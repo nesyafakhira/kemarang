@@ -12,7 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:staff|admin'])->only(['index', 'edit']);
+        $this->middleware(['role:staff|admin'])->only(['index', 'edit', 'show']);
     }
 
     /**
@@ -46,13 +46,16 @@ class RequestController extends Controller
     {
         $request->validate(
             [
-                'nama_barang' => 'required',
-                'jumlah_unit' => 'required|max:2',
+                'nama_barang'   => 'required',
+                'jumlah_unit'   => 'required|max:2',
+                'keperluan'     => 'required|max:100'
             ],
             [
                 'nama_barang.required'  => 'Pilih nama barang',
                 'jumlah_unit.required'  => 'Masukkan jumlah barang',
                 'jumlah_unit.max'       => 'Maksimal request 2 digit',
+                'keperluan.required'    => 'Masukkan keperluan',
+                'keperluan.max'         => 'Maksimal 100 karakter'
             ]
         );
 
@@ -66,7 +69,8 @@ class RequestController extends Controller
             'guru_id'       => $request->guru_id,
             'barang_id'     => $request->barang_id,
             'nama_barang'   => $request->nama_barang,
-            'jumlah_unit'   => $request->jumlah_unit
+            'jumlah_unit'   => $request->jumlah_unit,
+            'keperluan'     => $request->keperluan
         ]);
 
         activity()
@@ -84,8 +88,6 @@ class RequestController extends Controller
      */
     public function show(MRequest $request)
     {
-        $this->middleware('role:guru|staff');
-        // return $request;
         $request->load('barang');
         return view('admin.request.show', compact('request'));
     }
@@ -122,10 +124,18 @@ class RequestController extends Controller
 
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
-        $request->update([
-            'tu_id' => $minta->user()->id,
-            'status' => $minta->status
-        ]);
+        if ($minta->status == 'tolak') {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status,
+                'catatan' => $minta->catatan
+            ]);
+        } else {
+            $request->update([
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status
+            ]);
+        }
 
 
 
@@ -150,8 +160,7 @@ class RequestController extends Controller
                 // return $stok;
 
             }
-        }
-
+        } 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
     }

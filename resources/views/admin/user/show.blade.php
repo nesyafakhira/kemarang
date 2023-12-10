@@ -39,7 +39,7 @@
                         @endif
                     </div>
 
-                    <a class="btn btn-primary mt-5" href="{{ route('user.index') }}">Kembali</a>
+                    <a class="btn btn-danger mt-5" href="{{ route('user.index') }}">Kembali</a>
                 </div>
             </div>
         </div>

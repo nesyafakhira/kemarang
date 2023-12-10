@@ -28,6 +28,7 @@ class Barang extends Model
         'total_harga_tanpa_ppn',
         'ppn',
         'total_harga_ppn',
+        'gambar_barang'
     ];
 
     protected $table = 'barangs';

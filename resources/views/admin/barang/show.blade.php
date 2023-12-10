@@ -28,22 +28,26 @@
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Harga Masuk</h6>
-                        <p>Rp. {{ $barang->harga_satuan }}</p>
+                        <p>Rp. {{ number_format($barang->harga_satuan, 0, ',', '.') }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Jumlah Tanpa PPN</h6>
-                        <p>Rp. {{ $barang->total_harga_tanpa_ppn }}</p>
+                        <p>Rp. {{ number_format($barang->total_harga_tanpa_ppn, 0, ',', '.') }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">PPN</h6>
-                        <p>Rp. {{ $barang->ppn }}</p>
+                        <p>Rp. {{ number_format($barang->ppn, 0, ',', '.') }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Jumlah Dengan PPN</h6>
-                        <p>Rp. {{ $barang->total_harga_ppn }}</p>
+                        <p>Rp. {{ number_format($barang->total_harga_ppn, 0, ',', '.') }}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h6 class="mb-1">Gambar Barang</h6>
+                    <img src="{{ asset($barang->gambar_barang) }}" alt="Gambar barang" width="25%">
                     </div>
 
-                    <a class="btn btn-primary mt-5" href="{{ route('barang.index') }}">Kembali</a>
+                    <a class="btn btn-danger mt-5" href="{{ route('barang.index') }}">Kembali</a>
             </div>
         </div>
     </div>

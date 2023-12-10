@@ -90,7 +90,7 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @role('staff|admin')
+                                @role('staff|admin|kepsek')
                                     <li>
                                         <h6 class="dropdown-header">{{ auth()->user()->name }}</h6>
                                     </li>
@@ -397,7 +397,7 @@
                             Jl. Cipinang Pulo No.19, RT.7/RW.14, Cipinang Besar Utara, Jatinegara<br>
                             Jakarta TImur, DKI Jakarta, 13410 <br><br>
                             <strong>Telepon:</strong> (021) 8195127<br>
-                            <strong>Email:</strong> Ispempatenamjkt@gmail.com<br>
+                            <strong>Email:</strong> <a href="mailto:Ispempatenamjkt@gmail.com">Ispempatenamjkt@gmail.com</a><br>
                         </p>
 
                     </div>
