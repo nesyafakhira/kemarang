@@ -18,7 +18,7 @@
                         <div class="new-user-info">
                             <form action="{{ route('request.update', $request->id) }}" method="POST">
                                 @csrf
-                                @method('PATCH')
+                                @method('PATCH')  
                                 <div class="row">
                                     @include('admin.layouts.error')
                                     <div class="form-group col-sm-12">

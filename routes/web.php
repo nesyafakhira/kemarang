@@ -58,6 +58,6 @@ Route::resource('content', ContentController::class)->parameters([
     'content' => 'request'
 ])->middleware(['auth', 'verified', 'role:guru']);
 
-Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->name('content.gambar');
+Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->middleware(['auth', 'verified', 'role:guru'])->name('content.gambar');
 
 require __DIR__.'/auth.php';
