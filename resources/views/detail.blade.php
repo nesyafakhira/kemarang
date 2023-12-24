@@ -1,5 +1,9 @@
 @extends('form-layout')
 
+@section('title')
+    Kemarang | Detail Request
+@endsection
+
 @section('content')
 @include('sweetalert::alert')
     <div class="col-md-6">

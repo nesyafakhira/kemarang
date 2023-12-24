@@ -1,5 +1,9 @@
 @extends('form-layout')
 
+@section('title')
+    Kemarang | Login
+@endsection
+
 @section('content')
     <div class="col-md-6">
         <div class="card-form overflow-hidden position-relative m-auto rounded">
@@ -7,6 +11,7 @@
         </div>
         <div class="card-input overflow-hidden bg-white m-auto mb-4 position-relative rounded">
             @include('admin.layouts.error')
+            @include('sweetalert::alert')
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -28,6 +33,9 @@
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-form rounded-2">Submit</button>
+                    </div>
+                    <div>
+                        <a style="text-decoration: none" href="{{ route('password.request') }}">Lupa Password?</a>
                     </div>
                 </div>
             </form>

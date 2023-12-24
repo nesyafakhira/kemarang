@@ -46,6 +46,9 @@ class NewPasswordController extends Controller
                     'remember_token' => Str::random(60),
                 ])->save();
 
+                $user->assignRole('guru');
+                toast('Ingat Passwordnya Ya', 'success');
+
                 event(new PasswordReset($user));
             }
         );
