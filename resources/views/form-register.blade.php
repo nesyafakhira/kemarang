@@ -1,5 +1,9 @@
 @extends('form-layout')
 
+@section('title')
+    Kemarang | Register
+@endsection
+
 @section('content')
     <div class="col-md-6">
         <div class="card-form overflow-hidden position-relative m-auto rounded">
@@ -18,7 +22,7 @@
                     <div class="col-form-label-sm mb-3">
                         <label for="nip/nikki">NIP/NIKKI</label>
                         <input value="{{ old('nip_nikki') }}" type="number" name="nip_nikki" class="form-control form-control-sm mt-2" id="nip/nikki"
-                            placeholder="Masukkan NIP/NIKKI">
+                            placeholder="Masukkan NIP/NIKKI" maxlength="18">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="email">Email</label>

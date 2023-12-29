@@ -1,5 +1,9 @@
 @extends('form-layout')
 
+@section('title')
+    Kemarang | Detail Request
+@endsection
+
 @section('content')
 @include('sweetalert::alert')
     <div class="col-md-6">
@@ -55,6 +59,8 @@
                                     <button type="submit" class="btn btn-warning">Upload</button>
 
                                 </form>
+                                
+                                
                             @endif
                         @else
                             <span class="badge bg-danger mb-3">{{ $request->status }}</span>

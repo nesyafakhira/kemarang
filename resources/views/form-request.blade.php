@@ -1,5 +1,9 @@
 @extends('form-layout')
 
+@section('title')
+    Kemarang | Request
+@endsection
+
 @section('content')
     <div class="col-md-6">
         <div class="card-form overflow-hidden position-relative m-auto rounded">
