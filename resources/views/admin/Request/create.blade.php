@@ -21,10 +21,13 @@
                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label class="form-label">Pilih Barang</label>
-                                        <select name="nama_barang" id="nama_barang" onchange="selectBarang(this)" class="selectpicker form-control" data-style="py-0">
+                                        <select name="nama_barang" id="nama_barang" onchange="selectBarang(this)"
+                                            class="selectpicker form-control" data-style="py-0">
                                             <option selected disabled>Pilih Barang</option>
                                             @foreach ($barangs as $item)
-                                                <option data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}" data-id="{{ $item->id }}" value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
+                                                <option data-jumlah="{{ $item->jumlah_unit }}"
+                                                    data-satuan="{{ $item->satuan }}" data-id="{{ $item->id }}"
+                                                    value="{{ $item->nama_barang }}">{{ $item->nama_barang }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -34,14 +37,15 @@
 
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="fname" id="labelJumlah">Jumlah Tersedia</label>
-                                        <input disabled id="jumlah_unit" type="text" class="form-control" id="fname" placeholder="Jumlah yang tersedia">
+                                        <input disabled id="jumlah_unit" type="text" class="form-control" id="fname"
+                                            placeholder="Jumlah yang tersedia" id="stokInput">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="mobno" id="labelJumlahUnit">Jumlah Unit</label>
                                         <input name="jumlah_unit" type="text" class="form-control" id="mobno"
                                             placeholder="Jumlah yang ingin diminta">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Add Request</button>
+                                    <button type="submit" class="btn btn-primary" id="submitBtn" disabled>Add Request</button>
                             </form>
                         </div>
                     </div>
@@ -68,3 +72,5 @@
         }
     </script>
 @endsection
+
+

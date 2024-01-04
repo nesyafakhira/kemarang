@@ -90,7 +90,7 @@
                                 {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @role('staff|admin')
+                                @role('staff|admin|kepsek')
                                     <li>
                                         <h6 class="dropdown-header">{{ auth()->user()->name }}</h6>
                                     </li>
@@ -122,7 +122,7 @@
                         @role('guru')
                             <div data-aos="fade-up" data-aos-delay="600">
                                 <div class="text-center text-lg-start">
-                                    <a href="{{ route('request.create') }}"
+                                    <a href="{{ route('content.create') }}"
                                         class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                                         <span>Request Sekarang!</span>
                                         <i class="bi bi-arrow-right"></i>
@@ -359,12 +359,6 @@
                             Dengan komitmen untuk menyederhanakan proses dan memberikan pengalaman yang lebih baik di
                             lingkungan pendidikan, KEMARANG hadir sebagai mitra terpercaya untuk sekolah.
                         </p>
-                        <div class="social-links mt-3">
-                            <a href="{{ url('#') }}" class="twitter"><i class="bi bi-twitter"></i></a>
-                            <a href="{{ url('#') }}" class="facebook"><i class="bi bi-facebook"></i></a>
-                            <a href="{{ url('#') }}" class="instagram"><i class="bi bi-instagram"></i></a>
-                            <a href="{{ url('#') }}" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                        </div>
                     </div>
 
                     <div class="col-lg-2 col-6 footer-links">
@@ -403,7 +397,7 @@
                             Jl. Cipinang Pulo No.19, RT.7/RW.14, Cipinang Besar Utara, Jatinegara<br>
                             Jakarta TImur, DKI Jakarta, 13410 <br><br>
                             <strong>Telepon:</strong> (021) 8195127<br>
-                            <strong>Email:</strong> Ispempatenamjkt@gmail.com<br>
+                            <strong>Email:</strong> <a href="mailto:Ispempatenamjkt@gmail.com">Ispempatenamjkt@gmail.com</a><br>
                         </p>
 
                     </div>

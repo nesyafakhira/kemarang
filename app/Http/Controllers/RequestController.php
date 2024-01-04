@@ -12,7 +12,7 @@ class RequestController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:staff|admin'])->only(['index', 'edit']);
+        $this->middleware(['role:staff|admin'])->only(['index', 'edit', 'show']);
     }
 
     /**
@@ -21,6 +21,8 @@ class RequestController extends Controller
     public function index(Request $request)
     {
         $requests = MRequest::orderBy('id', 'desc')->with('guru', 'barang')->get();
+        setlocale(LC_TIME, 'id');
+
 
 
         return view('admin.request.index', compact('requests'));
@@ -32,7 +34,7 @@ class RequestController extends Controller
     public function create(Request $request)
     {
         $barangs = Barang::orderBy('id', 'asc')->get();
-        
+
 
         return view('admin.request.create', compact('barangs'));
     }
@@ -42,23 +44,33 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
         $request->validate(
             [
-                'nama_barang' => 'required',
-                'jumlah_unit' => 'required|max:2',
+                'nama_barang'   => 'required',
+                'jumlah_unit'   => 'required|max:2',
+                'keperluan'     => 'required|max:100'
             ],
             [
                 'nama_barang.required'  => 'Pilih nama barang',
                 'jumlah_unit.required'  => 'Masukkan jumlah barang',
+                'jumlah_unit.max'       => 'Maksimal request 2 digit',
+                'keperluan.required'    => 'Masukkan keperluan',
+                'keperluan.max'         => 'Maksimal 100 karakter'
             ]
         );
+
+        if ($request->jumlah_unit > $request->stok) {
+            return to_route('content.create')->with('error', 'Jumlah request melebihi stok');
+        } elseif ($request->jumlah_unit < 1) {
+            return to_route('content.create')->with('error', 'Jumlah request tidak boleh kurang dari 1');
+        }
 
         $mrequest = MRequest::create([
             'guru_id'       => $request->guru_id,
             'barang_id'     => $request->barang_id,
             'nama_barang'   => $request->nama_barang,
-            'jumlah_unit'   => $request->jumlah_unit
+            'jumlah_unit'   => $request->jumlah_unit,
+            'keperluan'     => $request->keperluan
         ]);
 
         activity()
@@ -76,8 +88,6 @@ class RequestController extends Controller
      */
     public function show(MRequest $request)
     {
-        $this->middleware('role:guru|staff');
-        // return $request;
         $request->load('barang');
         return view('admin.request.show', compact('request'));
     }
@@ -114,23 +124,23 @@ class RequestController extends Controller
 
         $jumlah_akhir = $jumlah_unit - $jumlah_req;
 
-        if (auth()->user()->hasRole('staff|admin')) {
+        if ($minta->status == 'tolak') {
             $request->update([
                 'tu_id' => $minta->user()->id,
-                'status' => $minta->status
+                'status' => $minta->status,
+                'catatan' => $minta->catatan
             ]);
         } else {
             $request->update([
-                'barang_id'     => $minta->barang_id,
-                'nama_barang'   => $minta->nama_barang,
-                'jumlah_unit'   => $minta->jumlah_unit
+                'tu_id' => $minta->user()->id,
+                'status' => $minta->status
             ]);
         }
 
 
 
         if ($minta->status == 'terima') {
-            $barang = Barang::find($minta->barang_id); // Gantilah $barangId dengan ID barang yang sesuai
+            $barang = Barang::find($minta->barang_id);
 
             // return $barang;
             if ($barang) {
@@ -150,8 +160,7 @@ class RequestController extends Controller
                 // return $stok;
 
             }
-        }
-
+        } 
         Alert::success('Berhasil', 'Request dikonfirmasi');
         return to_route('request.index')->with('success');
     }
@@ -161,10 +170,17 @@ class RequestController extends Controller
      */
     public function destroy(MRequest $request)
     {
-        $request->delete();
+        if (auth()->user()->hasRole('guru')) {
+            $request->delete();
+    
+            alert::success('Berhasil', 'Request berhasil dihapus');
+            return redirect()->to('content#table');
+        } else {
+            $request->delete();
+            
+            alert::success('Berhasil', 'Request berhasil dihapus');
+            return to_route('request.index');
 
-        // Alert::success('Berhasil', 'Request dihapus');
-
-        return to_route('request.index');
+        }
     }
 }

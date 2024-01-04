@@ -46,6 +46,14 @@ class NewPasswordController extends Controller
                     'remember_token' => Str::random(60),
                 ])->save();
 
+                // Mendapatkan role-role yang sudah dimiliki oleh pengguna sebelumnya
+                $existingRoles = $user->getRoleNames()->toArray();
+
+                // Menetapkan role-role yang sudah dimiliki sebelumnya untuk pengguna
+                $user->syncRoles($existingRoles);
+
+                toast('Ingat Passwordnya Ya', 'success');
+
                 event(new PasswordReset($user));
             }
         );
@@ -54,8 +62,8 @@ class NewPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withInput($request->only('email'))
+            ->withErrors(['email' => __($status)]);
     }
 }

@@ -26,8 +26,8 @@
                                         <input value="{{ $user->name }}" name="name" type="text" class="form-control" id="fname" placeholder="Masukkan Nama">
                                     </div>
                                     <div class="form-group col-sm-12">
-                                        <label class="form-label" for="mobno">NPSN</label>
-                                        <input value="{{ $user->npsn }}" name="npsn" type="number" class="form-control" id="mobno" placeholder="Masukkan NPSN">
+                                        <label class="form-label" for="mobno">NIP/NIKKI</label>
+                                        <input value="{{ $user->nip_nikki }}" name="nip_nikki" type="number" class="form-control" id="mobno" placeholder="Masukkan nip">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label">Role</label>
@@ -42,7 +42,7 @@
                             </form>
                         </div>
 
-                        <a class="btn btn-primary mt-5" href="{{ route('user.index') }}">Kembali</a>
+                        <a class="btn btn-danger mt-5" href="{{ route('user.index') }}">Kembali</a>
                     </div>
                 </div>
             

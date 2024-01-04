@@ -15,8 +15,8 @@
                         <input type="text" name="name" class="form-control form-control-sm mt-2" id="exampleFormControlInput1" placeholder="Masukkan Nama">
                     </div>
                     <div class="col-form-label-sm mb-3">
-                        <label for="nameInput">NPSN</label>
-                        <input type="number" name="npsn" class="form-control form-control-sm mt-2" id="exampleFormControlInput1" placeholder="Masukkan NPSN">
+                        <label for="nameInput">nip</label>
+                        <input type="number" name="nip" class="form-control form-control-sm mt-2" id="exampleFormControlInput1" placeholder="Masukkan nip">
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="barangInput">Email</label>

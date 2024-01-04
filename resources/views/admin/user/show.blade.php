@@ -23,8 +23,8 @@
                         <p>{{ $user->email }}</p>
                     </div>
                     <div class="mt-2">
-                        <h6 class="mb-1">NPSN</h6>
-                        <p>{{ $user->npsn }}</p>
+                        <h6 class="mb-1">nip</h6>
+                        <p>{{ $user->nip }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Role</h6>
@@ -39,7 +39,7 @@
                         @endif
                     </div>
 
-                    <a class="btn btn-primary mt-5" href="{{ route('user.index') }}">Kembali</a>
+                    <a class="btn btn-danger mt-5" href="{{ route('user.index') }}">Kembali</a>
                 </div>
             </div>
         </div>

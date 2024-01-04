@@ -14,9 +14,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::where('id', '!=', auth()->user()->id);
-        $users = $datas->orderBy('id', 'asc')->get();
-        return view('admin.user.index', compact('users'));
+        $kepsek = User::role('kepsek')->get();
+        $users = User::where('id', '!=', auth()->user()->id)->whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'kepsek');
+        })->orderBy('id', 'asc')->get();
+        setlocale(LC_TIME, 'id');
+
+        return view('admin.user.index', compact('users', 'kepsek'));
     }
 
     /**
@@ -32,40 +36,48 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request; 
         $request->validate([
             'name'      => 'required|max:100',
-            'npsn'      => 'required|max:50',
-            'email'     => 'required',
+            'nip_nikki' => 'required|min:6|max:20',
+            'email'     => 'required|email:rfc,dns',
             'password'  => 'required|min:8',
             'role'      => 'required', // Ini inputan dropdown
-        ]);
-        
+        ],
+        [
+            'name.required'         => 'Nama wajib diisi',
+            'name.max'              => 'Nama maksimal 100 karakter',
+            'nip_nikki.required'    => 'NIP / NIKKI wajib diisi',
+            'nip_nikki.max'         => 'NIP / NIKKI maksimal 20 karakter',
+            'nip_nikki.min'         => 'NIP / NIKKI minimal 6 karakter',
+            // 'nip_nikki.numeric'     => 'NIP / NIKKI harus angka',
+            'email.required'        => 'Email wajib diisi',
+            'password.required'     => 'Password wajib diisi',
+            'password.min'          => 'Password minimal 8 karakter',
+            'role.required'         => 'Role wajib diisi'
+        ]
+    );
+
         $user = User::create([
             'name'      => $request->name,
-            'npsn'      => $request->npsn,
+            'nip_nikki' => $request->nip_nikki,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
         ]);
-        
+
 
         if ($request->role == 'admin') {
             $user->assignRole('admin');
-            
         } elseif ($request->role == 'staff') {
             $user->assignRole('staff');
-            
         } elseif ($request->role == 'guru') {
             $user->assignRole('guru');
-            
         } elseif ($request->role == 'kepsek') {
             $user->assignRole('kepsek');
-            
         }
 
         Alert::success('Berhasil', 'User ditambahkan');
         return to_route('user.index')->with('success');
-
-
     }
 
     /**
@@ -91,7 +103,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'      => 'required|max:100',
-            'npsn'      => 'required|max:50',
+            'nip_nikki'      => 'required|max:50',
             'role'      => 'required', // Ini inputan dropdown
         ]);
 
@@ -104,25 +116,21 @@ class UserController extends Controller
         } elseif ($user->hasRole('kepsek')) {
             $user->removeRole('kepsek');
         }
-        
+
         $user->update([
             'name'      => $request->name,
-            'npsn'      => $request->npsn,
+            'nip_nikki'      => $request->nip_nikki,
         ]);
-        
+
 
         if ($request->role == 'admin') {
             $user->assignRole('admin');
-            
         } elseif ($request->role == 'staff') {
             $user->assignRole('staff');
-            
         } elseif ($request->role == 'guru') {
             $user->assignRole('guru');
-            
         } elseif ($request->role == 'kepsek') {
             $user->assignRole('kepsek');
-            
         }
 
         Alert::success('Berhasil', 'User di-update');

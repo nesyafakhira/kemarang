@@ -22,9 +22,6 @@
                                     <thead>
                                         <tr class="ligth">
                                             <th>No</th>
-                                            <th>Id Guru</th>
-                                            <th>Nama Guru</th>
-                                            <th>Id Barang</th>
                                             <th>Nama Barang</th>
                                             <th>Jumlah Unit</th>
                                             <th>Status</th>
@@ -39,13 +36,10 @@
                                             
                                         <tr>
                                             <td>{{ $loop->iteration }}</td> 
-                                            <td>{{ $content->guru_id }}</td>
-                                            <td>{{ $content->guru->name }}</td>
-                                            <td>{{ $content->barang_id }}</td>
                                             <td>{{ $content->nama_barang }}</td>
                                             <td>{{ $content->jumlah_unit }}</td>
                                             <td><span class="badge bg-primary">{{ $content->status }}</span></td> 
-                                            <td>{{ $content->created_at->diffForHumans() }}</td> 
+                                            <td>{{ $content->created_at->formatLocalized('%d %B %Y') }}</td> 
                                             @role('staff')
                                             <td>
                                                 <div class="flex align-items-center list-user-action">

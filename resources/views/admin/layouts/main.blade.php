@@ -23,9 +23,6 @@
     {{-- Sweetalert 2 --}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/data-table/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     
 </head>
 
@@ -58,12 +55,12 @@
 
 
 
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
     <!-- Backend Bundle JavaScript -->
     <script src="{{ asset('assets/admin/js/libs.min.js') }}"></script>
 
-    <!-- Dashboard Charts JavaScript -->
-    <script src="{{ asset('assets/admin/js/charts/dashboard.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/charts/apexcharts.js') }}"></script>
 
     <!-- fslightbox JavaScript -->
     <script src="{{ asset('assets/admin/js/fslightbox.js') }}"></script>
