@@ -27,6 +27,10 @@
                                         <input value="{{ $barang->nama_barang }}" name="nama_barang" type="text" class="form-control" id="fname" placeholder="Masukkan Nama">
                                     </div>
                                     <div class="form-group col-sm-12">
+                                        <label class="form-label" for="deskrispi">Deskripsi Barang</label>
+                                        <input value="{{ $barang->deskripsi }}" name="deskripsi" type="text" class="form-control" id="deskrispi" placeholder="Masukkan Nama">
+                                    </div>
+                                    <div class="form-group col-sm-12">
                                         <label class="form-label" for="email">Jumlah Unit</label>
                                         <input value="{{ $barang->jumlah_unit }}" name="jumlah_unit" type="number" class="form-control" id="email" placeholder="Masukkan Jumlah">
                                     </div>

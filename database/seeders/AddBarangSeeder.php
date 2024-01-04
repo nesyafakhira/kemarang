@@ -20,8 +20,9 @@ class AddBarangSeeder extends Seeder
 
         Barang::create([
             'nama_barang'           => 'Pulpen', 
+            'deskripsi'             => 'Pulpen Pilot', 
             'jumlah_unit'           => '100',
-            'satuan'                => 'Lusin',
+            'satuan'                => 'Pcs',
             'harga_satuan'          => '12000',
             'total_harga_tanpa_ppn' => '1',
             'ppn'                   => '1',
@@ -30,8 +31,9 @@ class AddBarangSeeder extends Seeder
         ]);
         Barang::create([
             'nama_barang'           => 'Pensil', 
+            'deskripsi'             => 'Pensil 2B', 
             'jumlah_unit'           => '100',
-            'satuan'                => 'Lusin',
+            'satuan'                => 'Pcs',
             'harga_satuan'          => '8000',
             'total_harga_tanpa_ppn' => '1',
             'ppn'                   => '1',
@@ -40,6 +42,7 @@ class AddBarangSeeder extends Seeder
         ]); 
         Barang::create([
             'nama_barang'           => 'HVS', 
+            'deskripsi'             => 'HVS A4', 
             'jumlah_unit'           => '100',
             'satuan'                => 'Rim',
             'harga_satuan'          => '20000',

@@ -35,6 +35,10 @@
                         <label id="label_barang" class="d-none d-block mb-1">Gambar Barang</label>
                         <img id="gambar_barang" src="" alt="Gambar barang" width="25%" class="d-none mb-3">
                     </div>
+                    <div id="deskripsi_div">
+                        <label id="label_deskripsi" class="d-none d-block mb-1">Deskripsi Barang</label>
+                        <p id="deskripsi_barang"></p>
+                    </div>
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="stok" id="jumlah_unit_hidden">
@@ -84,7 +88,12 @@
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
 
-            console.log(gambarBarang);
+            if (valueBarang) {
+                $('#deskripsi_div').removeClass('d-none');
+            } else {
+                $('#deskripsi_div').addClass('d-none');
+            }
+            
             if (gambarBarang) {
                 // Jika gambarBarang ada, tampilkan elemen img dan label
                 $("#gambar_barang, #label_barang").removeClass('d-none');

@@ -43,6 +43,8 @@ class ContentController extends Controller
      */
     public function show(MRequest $request)
     {
+        $request->load('barang');
+        // return $request; 
         return view('detail', compact('request'));
     }
 
