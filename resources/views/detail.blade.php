@@ -17,8 +17,16 @@
                     <p>{{ $request->nama_barang }}</p>
                 </div>
                 <div class="mt-2">
+                    <h6 class="mb-1">Gambar Barang</h6>
+                    <img src="{{ asset($request->barang->gambar_barang) }}" alt="Gambar Barang" width="25%">
+                </div>
+                <div class="mt-4">
+                    <h5 class="mb-1">Deskripsi Barang</h5>
+                    <p>{{ $request->barang->deskripsi }}</p>
+                </div>
+                <div class="mt-2">
                     <h5 class="mb-1">Jumlah Unit</h5>
-                    <p>{{ $request->jumlah_unit }}</p>
+                    <p>{{ $request->jumlah_unit }} {{ $request->barang->satuan }}</p>
                 </div>
                 <div class="mt-2">
                     <h5 class="mb-1">Keperluan</h5>

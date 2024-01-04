@@ -21,7 +21,7 @@
                             class="selectpicker form-control" data-style="py-0">
                             <option selected disabled>Pilih Barang</option>
                             @foreach ($barangs as $item)
-                                <option data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}"
+                                <option data-jumlah="{{ $item->jumlah_unit }}" data-satuan="{{ $item->satuan }}" data-deskripsi="{{ $item->deskripsi }}"
                                     data-id="{{ $item->id }}" data-gambar="{{ $item->gambar_barang }}"
                                     value="{{ $item->nama_barang }}">{{ $item->nama_barang }}
                                 </option>
@@ -31,6 +31,10 @@
                     <div>
                         <label id="label_barang" class="d-none d-block mb-1">Gambar Barang</label>
                         <img id="gambar_barang" src="" alt="Gambar barang" width="25%" class="d-none mb-3">
+                    </div>
+                    <div id="deskripsi_div">
+                        <label id="label_deskripsi" class="d-none d-block mb-1">Deskripsi Barang</label>
+                        <p id="deskripsi_barang"></p>
                     </div>
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
@@ -65,6 +69,7 @@
         function selectBarang(el) {
             let valueBarang = $(el).val();
             let jumlahBarang = $(el).find(':selected').data('jumlah');
+            let deskripsiBarang = $(el).find(':selected').data('deskripsi');
             let satuanBarang = $(el).find(':selected').data('satuan');
             let idBarang = $(el).find(':selected').data('id');
             let gambarBarang = $(el).find(':selected').data('gambar');
@@ -77,6 +82,13 @@
             // $("#labelJumlah").html("Jumlah Tersedia " + "(" + satuanBarang + ")") // basic
             $("#labelJumlah").html(`Jumlah Tersedia (${satuanBarang})`) // template literal
             $("#labelJumlahUnit").html(`Jumlah Unit (${satuanBarang})`) // template literal
+            $("#deskripsi_barang").html(deskripsiBarang)
+
+            if (valueBarang) {
+                $('#deskripsi_div').removeClass('d-none');
+            } else {
+                $('#deskripsi_div').addClass('d-none');
+            }
 
             if (gambarBarang) {
                 // Jika gambarBarang ada, tampilkan elemen img dan label

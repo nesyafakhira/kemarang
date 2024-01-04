@@ -36,6 +36,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang'           => 'required',
+            'deskripsi'             => 'required',
             'jumlah_unit'           => 'required|numeric',
             'satuan'                => 'required',
             'harga_satuan'          => 'required',
@@ -57,6 +58,7 @@ class BarangController extends Controller
         
         $barang = Barang::create([
             'nama_barang'           => $request->nama_barang,
+            'deskripsi'             => $request->deskripsi,
             'jumlah_unit'           => $request->jumlah_unit,
             'satuan'                => $request->satuan,
             'harga_satuan'          => $hargaSatuan,
@@ -109,6 +111,7 @@ class BarangController extends Controller
     {
         $request->validate([
             'nama_barang'           => 'required',
+            'deskripsi'             => 'required',
             'jumlah_unit'           => 'required|numeric',
             'satuan'                => 'required',
             'harga_satuan'          => 'required',
@@ -128,27 +131,41 @@ class BarangController extends Controller
                 File::delete(public_path($barang->gambar_barang));
             }
             $request->file('gambar_barang')->move(public_path('gambar/gambar_barang'), $namaFile);
+
+            $barang->update([
+                'nama_barang'           => $request->nama_barang,
+                'deskripsi'             => $request->deskripsi,
+                'jumlah_unit'           => $request->jumlah_unit,
+                'satuan'                => $request->satuan,
+                'harga_satuan'          => $hargaSatuan,
+                'total_harga_tanpa_ppn' => $total_harga_tanpa_ppn,
+                'ppn'                   => $ppn,
+                'total_harga_ppn'       => $total_harga_ppn,
+                'gambar_barang'         => 'gambar/gambar_barang/' . $namaFile,
+            ]);
+        } else {
+            $barang->update([
+                'nama_barang'           => $request->nama_barang,
+                'deskripsi'             => $request->deskripsi,
+                'jumlah_unit'           => $request->jumlah_unit,
+                'satuan'                => $request->satuan,
+                'harga_satuan'          => $hargaSatuan,
+                'total_harga_tanpa_ppn' => $total_harga_tanpa_ppn,
+                'ppn'                   => $ppn,
+                'total_harga_ppn'       => $total_harga_ppn,
+            ]);
         }
         
-        $barang->update([
-            'nama_barang'           => $request->nama_barang,
-            'jumlah_unit'           => $request->jumlah_unit,
-            'satuan'                => $request->satuan,
-            'harga_satuan'          => $hargaSatuan,
-            'total_harga_tanpa_ppn' => $total_harga_tanpa_ppn,
-            'ppn'                   => $ppn,
-            'total_harga_ppn'       => $total_harga_ppn,
-            'gambar_barang'         => 'gambar/gambar_barang/' . $namaFile,
-        ]);
 
-
-        Stok::create([
-            'barang_id'     => $request->barang_id,
-            'nama_stok'     => $request->nama_barang,
-            'stok_awal'     => $request->jumlah_unit,
-            'stok_keluar'   => 0,
-            'stok_akhir'    => $request->jumlah_unit
-        ]);
+if ($request->jumlah_unit) {
+    Stok::create([
+        'barang_id'     => $request->barang_id,
+        'nama_stok'     => $request->nama_barang,
+        'stok_awal'     => $request->jumlah_unit,
+        'stok_keluar'   => 0,
+        'stok_akhir'    => $request->jumlah_unit
+    ]);
+}
 
         Alert::success('Berhasil', 'Barang di-update');
         

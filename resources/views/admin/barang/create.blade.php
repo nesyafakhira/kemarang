@@ -26,6 +26,11 @@
                                             placeholder="Masukkan Nama">
                                     </div>
                                     <div class="form-group col-sm-12">
+                                        <label class="form-label" for="fname">Deskripsi Barang</label>
+                                        <input value="{{ old('deskripsi') }}" name="deskripsi" type="text" class="form-control" id="fname"
+                                            placeholder="Masukkan Deskripsi">
+                                    </div>
+                                    <div class="form-group col-sm-12">
                                         <label class="form-label" for="jumlah_unit">Jumlah Unit</label>
                                         <input value="{{ old('jumlah_unit') }}" name="jumlah_unit" type="number" class="form-control" id="jumlah_unit"
                                             placeholder="Masukkan Jumlah">
@@ -33,21 +38,10 @@
                                     <div class="form-group col-sm-12">
                                         <label for="datalist" class="form-label">Satuan</label>
                                         <input value="{{ old('satuan') }}" class="form-control" name="satuan" list="datalistOptions" id="datalist"
-                                            placeholder="(pcs, rim, lusin, etc.)">
+                                            placeholder="pcs/rim/meter">
                                         <datalist id="datalistOptions">
-                                            <option value="Botol">
-                                            <option value="Box">
                                             <option value="Pcs">
-                                            <option value="Unit">
-                                            <option value="Pak">
-                                            <option value="Dus">
-                                            <option value="Lusin">
-                                            <option value="Buah">
-                                            <option value="Kotak">
-                                            <option value="Buku">
-                                            <option value="Roll">
                                             <option value="Rim">
-                                            <option value="Set">
                                             <option value="Meter">
                                         </datalist>
                                     </div>

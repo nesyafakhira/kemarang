@@ -19,6 +19,10 @@
                         <p>{{ $barang->nama_barang }}</p>
                     </div>
                     <div class="mt-2">
+                        <h6 class="mb-1">Deskripsi Barang</h6>
+                        <p>{{ $barang->deskripsi }}</p>
+                    </div>
+                    <div class="mt-2">
                         <h6 class="mb-1">Jumlah Unit</h6>
                         <p>{{ $barang->jumlah_unit }}</p>
                     </div>
