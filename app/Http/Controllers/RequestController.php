@@ -148,14 +148,13 @@ class RequestController extends Controller
                     'jumlah_unit' => $jumlah_akhir
                 ]);
 
-                $jumlah_akumulasi_keluar = $jumlah_akhir - $jumlah_req;
 
                 $stok = Stok::create([
                     'barang_id' => $minta->barang_id,
                     'nama_stok' => $minta->namabarang,
-                    'stok_awal' => $jumlah_akhir,
+                    'stok_awal' => $jumlah_unit,
                     'stok_keluar' => $jumlah_req,
-                    'stok_akhir'  => $jumlah_akumulasi_keluar
+                    'stok_akhir'  => $jumlah_akhir
                 ]);
                 // return $stok;
 
