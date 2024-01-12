@@ -1,8 +1,14 @@
 <?php
 
-use App\Http\Controllers\BarangController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LoggingController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RequestController;
+use App\Models\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,54 +25,39 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('admin.dashboard.index');
-})->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {  
 
-Route::get('/requestdashboard', function () {
-    return view('admin.request.show');
+    Route::resource('user', UserController::class)->middleware([ 'role:admin']);
+    Route::resource('barang', BarangController::class)->middleware([ 'role:staff|admin']);
+    Route::resource('request', RequestController::class);
+    Route::resource('logging', LoggingController::class);
+
+    Route::get('/', function () {
+        $req = Request::where('status', 'menunggu')->count();
+        return view('admin.dashboard.index', compact('req'));
+    })->name('dashboard')->middleware([ 'role:admin|staff']);
+    
+    // Stok
+    Route::get('laporan/stok', [LaporanController::class, 'index'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index');
+    Route::post('laporan/stok', [LaporanController::class, 'index'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index');
+
+    // Request
+    Route::get('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
+    Route::post('laporan/request', [LaporanController::class, 'request'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request');
+
+    // PDF
+    Route::get('laporan/stok-pdf', [LaporanController::class, 'indexpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index.pdf');
+    Route::get('laporan/request-pdf', [LaporanController::class, 'requestpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request.pdf');
 });
 
-Route::get('/stockdashboard', function () {
-    return view('admin.stock.show');
-});
 
-Route::get('/barangdashboard', function () {
-    return view('admin.barang.create');
-});
 
-Route::get('/barangindex', function () {
-    return view('admin.barang.index');
-});
 
-Route::get('/userindex', function () {
-    return view('admin.user.index');
-});
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('content', ContentController::class)->parameters([
+    'content' => 'request'
+])->middleware(['auth', 'verified', 'role:guru']);
 
-Route::resource('barang', BarangController::class)->middleware(['auth', 'verified']);
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::get('admin', function() {
-    return view('index');
-})->middleware(['auth', 'verified', 'role:admin']);
-Route::get('staff', function() {
-    return '<h1>staff panel</h1>';
-})->middleware(['auth', 'verified', 'role:staff']);;
-Route::get('guru', function() {
-    return '<h1>guru panel</h1>';
-})->middleware(['auth', 'verified', 'role:guru']);;
-Route::get('kepsek', function() {
-    return '<h1>kepsek panel</h1>';
-})->middleware(['auth', 'verified', 'role:kepsek']);;
-
+Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->middleware(['auth', 'verified', 'role:guru'])->name('content.gambar');
 
 require __DIR__.'/auth.php';

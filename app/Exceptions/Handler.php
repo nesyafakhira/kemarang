@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -27,4 +29,21 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+
+    public function render($request, Throwable $e, ) 
+    {
+        if ($e instanceof UnauthorizedException) {
+            return response()->view('error.403', ['exception' => $e->getMessage()], 403);
+            
+        } elseif ($this->isHttpException($e)) {
+            if ($e->getStatusCode() == 404) {
+                return response()->view('error.404', [], 404);
+            }
+        };
+        
+        return parent::render($request, $e);
+    }
+
+
 }

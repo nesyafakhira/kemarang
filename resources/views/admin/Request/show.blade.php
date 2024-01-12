@@ -1,5 +1,9 @@
 @extends('admin.layouts.main')
 
+@section('title')
+    Kemarang | Detail Request
+@endsection
+
 @section('content')
     <div class="conatiner-fluid content-inner mt-5 py-0">
         <div class="col-lg-12">
@@ -12,17 +16,43 @@
                 <div class="card-body">
                     <div class="mt-2">
                         <h6 class="mb-1">Nama Barang</h6>
-                        <p>Spidol</p>
+                        <p>{{ $request->nama_barang }}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h6 class="mb-1">Gambar Barang</h6>
+                        <img src="{{ asset($request->barang->gambar_barang) }}" alt="Gambar barang" width="25%">
+                    </div>
+                    <div class="mt-2">
+                        <h6 class="mb-1">Deskripsi Barang</h6>
+                        <p>{{ $request->barang->deskripsi }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Jumlah Unit</h6>
-                        <p><a href="{{ url('#') }}" class="text-body"> 001 </a></p>
+                        <p>{{ $request->jumlah_unit }} {{ $request->barang->satuan }}</p>
                     </div>
                     <div class="mt-2">
                         <h6 class="mb-1">Satuan</h6>
-                        <p><a href="{{ url('#') }}" class="text-body"> pcs </a></p>
+                        <p>{{ $request->barang->satuan }}</p>
                     </div>
+                    <div class="mt-2">
+                        <h6 class="mb-1">Status</h6>
+                        @if ($request->status == 'menunggu')
+                            <span class="badge bg-primary">{{ $request->status }}</span>
+                        @elseif ($request->status == 'terima')
+                            <span class="badge bg-success mb-2">{{ $request->status }}</span>
+                            @if ($request->gambar_request)
+                                <div>
+                                    <img src="{{ asset($request->gambar_request) }}" alt="Bukti pengambilan" width="25%">
+
+                                </div>
+                            @endif
+                        @else
+                            <span class="badge bg-danger">{{ $request->status }}</span>
+                        @endif
+                    </div>
+
+                    <a href="{{ route('request.index') }}" class="btn btn-danger mt-5">Kembali</a>
+                </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

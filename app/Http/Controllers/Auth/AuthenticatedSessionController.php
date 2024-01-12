@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('form-login');
     }
 
     /**
@@ -29,13 +29,30 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // if (auth()->user()->hasRole('admin')) {
-        //     return redirect()->to('admin');
-        // }
-        
-        // if (auth()->user()->hasRole('staff')) {
-        //     return redirect()->to('staff');
-        // }
+
+        if (auth()->user()->hasRole('admin')) {
+            toast('Login berhasil','success');
+            
+            return to_route('dashboard')->with('success');
+        }
+
+        if (auth()->user()->hasRole('staff')) {
+            toast('Login berhasil','success');
+            
+            return to_route('dashboard')->with('success');
+        }
+
+        if (auth()->user()->hasRole('guru')) {
+            toast('Login berhasil','success');
+            
+            return to_route('content.index')->with('success');
+        }
+
+        if (auth()->user()->hasRole('kepsek')) {
+            toast('Login berhasil','success');
+            
+            return to_route('laporan.index')->with('success');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
@@ -51,6 +68,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        toast('Logout berhasil','warning');
+
+        return redirect('/')->with('success');
     }
 }
