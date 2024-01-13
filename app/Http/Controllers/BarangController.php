@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\MultipleSheetsImport;
+use App\Imports\Stok1Import;
 use App\Models\Stok;
 use App\Models\Barang;
 use Illuminate\Http\Request;
@@ -192,7 +193,8 @@ if ($request->jumlah_unit) {
     {
         try {
         Excel::import(new MultipleSheetsImport(), $request->file('file'));
-        return redirect()->back();
+        toast('Berhasil Import', 'success');
+        return to_route('barang.index')->with('success');
         }
         catch (\Exception $e) {
             return $e->getMessage();

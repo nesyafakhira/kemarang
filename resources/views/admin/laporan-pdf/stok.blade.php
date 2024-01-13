@@ -26,7 +26,7 @@
         @foreach($stoks as $stok)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $stok->nama_barang }}</td>
+                <td>{{ $stok->nama_stok }}</td>
                 <td>{{ $stok->stok_awal }}</td>
                 <td>{{ $stok->stok_keluar }}</td>
                 <td>{{ $stok->stok_akhir }}</td>

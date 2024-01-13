@@ -22,7 +22,7 @@
                         <table class="table" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>No</th>
                                     <th>Nama Barang</th>
                                     <th>Jumlah Unit</th>
                                     <th>Satuan</th>
@@ -38,7 +38,7 @@
                             <tbody>
                                 @foreach ($barangs as $barang)
                                     <tr>
-                                        <td>{{ $barang->id }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $barang->nama_barang }}</td>
                                         <td>{{ $barang->jumlah_unit }}</td>
                                         <td>{{ $barang->satuan }}</td>

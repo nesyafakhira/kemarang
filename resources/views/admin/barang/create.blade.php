@@ -74,12 +74,15 @@
                 </div>
 
                 <div class="card-body">
+                    <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div>
-                            <label for="formFileLg" class="form-label">Large file input example</label>
-                            <input class="form-control form-control-lg mb-3" id="formFileLg" type="file">
+                            <label for="formFileLg" class="form-label">Input File</label>
+                            <input name="file" class="form-control form-control-lg mb-3" id="formFileLg" type="file">
                         </div>
 
-                        <a href="{{ route('import') }}" class="btn btn-primary">Import File</a>
+                        <button type="submit" class="btn btn-primary">Import File</button>
+                    </form>
                 </div>
             </div>
         </div>
