@@ -62,6 +62,5 @@ Route::resource('content', ContentController::class)->parameters([
 
 Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->middleware(['auth', 'verified', 'role:guru'])->name('content.gambar');
 
-Route::get('pdf', [LaporanController::class, 'indexpdf']);
 
 require __DIR__.'/auth.php';
