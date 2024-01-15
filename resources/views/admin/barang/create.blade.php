@@ -22,23 +22,23 @@
                                 <div class="row">
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="fname">Nama Barang</label>
-                                        <input value="{{ old('nama_barang') }}" name="nama_barang" type="text" class="form-control" id="fname"
-                                            placeholder="Masukkan Nama">
+                                        <input value="{{ old('nama_barang') }}" name="nama_barang" type="text"
+                                            class="form-control" id="fname" placeholder="Masukkan Nama">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="fname">Deskripsi Barang</label>
-                                        <input value="{{ old('deskripsi') }}" name="deskripsi" type="text" class="form-control" id="fname"
-                                            placeholder="Masukkan Deskripsi">
+                                        <input value="{{ old('deskripsi') }}" name="deskripsi" type="text"
+                                            class="form-control" id="fname" placeholder="Masukkan Deskripsi">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="jumlah_unit">Jumlah Unit</label>
-                                        <input value="{{ old('jumlah_unit') }}" name="jumlah_unit" type="number" class="form-control" id="jumlah_unit"
-                                            placeholder="Masukkan Jumlah">
+                                        <input value="{{ old('jumlah_unit') }}" name="jumlah_unit" type="number"
+                                            class="form-control" id="jumlah_unit" placeholder="Masukkan Jumlah">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="datalist" class="form-label">Satuan</label>
-                                        <input value="{{ old('satuan') }}" class="form-control" name="satuan" list="datalistOptions" id="datalist"
-                                            placeholder="pcs/rim/meter">
+                                        <input value="{{ old('satuan') }}" class="form-control" name="satuan"
+                                            list="datalistOptions" id="datalist" placeholder="pcs/rim/meter">
                                         <datalist id="datalistOptions">
                                             <option value="Pcs">
                                             <option value="Rim">
@@ -47,8 +47,8 @@
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label class="form-label" for="hargaMasuk">Harga Masuk</label>
-                                        <input value="{{ old('harga_satuan') }}" name="harga_satuan" type="text" class="form-control" id="hargaMasuk"
-                                            placeholder="Masukkan Harga Satuan">
+                                        <input value="{{ old('harga_satuan') }}" name="harga_satuan" type="text"
+                                            class="form-control" id="hargaMasuk" placeholder="Masukkan Harga Satuan">
                                     </div>
 
                                     <div class="mb-3 col-sm-12">
@@ -64,6 +64,26 @@
                     </div>
                 </div>
 
+
+            </div>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title">Import Barang</h4>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div>
+                            <label for="formFileLg" class="form-label">Input File</label>
+                            <input name="file" class="form-control form-control-lg mb-3" id="formFileLg" type="file">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Import File</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +103,5 @@
                 allowNegative: false,
             });
         });
-    
     </script>
 @endpush

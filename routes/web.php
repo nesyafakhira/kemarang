@@ -48,6 +48,8 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     // PDF
     Route::get('laporan/stok-pdf', [LaporanController::class, 'indexpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.index.pdf');
     Route::get('laporan/request-pdf', [LaporanController::class, 'requestpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request.pdf');
+
+    Route::post('import', [BarangController::class, 'import'])->name('import');
 });
 
 
@@ -59,5 +61,6 @@ Route::resource('content', ContentController::class)->parameters([
 ])->middleware(['auth', 'verified', 'role:guru']);
 
 Route::patch('/detail/{request}', [ContentController::class, 'gambar'])->middleware(['auth', 'verified', 'role:guru'])->name('content.gambar');
+
 
 require __DIR__.'/auth.php';

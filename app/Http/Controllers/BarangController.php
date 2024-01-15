@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\MultipleSheetsImport;
+use App\Imports\Stok1Import;
 use App\Models\Stok;
 use App\Models\Barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
@@ -185,7 +188,20 @@ if ($request->jumlah_unit) {
 
         return to_route('barang.index')->with('success');
     }
-    
+
+    public function import(Request $request)
+    {
+        try {
+        Excel::import(new MultipleSheetsImport(), $request->file('file'));
+        toast('Berhasil Import', 'success');
+        return to_route('barang.index')->with('success');
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
 
 
 }
