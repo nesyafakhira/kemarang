@@ -40,7 +40,7 @@ class UserController extends Controller
         $request->validate([
             'name'      => 'required|max:100',
             'nip_nikki' => 'required|min:6|max:20',
-            'email'     => 'required|email:rfc,dns',
+            'email'     => 'required|email:dns',
             'password'  => 'required|min:8',
             'role'      => 'required', // Ini inputan dropdown
         ],

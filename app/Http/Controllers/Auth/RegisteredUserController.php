@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name'              => ['required', 'string', 'max:50'],
             'nip_nikki'         => ['required', 'min:6', 'max:18', 'unique:'.User::class],
-            'email'             => ['required', 'string', 'email:rfc,dns', 'max:25', 'unique:'.User::class],
+            'email'             => ['required', 'string', 'email:rfc,dns', 'unique:'.User::class],
             'password'          => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Request as Reqs;
+use Carbon\Carbon;
 use App\Models\Stok;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\PDF;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Models\Request as Reqs;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
@@ -68,7 +68,7 @@ class LaporanController extends Controller
         
         $kepsek = User::role('kepsek')->first();
 
-        $pdf = PDF::loadView('admin.laporan-pdf.stok', compact('stoks', 'date', 'kepsek'));
+        $pdf = Pdf::loadView('admin.laporan-pdf.stok', compact('stoks', 'date', 'kepsek'));
 
         return $pdf->stream('admin.laporan-pdf.stok.pdf');
     }
