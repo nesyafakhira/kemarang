@@ -65,7 +65,7 @@ class LaporanController extends Controller
         setlocale(LC_TIME, 'id');
 
         $date = Carbon::now();
-        
+
         $kepsek = User::role('kepsek')->first();
 
         $pdf = Pdf::loadView('admin.laporan-pdf.stok', compact('stoks', 'date', 'kepsek'));
@@ -94,6 +94,29 @@ class LaporanController extends Controller
         $pdf = PDF::loadView('admin.laporan-pdf.request', compact('reqs', 'date', 'kepsek'));
 
         return $pdf->stream('admin.laporan-pdf.request.pdf');
+    }
+
+    public function request_showpdf(Request $request)
+    {
+        $tglawal    = $request->tglawal;
+        $tglakhir   = $request->tglakhir;
+
+        if ($tglawal && $tglakhir) {
+            $tanggal_awal  = Carbon::parse($tglawal)->startOfDay();
+            $tanggal_akhir = Carbon::parse($tglakhir)->endOfDay();
+
+            $request_show = Reqs::whereBetween('created_at', [$tanggal_awal, $tanggal_akhir])->get();
+        } else {
+            $request_show = Reqs::orderBy('id', 'desc')->get();
+        }
+        setlocale(LC_TIME, 'id');
+        $date = Carbon::now();
+
+        $kepsek = User::role('kepsek')->first();
+
+        $pdf = PDF::loadView('admin.laporan-pdf.request_show', compact('request_show', 'date', 'kepsek'));
+
+        return $pdf->stream('admin.laporan-pdf.request_show.pdf');
     }
 
 }
