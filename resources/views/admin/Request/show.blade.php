@@ -51,8 +51,32 @@
                         @endif
                     </div>
 
-                    <a href="{{ route('request.index') }}" class="btn btn-danger mt-5">Kembali</a>
+                    <button class="btn btn-secondary mt-3" onclick="printPDF()">PRINT</button>
+                    <a href="{{ route('request.index') }}" class="btn btn-danger mt-3">Kembali</a>
                 </div>
             </div>
         </div>
     @endsection
+
+    @push('scripts')
+    <script
+        src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.8/af-2.6.0/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/datatables.min.js">
+    </script>
+    <script>
+        $(function() {
+            $("#datatable").DataTable({
+                dom: "fltp"
+            });
+        })
+    </script>
+
+    <script>
+        function printPDF() {
+            // Ganti URL dengan URL sesuai dengan rute generatePDF di Laravel
+            let pdfUrl = '/dashboard/laporan/request_show-pdf';
+
+            // Buka PDF dalam tab baru
+            window.open(pdfUrl, '_blank');
+        }
+    </script>
+@endpush
