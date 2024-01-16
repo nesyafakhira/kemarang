@@ -6,7 +6,6 @@
                     <h4 class="card-title">Detail Request</h4>
                 </div>
             </div>
-            @foreach ($request_show as $request)
             <div class="card-body">
                 <div class="mt-2">
                     <h6 class="mb-1">Nama Barang</h6>
@@ -46,6 +45,5 @@
                 </div>
 
             </div>
-            @endforeach
         </div>
     </div>

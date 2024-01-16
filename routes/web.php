@@ -50,7 +50,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function() {
     Route::get('laporan/request-pdf', [LaporanController::class, 'requestpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request.pdf');
 
 
-    Route::get('laporan/request_show-pdf', [LaporanController::class, 'request_showpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request_show.pdf');
+    Route::get('laporan/request_show-pdf/{request}', [LaporanController::class, 'request_showpdf'])->middleware(['role:kepsek|staff|admin'])->name('laporan.request_show.pdf');
 
     Route::post('import', [BarangController::class, 'import'])->name('import');
 });

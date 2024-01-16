@@ -18,10 +18,13 @@
                         <h6 class="mb-1">Nama Barang</h6>
                         <p>{{ $request->nama_barang }}</p>
                     </div>
+                    @if ($request->barang->gambar_barang)
                     <div class="mt-2">
                         <h6 class="mb-1">Gambar Barang</h6>
                         <img src="{{ asset($request->barang->gambar_barang) }}" alt="Gambar barang" width="25%">
                     </div>
+                        
+                    @endif
                     <div class="mt-2">
                         <h6 class="mb-1">Deskripsi Barang</h6>
                         <p>{{ $request->barang->deskripsi }}</p>
@@ -51,7 +54,7 @@
                         @endif
                     </div>
 
-                    <button class="btn btn-secondary mt-3" onclick="printPDF()">PRINT</button>
+                    <a href="{{ url('/dashboard/laporan/request_show-pdf', $request) }}" class="btn btn-secondary mt-3">PRINT</a>
                     <a href="{{ route('request.index') }}" class="btn btn-danger mt-3">Kembali</a>
                 </div>
             </div>
