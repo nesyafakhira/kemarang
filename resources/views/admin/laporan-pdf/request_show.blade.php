@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="header-title">
-                    <h4 class="card-title">Detail Request</h4>
+                    <h2 class="card-title" style="text-align: center">Detail Request</h2>
                 </div>
             </div>
             <div class="card-body">
@@ -16,23 +16,23 @@
                     <p>{{ $request->nama_barang }}</p>
                 </div>
                 <div class="mt-2">
-                    <h6 class="mb-1">Gambar Barang</h6>
+                    <h4 class="mb-1">Gambar Barang</h4>
                     <img src="{{ asset($request->barang->gambar_barang) }}" alt="Gambar barang" width="25%">
                 </div>
                 <div class="mt-2">
-                    <h6 class="mb-1">Deskripsi Barang</h6>
+                    <h4 class="mb-1">Deskripsi Barang</h4>
                     <p>{{ $request->barang->deskripsi }}</p>
                 </div>
                 <div class="mt-2">
-                    <h6 class="mb-1">Jumlah Unit</h6>
+                    <h4 class="mb-1">Jumlah Unit</h4>
                     <p>{{ $request->jumlah_unit }} {{ $request->barang->satuan }}</p>
                 </div>
                 <div class="mt-2">
-                    <h6 class="mb-1">Satuan</h6>
+                    <h4 class="mb-1">Satuan</h4>
                     <p>{{ $request->barang->satuan }}</p>
                 </div>
                 <div class="mt-2">
-                    <h6 class="mb-1">Status</h6>
+                    <h4 class="mb-1">Status</h4>
                     @if ($request->status == 'menunggu')
                         <span class="badge bg-primary">{{ $request->status }}</span>
                     @elseif ($request->status == 'terima')
