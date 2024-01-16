@@ -9,6 +9,10 @@
             <div class="card-body">
                 <div class="mt-2">
                     <h6 class="mb-1">Nama Barang</h6>
+                    <p>{{ $request->guru->name }}</p>
+                </div>
+                <div class="mt-2">
+                    <h6 class="mb-1">Nama Barang</h6>
                     <p>{{ $request->nama_barang }}</p>
                 </div>
                 <div class="mt-2">

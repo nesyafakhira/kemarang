@@ -39,15 +39,11 @@
                     <input type="hidden" id="barang_id" name="barang_id">
                     <input type="hidden" id="" name="guru_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="stok" id="jumlah_unit_hidden">
-                    {{-- <div class="col-form-label-sm mb-3">
-                        <label class="form-label" for="fname" id="labelJumlah">Jumlah Tersedia</label>
-                        <input disabled id="jumlah_unit" type="text" class="form-control" id="fname"
-                            placeholder="Jumlah yang tersedia">
-                    </div> --}}
                     <div class="col-form-label-sm mb-3">
                         <label class="form-label" for="mobno" id="labelJumlahUnit">Jumlah Unit</label>
                         <input name="jumlah_unit" type="text" class="form-control" id="mobno"
                             placeholder="Jumlah yang ingin diminta">
+                            <p id="emptyStok" class="d-none mt-3">Stok habis</p>
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="keperluan" class="form-label">Keperluan</label>
@@ -100,11 +96,14 @@
 
             let stok = jumlahBarang;
             let submitBtn = document.getElementById('submitBtn');
+            let emptyStok = document.getElementById('emptyStok');
 
             if (stok === 0) {
                 submitBtn.disabled = true;
+                emptyStok.removeClass('d-none');
             } else {
                 submitBtn.disabled = false;
+                emptyStok.addClass('d-none');
             }
         }
     </script>

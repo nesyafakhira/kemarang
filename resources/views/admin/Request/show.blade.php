@@ -54,7 +54,7 @@
                         @endif
                     </div>
 
-                    <a href="{{ url('/dashboard/laporan/request_show-pdf', $request) }}" class="btn btn-secondary mt-3">PRINT</a>
+                    <a href="{{ url('/dashboard/laporan/request_show-pdf', $request) }}" class="btn btn-secondary mt-3" target="_blank">PRINT</a>
                     <a href="{{ route('request.index') }}" class="btn btn-danger mt-3">Kembali</a>
                 </div>
             </div>

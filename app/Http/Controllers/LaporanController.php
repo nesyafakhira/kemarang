@@ -120,6 +120,9 @@ class LaporanController extends Controller
 
         // return $request;
 
+        $request->load('guru');
+        // return $request;
+
         $pdf = Pdf::loadView('admin.laporan-pdf.request_show', compact('request'));
 
         return $pdf->stream('admin.laporan-pdf.request_show.pdf');
