@@ -100,10 +100,10 @@
 
             if (stok === 0) {
                 submitBtn.disabled = true;
-                emptyStok.removeClass('d-none');
+                emptyStok.classList.remove('d-none');
             } else {
                 submitBtn.disabled = false;
-                emptyStok.addClass('d-none');
+                emptyStok.classList.add('d-none');
             }
         }
     </script>
