@@ -76,12 +76,21 @@
                 <div class="card-body">
                     <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div>
-                            <label for="formFileLg" class="form-label">Input File</label>
-                            <input name="file" class="form-control form-control-lg mb-3" id="formFileLg" type="file">
+                        <div class="row">
+                            <div class="col">
+                                <label for="formFileLg" class="form-label">Input File</label>
+                                <input name="file" class="form-control form-control-lg mb-3" id="formFileLg" type="file">
+                                <label style="display: block" for=""><i>*file harus sesuai dengan format yang sudah ditentukan</i></label>
+                                <button type="submit" class="btn btn-primary">Import File</button>
+                            </div>
+                            <div class="col">
+                                <span style="display: block">Download Format Import</span>
+                                <a href="{{ asset('assets/excel/file.xlsx') }}" download="format_import.xlsx" class="btn btn-primary mt-3">DOWNLOAD</a>
+                            </div>
+
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Import File</button>
+
                     </form>
                 </div>
             </div>
