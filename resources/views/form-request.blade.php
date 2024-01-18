@@ -43,7 +43,7 @@
                         <label class="form-label" for="mobno" id="labelJumlahUnit">Jumlah Unit</label>
                         <input name="jumlah_unit" type="text" class="form-control" id="mobno"
                             placeholder="Jumlah yang ingin diminta">
-                            <p id="emptyStok" class="d-none mt-3">Stok habis</p>
+                            <h5 id="emptyStok" class="d-none mt-3" style="color: darkred; font-weight:bold">Stok habis</h5>
                     </div>
                     <div class="col-form-label-sm mb-3">
                         <label for="keperluan" class="form-label">Keperluan</label>
